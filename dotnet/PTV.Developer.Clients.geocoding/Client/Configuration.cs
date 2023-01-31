@@ -114,7 +114,7 @@ namespace PTV.Developer.Clients.geocoding.Client
         {
             Proxy = null;
             UserAgent = "OpenAPI-Generator/1.0.0/csharp";
-            BasePath = "https://api.staging.myptv.com/geocoding/v1";
+            BasePath = "https://api.myptv.com/geocoding/v1";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -122,7 +122,7 @@ namespace PTV.Developer.Clients.geocoding.Client
             {
                 {
                     new Dictionary<string, object> {
-                        {"url", "https://api.staging.myptv.com/geocoding/v1"},
+                        {"url", "https://api.myptv.com/geocoding/v1"},
                         {"description", "No description provided"},
                     }
                 }
@@ -143,7 +143,7 @@ namespace PTV.Developer.Clients.geocoding.Client
             IDictionary<string, string> defaultHeaders,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "https://api.staging.myptv.com/geocoding/v1") : this()
+            string basePath = "https://api.myptv.com/geocoding/v1") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");
