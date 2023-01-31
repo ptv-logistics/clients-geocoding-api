@@ -36,7 +36,11 @@ export interface Warning {
      * * `GEOCODING_TIMEOUT` - The search ran into a timeout while trying to find results.  
      * * `GEOCODING_INPUT_TOO_LONG` - The input was rejected because it is too long.  
      *   * `maximumSize` - The maximum allowed size of a singleField request.  
-     *   * `GEOCODING_TOO_MANY_RESULTS` - Too many results found. Not all of them are provided in the response.  
+     * * `TOO_MANY_INPUT_WORDS` - At least one of the input fields exceeded the maximum number of input words.  
+     *   * `inputField` - The input field that had too many input words.
+     *   * `actualNumberOfWords` - The number of words found in `inputField`.
+     *   * `maximumAllowedNumberOfWords` - The maximum number of words allowed in `inputField`.
+     * * `GEOCODING_TOO_MANY_RESULTS` - Too many results found. Not all of them are provided in the response.  
      * @type {string}
      * @memberof Warning
      */
