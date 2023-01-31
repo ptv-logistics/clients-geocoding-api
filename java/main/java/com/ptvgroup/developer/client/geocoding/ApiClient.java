@@ -51,7 +51,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p>The setter methods of this class return the current object to facilitate
  * a fluent style of configuration.</p>
  */
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-28T10:52:10.377251Z[Etc/UTC]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:16:12.211880Z[Etc/UTC]")
 public class ApiClient {
 
   private HttpClient.Builder builder;
@@ -207,7 +207,7 @@ public class ApiClient {
   }
 
   protected String getDefaultBaseUri() {
-    return "https://api.staging.myptv.com/geocoding/v1";
+    return "https://api.myptv.com/geocoding/v1";
   }
 
   protected HttpClient.Builder createDefaultHttpClientBuilder() {

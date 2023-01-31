@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   LocationAllOf.JSON_PROPERTY_LOCATION_TYPE,
   LocationAllOf.JSON_PROPERTY_QUALITY
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-28T10:52:10.377251Z[Etc/UTC]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:16:12.211880Z[Etc/UTC]")
 public class LocationAllOf {
   public static final String JSON_PROPERTY_LOCATION_TYPE = "locationType";
   private LocationType locationType;
