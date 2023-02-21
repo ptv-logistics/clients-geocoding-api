@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ptvgroup.developer.client.geocoding.model.Location;
+import com.ptvgroup.developer.client.geocoding.model.SuggestedAddress;
 import com.ptvgroup.developer.client.geocoding.model.Warning;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,61 +32,61 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * The result of a locations search.
+ * The list of suggested addresses.
  */
-@ApiModel(description = "The result of a locations search.")
+@ApiModel(description = "The list of suggested addresses.")
 @JsonPropertyOrder({
-  LocationsSearchResult.JSON_PROPERTY_LOCATIONS,
-  LocationsSearchResult.JSON_PROPERTY_WARNINGS
+  SuggestionsByAddressResponse.JSON_PROPERTY_SUGGESTIONS,
+  SuggestionsByAddressResponse.JSON_PROPERTY_WARNINGS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-02-21T13:00:09.396357Z[Etc/UTC]")
-public class LocationsSearchResult {
-  public static final String JSON_PROPERTY_LOCATIONS = "locations";
-  private List<Location> locations = new ArrayList<>();
+public class SuggestionsByAddressResponse {
+  public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
+  private List<SuggestedAddress> suggestions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
   private List<Warning> warnings = null;
 
-  public LocationsSearchResult() { 
+  public SuggestionsByAddressResponse() { 
   }
 
-  public LocationsSearchResult locations(List<Location> locations) {
-    this.locations = locations;
+  public SuggestionsByAddressResponse suggestions(List<SuggestedAddress> suggestions) {
+    this.suggestions = suggestions;
     return this;
   }
 
-  public LocationsSearchResult addLocationsItem(Location locationsItem) {
-    this.locations.add(locationsItem);
+  public SuggestionsByAddressResponse addSuggestionsItem(SuggestedAddress suggestionsItem) {
+    this.suggestions.add(suggestionsItem);
     return this;
   }
 
    /**
-   * The found locations.
-   * @return locations
+   * The list of suggested addresses.
+   * @return suggestions
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The found locations.")
-  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @ApiModelProperty(required = true, value = "The list of suggested addresses.")
+  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Location> getLocations() {
-    return locations;
+  public List<SuggestedAddress> getSuggestions() {
+    return suggestions;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLocations(List<Location> locations) {
-    this.locations = locations;
+  public void setSuggestions(List<SuggestedAddress> suggestions) {
+    this.suggestions = suggestions;
   }
 
 
-  public LocationsSearchResult warnings(List<Warning> warnings) {
+  public SuggestionsByAddressResponse warnings(List<Warning> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public LocationsSearchResult addWarningsItem(Warning warningsItem) {
+  public SuggestionsByAddressResponse addWarningsItem(Warning warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -116,7 +116,7 @@ public class LocationsSearchResult {
 
 
   /**
-   * Return true if this LocationsSearchResult object is equal to o.
+   * Return true if this SuggestionsByAddressResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -126,21 +126,21 @@ public class LocationsSearchResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LocationsSearchResult locationsSearchResult = (LocationsSearchResult) o;
-    return Objects.equals(this.locations, locationsSearchResult.locations) &&
-        Objects.equals(this.warnings, locationsSearchResult.warnings);
+    SuggestionsByAddressResponse suggestionsByAddressResponse = (SuggestionsByAddressResponse) o;
+    return Objects.equals(this.suggestions, suggestionsByAddressResponse.suggestions) &&
+        Objects.equals(this.warnings, suggestionsByAddressResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locations, warnings);
+    return Objects.hash(suggestions, warnings);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LocationsSearchResult {\n");
-    sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("class SuggestionsByAddressResponse {\n");
+    sb.append("    suggestions: ").append(toIndentedString(suggestions)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
