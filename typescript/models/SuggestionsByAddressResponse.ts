@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { Place } from './Place';
+import type { SuggestedAddress } from './SuggestedAddress';
 import {
-    PlaceFromJSON,
-    PlaceFromJSONTyped,
-    PlaceToJSON,
-} from './Place';
+    SuggestedAddressFromJSON,
+    SuggestedAddressFromJSONTyped,
+    SuggestedAddressToJSON,
+} from './SuggestedAddress';
 import type { Warning } from './Warning';
 import {
     WarningFromJSON,
@@ -27,50 +27,51 @@ import {
 } from './Warning';
 
 /**
- * The result of a places search.
+ * The list of suggested addresses.
  * @export
- * @interface PlacesSearchResult
+ * @interface SuggestionsByAddressResponse
  */
-export interface PlacesSearchResult {
+export interface SuggestionsByAddressResponse {
     /**
-     * The found places.
-     * @type {Array<Place>}
-     * @memberof PlacesSearchResult
+     * The list of suggested addresses.
+     * @type {Array<SuggestedAddress>}
+     * @memberof SuggestionsByAddressResponse
      */
-    places?: Array<Place>;
+    suggestions: Array<SuggestedAddress>;
     /**
      * A list of warnings concerning the validity of the result.
      * @type {Array<Warning>}
-     * @memberof PlacesSearchResult
+     * @memberof SuggestionsByAddressResponse
      */
     warnings?: Array<Warning>;
 }
 
 /**
- * Check if a given object implements the PlacesSearchResult interface.
+ * Check if a given object implements the SuggestionsByAddressResponse interface.
  */
-export function instanceOfPlacesSearchResult(value: object): boolean {
+export function instanceOfSuggestionsByAddressResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "suggestions" in value;
 
     return isInstance;
 }
 
-export function PlacesSearchResultFromJSON(json: any): PlacesSearchResult {
-    return PlacesSearchResultFromJSONTyped(json, false);
+export function SuggestionsByAddressResponseFromJSON(json: any): SuggestionsByAddressResponse {
+    return SuggestionsByAddressResponseFromJSONTyped(json, false);
 }
 
-export function PlacesSearchResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlacesSearchResult {
+export function SuggestionsByAddressResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestionsByAddressResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'places': !exists(json, 'places') ? undefined : ((json['places'] as Array<any>).map(PlaceFromJSON)),
+        'suggestions': ((json['suggestions'] as Array<any>).map(SuggestedAddressFromJSON)),
         'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
     };
 }
 
-export function PlacesSearchResultToJSON(value?: PlacesSearchResult | null): any {
+export function SuggestionsByAddressResponseToJSON(value?: SuggestionsByAddressResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -79,7 +80,7 @@ export function PlacesSearchResultToJSON(value?: PlacesSearchResult | null): any
     }
     return {
         
-        'places': value.places === undefined ? undefined : ((value.places as Array<any>).map(PlaceToJSON)),
+        'suggestions': ((value.suggestions as Array<any>).map(SuggestedAddressToJSON)),
         'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(WarningToJSON)),
     };
 }
