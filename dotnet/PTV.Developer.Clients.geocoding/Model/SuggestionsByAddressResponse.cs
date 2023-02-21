@@ -26,28 +26,38 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// The result of a places search.
+    /// The list of suggested addresses.
     /// </summary>
-    [DataContract(Name = "PlacesSearchResult")]
-    public partial class PlacesSearchResult : IEquatable<PlacesSearchResult>, IValidatableObject
+    [DataContract(Name = "SuggestionsByAddressResponse")]
+    public partial class SuggestionsByAddressResponse : IEquatable<SuggestionsByAddressResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlacesSearchResult" /> class.
+        /// Initializes a new instance of the <see cref="SuggestionsByAddressResponse" /> class.
         /// </summary>
-        /// <param name="places">The found places..</param>
+        [JsonConstructorAttribute]
+        protected SuggestionsByAddressResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SuggestionsByAddressResponse" /> class.
+        /// </summary>
+        /// <param name="suggestions">The list of suggested addresses. (required).</param>
         /// <param name="warnings">A list of warnings concerning the validity of the result..</param>
-        public PlacesSearchResult(List<Place> places = default(List<Place>), List<Warning> warnings = default(List<Warning>))
+        public SuggestionsByAddressResponse(List<SuggestedAddress> suggestions = default(List<SuggestedAddress>), List<Warning> warnings = default(List<Warning>))
         {
-            this.Places = places;
+            // to ensure "suggestions" is required (not null)
+            if (suggestions == null)
+            {
+                throw new ArgumentNullException("suggestions is a required property for SuggestionsByAddressResponse and cannot be null");
+            }
+            this.Suggestions = suggestions;
             this.Warnings = warnings;
         }
 
         /// <summary>
-        /// The found places.
+        /// The list of suggested addresses.
         /// </summary>
-        /// <value>The found places.</value>
-        [DataMember(Name = "places", EmitDefaultValue = false)]
-        public List<Place> Places { get; set; }
+        /// <value>The list of suggested addresses.</value>
+        [DataMember(Name = "suggestions", IsRequired = true, EmitDefaultValue = false)]
+        public List<SuggestedAddress> Suggestions { get; set; }
 
         /// <summary>
         /// A list of warnings concerning the validity of the result.
@@ -63,8 +73,8 @@ namespace PTV.Developer.Clients.geocoding.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PlacesSearchResult {\n");
-            sb.Append("  Places: ").Append(Places).Append("\n");
+            sb.Append("class SuggestionsByAddressResponse {\n");
+            sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
             sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -86,15 +96,15 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PlacesSearchResult);
+            return this.Equals(input as SuggestionsByAddressResponse);
         }
 
         /// <summary>
-        /// Returns true if PlacesSearchResult instances are equal
+        /// Returns true if SuggestionsByAddressResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PlacesSearchResult to be compared</param>
+        /// <param name="input">Instance of SuggestionsByAddressResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PlacesSearchResult input)
+        public bool Equals(SuggestionsByAddressResponse input)
         {
             if (input == null)
             {
@@ -102,10 +112,10 @@ namespace PTV.Developer.Clients.geocoding.Model
             }
             return 
                 (
-                    this.Places == input.Places ||
-                    this.Places != null &&
-                    input.Places != null &&
-                    this.Places.SequenceEqual(input.Places)
+                    this.Suggestions == input.Suggestions ||
+                    this.Suggestions != null &&
+                    input.Suggestions != null &&
+                    this.Suggestions.SequenceEqual(input.Suggestions)
                 ) && 
                 (
                     this.Warnings == input.Warnings ||
@@ -124,9 +134,9 @@ namespace PTV.Developer.Clients.geocoding.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Places != null)
+                if (this.Suggestions != null)
                 {
-                    hashCode = (hashCode * 59) + this.Places.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Suggestions.GetHashCode();
                 }
                 if (this.Warnings != null)
                 {
