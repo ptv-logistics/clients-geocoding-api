@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './Address';
+export * from './AddressScores';
 export * from './Area';
 export * from './CausingError';
 export * from './ErrorResponse';
@@ -18,6 +19,7 @@ export * from './PlacesByAreaRequest';
 export * from './PlacesSearchResult';
 export * from './Quality';
 export * from './ReferencePosition';
+export * from './Results';
 export * from './RoadAccessPosition';
 export * from './SuggestedAddress';
 export * from './SuggestionsByAddressResponse';
