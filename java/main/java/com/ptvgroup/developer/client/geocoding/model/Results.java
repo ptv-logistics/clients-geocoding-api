@@ -27,27 +27,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Distinguishes different types of Locations:    * &#x60;LOCALITY&#x60; - Represents a locality (town, city or place).    * &#x60;POSTAL_CODE&#x60; - Represents a postal code area.    * &#x60;STREET&#x60; - Represents a street, or a section of a street.    * &#x60;EXACT_ADDRESS:&#x60; - An address that is contained exactly in the geocoding data.     * &#x60;INTERPOLATED_ADDRESS&#x60; - An address that was interpolated from an address range.     * &#x60;INTERSECTION&#x60; - An at-grade junction where two streets meet.     * &#x60;POINT_OF_INTEREST&#x60; - A point of interest, like e.g. a shop, a service, or a museum.
+ * Gets or Sets Results
  */
-public enum LocationType {
+public enum Results {
   
-  LOCALITY("LOCALITY"),
-  
-  POSTAL_CODE("POSTAL_CODE"),
-  
-  STREET("STREET"),
-  
-  EXACT_ADDRESS("EXACT_ADDRESS"),
-  
-  INTERPOLATED_ADDRESS("INTERPOLATED_ADDRESS"),
-  
-  INTERSECTION("INTERSECTION"),
-  
-  POINT_OF_INTEREST("POINT_OF_INTEREST");
+  ADDRESS_SCORES("ADDRESS_SCORES");
 
   private String value;
 
-  LocationType(String value) {
+  Results(String value) {
     this.value = value;
   }
 
@@ -62,8 +50,8 @@ public enum LocationType {
   }
 
   @JsonCreator
-  public static LocationType fromValue(String value) {
-    for (LocationType b : LocationType.values()) {
+  public static Results fromValue(String value) {
+    for (Results b : Results.values()) {
       if (b.value.equals(value)) {
         return b;
       }

@@ -29,278 +29,278 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * Represents the address of a geographical object. Whenever a string, such as a city or street name, is available in multiple languages, it is returned in the default language specified by the country in which an object is located. Most of the fields are optional, because addressing schemes vary strongly between countries.
+ * Quality indicators that help deciding how well a result fits to the search input.
  */
 @JsonPropertyOrder({
-  Address.JSON_PROPERTY_COUNTRY_NAME,
-  Address.JSON_PROPERTY_STATE,
-  Address.JSON_PROPERTY_PROVINCE,
-  Address.JSON_PROPERTY_POSTAL_CODE,
-  Address.JSON_PROPERTY_CITY,
-  Address.JSON_PROPERTY_DISTRICT,
-  Address.JSON_PROPERTY_SUBDISTRICT,
-  Address.JSON_PROPERTY_STREET,
-  Address.JSON_PROPERTY_HOUSE_NUMBER
+  AddressScores.JSON_PROPERTY_COUNTRY,
+  AddressScores.JSON_PROPERTY_STATE,
+  AddressScores.JSON_PROPERTY_PROVINCE,
+  AddressScores.JSON_PROPERTY_POSTAL_CODE,
+  AddressScores.JSON_PROPERTY_CITY,
+  AddressScores.JSON_PROPERTY_DISTRICT,
+  AddressScores.JSON_PROPERTY_SUB_DISTRICT,
+  AddressScores.JSON_PROPERTY_STREET,
+  AddressScores.JSON_PROPERTY_HOUSE_NUMBER
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-10T09:35:50.309031Z[Etc/UTC]")
-public class Address {
-  public static final String JSON_PROPERTY_COUNTRY_NAME = "countryName";
-  private String countryName;
+public class AddressScores {
+  public static final String JSON_PROPERTY_COUNTRY = "country";
+  private Integer country;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  private String state;
+  private Integer state;
 
   public static final String JSON_PROPERTY_PROVINCE = "province";
-  private String province;
+  private Integer province;
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
-  private String postalCode;
+  private Integer postalCode;
 
   public static final String JSON_PROPERTY_CITY = "city";
-  private String city;
+  private Integer city;
 
   public static final String JSON_PROPERTY_DISTRICT = "district";
-  private String district;
+  private Integer district;
 
-  public static final String JSON_PROPERTY_SUBDISTRICT = "subdistrict";
-  private String subdistrict;
+  public static final String JSON_PROPERTY_SUB_DISTRICT = "subDistrict";
+  private Integer subDistrict;
 
   public static final String JSON_PROPERTY_STREET = "street";
-  private String street;
+  private Integer street;
 
   public static final String JSON_PROPERTY_HOUSE_NUMBER = "houseNumber";
-  private String houseNumber;
+  private Integer houseNumber;
 
-  public Address() { 
+  public AddressScores() { 
   }
 
-  public Address countryName(String countryName) {
-    this.countryName = countryName;
+  public AddressScores country(Integer country) {
+    this.country = country;
     return this;
   }
 
    /**
-   * The country. In a response, it is represented by its full name (not abbreviated or encoded).
-   * @return countryName
+   * The score for the returned country in \\[%\\].
+   * @return country
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNTRY_NAME)
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCountryName() {
-    return countryName;
+  public Integer getCountry() {
+    return country;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COUNTRY_NAME)
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCountryName(String countryName) {
-    this.countryName = countryName;
+  public void setCountry(Integer country) {
+    this.country = country;
   }
 
 
-  public Address state(String state) {
+  public AddressScores state(Integer state) {
     this.state = state;
     return this;
   }
 
    /**
-   * The name of the principal country subdivision which the address belongs to (for example, a state in the USA, or a canton in Switzerland).
+   * The score for the returned state in \\[%\\].
    * @return state
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getState() {
+  public Integer getState() {
     return state;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(String state) {
+  public void setState(Integer state) {
     this.state = state;
   }
 
 
-  public Address province(String province) {
+  public AddressScores province(Integer province) {
     this.province = province;
     return this;
   }
 
    /**
-   * The name of the second-level country subdivision which the address belongs to (for example, a county in the UK, or a province in Italy).
+   * The score for the returned province in \\[%\\].
    * @return province
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PROVINCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getProvince() {
+  public Integer getProvince() {
     return province;
   }
 
 
   @JsonProperty(JSON_PROPERTY_PROVINCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProvince(String province) {
+  public void setProvince(Integer province) {
     this.province = province;
   }
 
 
-  public Address postalCode(String postalCode) {
+  public AddressScores postalCode(Integer postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
    /**
-   * The postal code of the address.
+   * The score for the returned postalCode in \\[%\\].
    * @return postalCode
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPostalCode() {
+  public Integer getPostalCode() {
     return postalCode;
   }
 
 
   @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPostalCode(String postalCode) {
+  public void setPostalCode(Integer postalCode) {
     this.postalCode = postalCode;
   }
 
 
-  public Address city(String city) {
+  public AddressScores city(Integer city) {
     this.city = city;
     return this;
   }
 
    /**
-   * The city of the address, i.e. the highest entity at the communal level which the address belongs to.
+   * The score for the returned city in \\[%\\].
    * @return city
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCity() {
+  public Integer getCity() {
     return city;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(String city) {
+  public void setCity(Integer city) {
     this.city = city;
   }
 
 
-  public Address district(String district) {
+  public AddressScores district(Integer district) {
     this.district = district;
     return this;
   }
 
    /**
-   * The district of the address, i.e. the entity below city.
+   * The score for the returned district in \\[%\\].
    * @return district
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDistrict() {
+  public Integer getDistrict() {
     return district;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDistrict(String district) {
+  public void setDistrict(Integer district) {
     this.district = district;
   }
 
 
-  public Address subdistrict(String subdistrict) {
-    this.subdistrict = subdistrict;
+  public AddressScores subDistrict(Integer subDistrict) {
+    this.subDistrict = subDistrict;
     return this;
   }
 
    /**
-   * The subdistrict of the address, i.e. the entity below district.
-   * @return subdistrict
+   * The score for the returned subdistrict in \\[%\\].
+   * @return subDistrict
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SUBDISTRICT)
+  @JsonProperty(JSON_PROPERTY_SUB_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSubdistrict() {
-    return subdistrict;
+  public Integer getSubDistrict() {
+    return subDistrict;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUBDISTRICT)
+  @JsonProperty(JSON_PROPERTY_SUB_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubdistrict(String subdistrict) {
-    this.subdistrict = subdistrict;
+  public void setSubDistrict(Integer subDistrict) {
+    this.subDistrict = subDistrict;
   }
 
 
-  public Address street(String street) {
+  public AddressScores street(Integer street) {
     this.street = street;
     return this;
   }
 
    /**
-   * The street of the address.
+   * The score for the returned street in \\[%\\].
    * @return street
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STREET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStreet() {
+  public Integer getStreet() {
     return street;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STREET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStreet(String street) {
+  public void setStreet(Integer street) {
     this.street = street;
   }
 
 
-  public Address houseNumber(String houseNumber) {
+  public AddressScores houseNumber(Integer houseNumber) {
     this.houseNumber = houseNumber;
     return this;
   }
 
    /**
-   * The house number of the address.
+   * The score for the returned house number in \\[%\\].
    * @return houseNumber
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getHouseNumber() {
+  public Integer getHouseNumber() {
     return houseNumber;
   }
 
 
   @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHouseNumber(String houseNumber) {
+  public void setHouseNumber(Integer houseNumber) {
     this.houseNumber = houseNumber;
   }
 
 
   /**
-   * Return true if this Address object is equal to o.
+   * Return true if this AddressScores object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -310,34 +310,34 @@ public class Address {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Address address = (Address) o;
-    return Objects.equals(this.countryName, address.countryName) &&
-        Objects.equals(this.state, address.state) &&
-        Objects.equals(this.province, address.province) &&
-        Objects.equals(this.postalCode, address.postalCode) &&
-        Objects.equals(this.city, address.city) &&
-        Objects.equals(this.district, address.district) &&
-        Objects.equals(this.subdistrict, address.subdistrict) &&
-        Objects.equals(this.street, address.street) &&
-        Objects.equals(this.houseNumber, address.houseNumber);
+    AddressScores addressScores = (AddressScores) o;
+    return Objects.equals(this.country, addressScores.country) &&
+        Objects.equals(this.state, addressScores.state) &&
+        Objects.equals(this.province, addressScores.province) &&
+        Objects.equals(this.postalCode, addressScores.postalCode) &&
+        Objects.equals(this.city, addressScores.city) &&
+        Objects.equals(this.district, addressScores.district) &&
+        Objects.equals(this.subDistrict, addressScores.subDistrict) &&
+        Objects.equals(this.street, addressScores.street) &&
+        Objects.equals(this.houseNumber, addressScores.houseNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(countryName, state, province, postalCode, city, district, subdistrict, street, houseNumber);
+    return Objects.hash(country, state, province, postalCode, city, district, subDistrict, street, houseNumber);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Address {\n");
-    sb.append("    countryName: ").append(toIndentedString(countryName)).append("\n");
+    sb.append("class AddressScores {\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    province: ").append(toIndentedString(province)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    district: ").append(toIndentedString(district)).append("\n");
-    sb.append("    subdistrict: ").append(toIndentedString(subdistrict)).append("\n");
+    sb.append("    subDistrict: ").append(toIndentedString(subDistrict)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    houseNumber: ").append(toIndentedString(houseNumber)).append("\n");
     sb.append("}");
@@ -387,9 +387,9 @@ public class Address {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `countryName` to the URL query string
-    if (getCountryName() != null) {
-      joiner.add(String.format("%scountryName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountryName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    // add `country` to the URL query string
+    if (getCountry() != null) {
+      joiner.add(String.format("%scountry%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `state` to the URL query string
@@ -417,9 +417,9 @@ public class Address {
       joiner.add(String.format("%sdistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
-    // add `subdistrict` to the URL query string
-    if (getSubdistrict() != null) {
-      joiner.add(String.format("%ssubdistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubdistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    // add `subDistrict` to the URL query string
+    if (getSubDistrict() != null) {
+      joiner.add(String.format("%ssubDistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `street` to the URL query string
