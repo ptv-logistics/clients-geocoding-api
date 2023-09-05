@@ -26,35 +26,45 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// Defines the area as [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) geometry. Supported geometry types are Polygon and MultiPolygon. Geometries that cause too long processing times will be rejected. In this case an error response is returned that explains the reason.
+    /// The list of suggestions for the search text.
     /// </summary>
-    [DataContract(Name = "Area")]
-    public partial class Area : IEquatable<Area>, IValidatableObject
+    [DataContract(Name = "SuggestionsByTextResponse")]
+    public partial class SuggestionsByTextResponse : IEquatable<SuggestionsByTextResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Area" /> class.
+        /// Initializes a new instance of the <see cref="SuggestionsByTextResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Area() { }
+        protected SuggestionsByTextResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Area" /> class.
+        /// Initializes a new instance of the <see cref="SuggestionsByTextResponse" /> class.
         /// </summary>
-        /// <param name="geometry">geometry (required).</param>
-        public Area(string geometry = default(string))
+        /// <param name="suggestions">The list of suggested search texts. (required).</param>
+        /// <param name="warnings">A list of warnings concerning the validity of the result..</param>
+        public SuggestionsByTextResponse(List<Suggestion> suggestions = default(List<Suggestion>), List<Warning> warnings = default(List<Warning>))
         {
-            // to ensure "geometry" is required (not null)
-            if (geometry == null)
+            // to ensure "suggestions" is required (not null)
+            if (suggestions == null)
             {
-                throw new ArgumentNullException("geometry is a required property for Area and cannot be null");
+                throw new ArgumentNullException("suggestions is a required property for SuggestionsByTextResponse and cannot be null");
             }
-            this.Geometry = geometry;
+            this.Suggestions = suggestions;
+            this.Warnings = warnings;
         }
 
         /// <summary>
-        /// Gets or Sets Geometry
+        /// The list of suggested search texts.
         /// </summary>
-        [DataMember(Name = "geometry", IsRequired = true, EmitDefaultValue = true)]
-        public string Geometry { get; set; }
+        /// <value>The list of suggested search texts.</value>
+        [DataMember(Name = "suggestions", IsRequired = true, EmitDefaultValue = true)]
+        public List<Suggestion> Suggestions { get; set; }
+
+        /// <summary>
+        /// A list of warnings concerning the validity of the result.
+        /// </summary>
+        /// <value>A list of warnings concerning the validity of the result.</value>
+        [DataMember(Name = "warnings", EmitDefaultValue = false)]
+        public List<Warning> Warnings { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,8 +73,9 @@ namespace PTV.Developer.Clients.geocoding.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Area {\n");
-            sb.Append("  Geometry: ").Append(Geometry).Append("\n");
+            sb.Append("class SuggestionsByTextResponse {\n");
+            sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
+            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +96,15 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Area);
+            return this.Equals(input as SuggestionsByTextResponse);
         }
 
         /// <summary>
-        /// Returns true if Area instances are equal
+        /// Returns true if SuggestionsByTextResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Area to be compared</param>
+        /// <param name="input">Instance of SuggestionsByTextResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Area input)
+        public bool Equals(SuggestionsByTextResponse input)
         {
             if (input == null)
             {
@@ -101,9 +112,16 @@ namespace PTV.Developer.Clients.geocoding.Model
             }
             return 
                 (
-                    this.Geometry == input.Geometry ||
-                    (this.Geometry != null &&
-                    this.Geometry.Equals(input.Geometry))
+                    this.Suggestions == input.Suggestions ||
+                    this.Suggestions != null &&
+                    input.Suggestions != null &&
+                    this.Suggestions.SequenceEqual(input.Suggestions)
+                ) && 
+                (
+                    this.Warnings == input.Warnings ||
+                    this.Warnings != null &&
+                    input.Warnings != null &&
+                    this.Warnings.SequenceEqual(input.Warnings)
                 );
         }
 
@@ -116,9 +134,13 @@ namespace PTV.Developer.Clients.geocoding.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Geometry != null)
+                if (this.Suggestions != null)
                 {
-                    hashCode = (hashCode * 59) + this.Geometry.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Suggestions.GetHashCode();
+                }
+                if (this.Warnings != null)
+                {
+                    hashCode = (hashCode * 59) + this.Warnings.GetHashCode();
                 }
                 return hashCode;
             }

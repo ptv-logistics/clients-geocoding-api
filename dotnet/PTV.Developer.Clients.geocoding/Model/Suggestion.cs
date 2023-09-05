@@ -26,43 +26,50 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// LocationAllOf
+    /// A search text suggested for the input of the searchLocationsByText endpoint.
     /// </summary>
-    [DataContract(Name = "Location_allOf")]
-    public partial class LocationAllOf : IEquatable<LocationAllOf>, IValidatableObject
+    [DataContract(Name = "Suggestion")]
+    public partial class Suggestion : IEquatable<Suggestion>, IValidatableObject
     {
-
         /// <summary>
-        /// Gets or Sets LocationType
-        /// </summary>
-        [DataMember(Name = "locationType", IsRequired = true, EmitDefaultValue = true)]
-        public LocationType LocationType { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LocationAllOf" /> class.
+        /// Initializes a new instance of the <see cref="Suggestion" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected LocationAllOf() { }
+        protected Suggestion() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocationAllOf" /> class.
+        /// Initializes a new instance of the <see cref="Suggestion" /> class.
         /// </summary>
-        /// <param name="locationType">locationType (required).</param>
-        /// <param name="quality">quality (required).</param>
-        public LocationAllOf(LocationType locationType = default(LocationType), Quality quality = default(Quality))
+        /// <param name="caption">A search address suggestion that can be displayed on a user interface as caption. (required).</param>
+        /// <param name="subCaption">An additional address information for the suggestion that can be displayed on a user interface as sub caption. (required).</param>
+        public Suggestion(string caption = default(string), string subCaption = default(string))
         {
-            this.LocationType = locationType;
-            // to ensure "quality" is required (not null)
-            if (quality == null)
+            // to ensure "caption" is required (not null)
+            if (caption == null)
             {
-                throw new ArgumentNullException("quality is a required property for LocationAllOf and cannot be null");
+                throw new ArgumentNullException("caption is a required property for Suggestion and cannot be null");
             }
-            this.Quality = quality;
+            this.Caption = caption;
+            // to ensure "subCaption" is required (not null)
+            if (subCaption == null)
+            {
+                throw new ArgumentNullException("subCaption is a required property for Suggestion and cannot be null");
+            }
+            this.SubCaption = subCaption;
         }
 
         /// <summary>
-        /// Gets or Sets Quality
+        /// A search address suggestion that can be displayed on a user interface as caption.
         /// </summary>
-        [DataMember(Name = "quality", IsRequired = true, EmitDefaultValue = true)]
-        public Quality Quality { get; set; }
+        /// <value>A search address suggestion that can be displayed on a user interface as caption.</value>
+        [DataMember(Name = "caption", IsRequired = true, EmitDefaultValue = true)]
+        public string Caption { get; set; }
+
+        /// <summary>
+        /// An additional address information for the suggestion that can be displayed on a user interface as sub caption.
+        /// </summary>
+        /// <value>An additional address information for the suggestion that can be displayed on a user interface as sub caption.</value>
+        [DataMember(Name = "subCaption", IsRequired = true, EmitDefaultValue = true)]
+        public string SubCaption { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,9 +78,9 @@ namespace PTV.Developer.Clients.geocoding.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LocationAllOf {\n");
-            sb.Append("  LocationType: ").Append(LocationType).Append("\n");
-            sb.Append("  Quality: ").Append(Quality).Append("\n");
+            sb.Append("class Suggestion {\n");
+            sb.Append("  Caption: ").Append(Caption).Append("\n");
+            sb.Append("  SubCaption: ").Append(SubCaption).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,15 +101,15 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LocationAllOf);
+            return this.Equals(input as Suggestion);
         }
 
         /// <summary>
-        /// Returns true if LocationAllOf instances are equal
+        /// Returns true if Suggestion instances are equal
         /// </summary>
-        /// <param name="input">Instance of LocationAllOf to be compared</param>
+        /// <param name="input">Instance of Suggestion to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(LocationAllOf input)
+        public bool Equals(Suggestion input)
         {
             if (input == null)
             {
@@ -110,13 +117,14 @@ namespace PTV.Developer.Clients.geocoding.Model
             }
             return 
                 (
-                    this.LocationType == input.LocationType ||
-                    this.LocationType.Equals(input.LocationType)
+                    this.Caption == input.Caption ||
+                    (this.Caption != null &&
+                    this.Caption.Equals(input.Caption))
                 ) && 
                 (
-                    this.Quality == input.Quality ||
-                    (this.Quality != null &&
-                    this.Quality.Equals(input.Quality))
+                    this.SubCaption == input.SubCaption ||
+                    (this.SubCaption != null &&
+                    this.SubCaption.Equals(input.SubCaption))
                 );
         }
 
@@ -129,10 +137,13 @@ namespace PTV.Developer.Clients.geocoding.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.LocationType.GetHashCode();
-                if (this.Quality != null)
+                if (this.Caption != null)
                 {
-                    hashCode = (hashCode * 59) + this.Quality.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Caption.GetHashCode();
+                }
+                if (this.SubCaption != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubCaption.GetHashCode();
                 }
                 return hashCode;
             }
