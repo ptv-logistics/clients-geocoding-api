@@ -22,5 +22,7 @@ export * from './ReferencePosition';
 export * from './Results';
 export * from './RoadAccessPosition';
 export * from './SuggestedAddress';
+export * from './Suggestion';
 export * from './SuggestionsByAddressResponse';
+export * from './SuggestionsByTextResponse';
 export * from './Warning';

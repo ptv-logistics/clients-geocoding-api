@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { SuggestedAddress } from './SuggestedAddress';
+import type { Suggestion } from './Suggestion';
 import {
-    SuggestedAddressFromJSON,
-    SuggestedAddressFromJSONTyped,
-    SuggestedAddressToJSON,
-} from './SuggestedAddress';
+    SuggestionFromJSON,
+    SuggestionFromJSONTyped,
+    SuggestionToJSON,
+} from './Suggestion';
 import type { Warning } from './Warning';
 import {
     WarningFromJSON,
@@ -27,51 +27,51 @@ import {
 } from './Warning';
 
 /**
- * The list of suggested addresses.
+ * The list of suggestions for the search text.
  * @export
- * @interface SuggestionsByAddressResponse
+ * @interface SuggestionsByTextResponse
  */
-export interface SuggestionsByAddressResponse {
+export interface SuggestionsByTextResponse {
     /**
-     * The list of suggested addresses.
-     * @type {Array<SuggestedAddress>}
-     * @memberof SuggestionsByAddressResponse
+     * The list of suggested search texts.
+     * @type {Array<Suggestion>}
+     * @memberof SuggestionsByTextResponse
      */
-    suggestions: Array<SuggestedAddress>;
+    suggestions: Array<Suggestion>;
     /**
      * A list of warnings concerning the validity of the result.
      * @type {Array<Warning>}
-     * @memberof SuggestionsByAddressResponse
+     * @memberof SuggestionsByTextResponse
      */
     warnings?: Array<Warning>;
 }
 
 /**
- * Check if a given object implements the SuggestionsByAddressResponse interface.
+ * Check if a given object implements the SuggestionsByTextResponse interface.
  */
-export function instanceOfSuggestionsByAddressResponse(value: object): boolean {
+export function instanceOfSuggestionsByTextResponse(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "suggestions" in value;
 
     return isInstance;
 }
 
-export function SuggestionsByAddressResponseFromJSON(json: any): SuggestionsByAddressResponse {
-    return SuggestionsByAddressResponseFromJSONTyped(json, false);
+export function SuggestionsByTextResponseFromJSON(json: any): SuggestionsByTextResponse {
+    return SuggestionsByTextResponseFromJSONTyped(json, false);
 }
 
-export function SuggestionsByAddressResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestionsByAddressResponse {
+export function SuggestionsByTextResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestionsByTextResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'suggestions': ((json['suggestions'] as Array<any>).map(SuggestedAddressFromJSON)),
+        'suggestions': ((json['suggestions'] as Array<any>).map(SuggestionFromJSON)),
         'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
     };
 }
 
-export function SuggestionsByAddressResponseToJSON(value?: SuggestionsByAddressResponse | null): any {
+export function SuggestionsByTextResponseToJSON(value?: SuggestionsByTextResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -80,7 +80,7 @@ export function SuggestionsByAddressResponseToJSON(value?: SuggestionsByAddressR
     }
     return {
         
-        'suggestions': ((value.suggestions as Array<any>).map(SuggestedAddressToJSON)),
+        'suggestions': ((value.suggestions as Array<any>).map(SuggestionToJSON)),
         'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(WarningToJSON)),
     };
 }
