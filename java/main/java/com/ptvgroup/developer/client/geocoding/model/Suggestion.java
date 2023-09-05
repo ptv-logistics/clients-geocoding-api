@@ -25,51 +25,79 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ptvgroup.developer.client.geocoding.model.Area;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * PlacesByAreaRequest
+ * A search text suggested for the input of the searchLocationsByText endpoint.
  */
 @JsonPropertyOrder({
-  PlacesByAreaRequest.JSON_PROPERTY_AREA
+  Suggestion.JSON_PROPERTY_CAPTION,
+  Suggestion.JSON_PROPERTY_SUB_CAPTION
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-05T11:56:31.995300Z[Etc/UTC]")
-public class PlacesByAreaRequest {
-  public static final String JSON_PROPERTY_AREA = "area";
-  private Area area;
+public class Suggestion {
+  public static final String JSON_PROPERTY_CAPTION = "caption";
+  private String caption;
 
-  public PlacesByAreaRequest() { 
+  public static final String JSON_PROPERTY_SUB_CAPTION = "subCaption";
+  private String subCaption;
+
+  public Suggestion() { 
   }
 
-  public PlacesByAreaRequest area(Area area) {
-    this.area = area;
+  public Suggestion caption(String caption) {
+    this.caption = caption;
     return this;
   }
 
    /**
-   * Get area
-   * @return area
+   * A search address suggestion that can be displayed on a user interface as caption.
+   * @return caption
   **/
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AREA)
+  @JsonProperty(JSON_PROPERTY_CAPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Area getArea() {
-    return area;
+  public String getCaption() {
+    return caption;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AREA)
+  @JsonProperty(JSON_PROPERTY_CAPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setArea(Area area) {
-    this.area = area;
+  public void setCaption(String caption) {
+    this.caption = caption;
+  }
+
+
+  public Suggestion subCaption(String subCaption) {
+    this.subCaption = subCaption;
+    return this;
+  }
+
+   /**
+   * An additional address information for the suggestion that can be displayed on a user interface as sub caption.
+   * @return subCaption
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_SUB_CAPTION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getSubCaption() {
+    return subCaption;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUB_CAPTION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSubCaption(String subCaption) {
+    this.subCaption = subCaption;
   }
 
 
   /**
-   * Return true if this PlacesByAreaRequest object is equal to o.
+   * Return true if this Suggestion object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -79,20 +107,22 @@ public class PlacesByAreaRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PlacesByAreaRequest placesByAreaRequest = (PlacesByAreaRequest) o;
-    return Objects.equals(this.area, placesByAreaRequest.area);
+    Suggestion suggestion = (Suggestion) o;
+    return Objects.equals(this.caption, suggestion.caption) &&
+        Objects.equals(this.subCaption, suggestion.subCaption);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(area);
+    return Objects.hash(caption, subCaption);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PlacesByAreaRequest {\n");
-    sb.append("    area: ").append(toIndentedString(area)).append("\n");
+    sb.append("class Suggestion {\n");
+    sb.append("    caption: ").append(toIndentedString(caption)).append("\n");
+    sb.append("    subCaption: ").append(toIndentedString(subCaption)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,9 +170,14 @@ public class PlacesByAreaRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `area` to the URL query string
-    if (getArea() != null) {
-      joiner.add(getArea().toUrlQueryString(prefix + "area" + suffix));
+    // add `caption` to the URL query string
+    if (getCaption() != null) {
+      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subCaption` to the URL query string
+    if (getSubCaption() != null) {
+      joiner.add(String.format("%ssubCaption%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

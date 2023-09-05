@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ptvgroup.developer.client.geocoding.model.SuggestedAddress;
+import com.ptvgroup.developer.client.geocoding.model.Suggestion;
 import com.ptvgroup.developer.client.geocoding.model.Warning;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,59 +33,59 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * The list of suggested addresses.
+ * The list of suggestions for the search text.
  */
 @JsonPropertyOrder({
-  SuggestionsByAddressResponse.JSON_PROPERTY_SUGGESTIONS,
-  SuggestionsByAddressResponse.JSON_PROPERTY_WARNINGS
+  SuggestionsByTextResponse.JSON_PROPERTY_SUGGESTIONS,
+  SuggestionsByTextResponse.JSON_PROPERTY_WARNINGS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-05T11:56:31.995300Z[Etc/UTC]")
-public class SuggestionsByAddressResponse {
+public class SuggestionsByTextResponse {
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
-  private List<SuggestedAddress> suggestions;
+  private List<Suggestion> suggestions;
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
   private List<Warning> warnings;
 
-  public SuggestionsByAddressResponse() { 
+  public SuggestionsByTextResponse() { 
   }
 
-  public SuggestionsByAddressResponse suggestions(List<SuggestedAddress> suggestions) {
+  public SuggestionsByTextResponse suggestions(List<Suggestion> suggestions) {
     this.suggestions = suggestions;
     return this;
   }
 
-  public SuggestionsByAddressResponse addSuggestionsItem(SuggestedAddress suggestionsItem) {
+  public SuggestionsByTextResponse addSuggestionsItem(Suggestion suggestionsItem) {
     this.suggestions.add(suggestionsItem);
     return this;
   }
 
    /**
-   * The list of suggested addresses.
+   * The list of suggested search texts.
    * @return suggestions
   **/
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<SuggestedAddress> getSuggestions() {
+  public List<Suggestion> getSuggestions() {
     return suggestions;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSuggestions(List<SuggestedAddress> suggestions) {
+  public void setSuggestions(List<Suggestion> suggestions) {
     this.suggestions = suggestions;
   }
 
 
-  public SuggestionsByAddressResponse warnings(List<Warning> warnings) {
+  public SuggestionsByTextResponse warnings(List<Warning> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public SuggestionsByAddressResponse addWarningsItem(Warning warningsItem) {
+  public SuggestionsByTextResponse addWarningsItem(Warning warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -114,7 +114,7 @@ public class SuggestionsByAddressResponse {
 
 
   /**
-   * Return true if this SuggestionsByAddressResponse object is equal to o.
+   * Return true if this SuggestionsByTextResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -124,9 +124,9 @@ public class SuggestionsByAddressResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SuggestionsByAddressResponse suggestionsByAddressResponse = (SuggestionsByAddressResponse) o;
-    return Objects.equals(this.suggestions, suggestionsByAddressResponse.suggestions) &&
-        Objects.equals(this.warnings, suggestionsByAddressResponse.warnings);
+    SuggestionsByTextResponse suggestionsByTextResponse = (SuggestionsByTextResponse) o;
+    return Objects.equals(this.suggestions, suggestionsByTextResponse.suggestions) &&
+        Objects.equals(this.warnings, suggestionsByTextResponse.warnings);
   }
 
   @Override
@@ -137,7 +137,7 @@ public class SuggestionsByAddressResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SuggestionsByAddressResponse {\n");
+    sb.append("class SuggestionsByTextResponse {\n");
     sb.append("    suggestions: ").append(toIndentedString(suggestions)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
