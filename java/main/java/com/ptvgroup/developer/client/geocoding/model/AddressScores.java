@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AddressScores.JSON_PROPERTY_STREET,
   AddressScores.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-01-11T09:05:00.447413Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
 public class AddressScores {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   private Integer country;

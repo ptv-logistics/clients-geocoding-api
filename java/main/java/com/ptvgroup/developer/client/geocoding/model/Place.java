@@ -46,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Place.JSON_PROPERTY_CATEGORY_IDS,
   Place.JSON_PROPERTY_QUALITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-01-11T09:05:00.447413Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
 public class Place {
   public static final String JSON_PROPERTY_REFERENCE_POSITION = "referencePosition";
   private ReferencePosition referencePosition;

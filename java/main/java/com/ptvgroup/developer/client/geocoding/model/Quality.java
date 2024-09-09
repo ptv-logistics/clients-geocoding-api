@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Quality.JSON_PROPERTY_TOTAL_SCORE,
   Quality.JSON_PROPERTY_ADDRESS_SCORES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-01-11T09:05:00.447413Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
 public class Quality {
   public static final String JSON_PROPERTY_DISTANCE = "distance";
   private JsonNullable<Integer> distance = JsonNullable.<Integer>undefined();
