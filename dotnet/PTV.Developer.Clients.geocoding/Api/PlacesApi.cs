@@ -38,7 +38,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        PlacesSearchResult SearchPlacesByArea(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0);
+        PlacesSearchResult SearchPlacesByArea(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -52,7 +52,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        ApiResponse<PlacesSearchResult> SearchPlacesByAreaWithHttpInfo(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0);
+        ApiResponse<PlacesSearchResult> SearchPlacesByAreaWithHttpInfo(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -68,7 +68,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        PlacesSearchResult SearchPlacesByPosition(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0);
+        PlacesSearchResult SearchPlacesByPosition(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -85,7 +85,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        ApiResponse<PlacesSearchResult> SearchPlacesByPositionWithHttpInfo(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0);
+        ApiResponse<PlacesSearchResult> SearchPlacesByPositionWithHttpInfo(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -102,7 +102,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="boundingBox">Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        PlacesSearchResult SearchPlacesByText(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0);
+        PlacesSearchResult SearchPlacesByText(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -120,7 +120,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="boundingBox">Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        ApiResponse<PlacesSearchResult> SearchPlacesByTextWithHttpInfo(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0);
+        ApiResponse<PlacesSearchResult> SearchPlacesByTextWithHttpInfo(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -143,7 +143,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByAreaAsync(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByAreaAsync(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -158,7 +158,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByAreaWithHttpInfoAsync(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByAreaWithHttpInfoAsync(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -175,7 +175,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByPositionAsync(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByPositionAsync(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -193,7 +193,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByPositionWithHttpInfoAsync(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByPositionWithHttpInfoAsync(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -211,7 +211,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByTextAsync(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByTextAsync(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -230,7 +230,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByTextWithHttpInfoAsync(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlacesSearchResult>> SearchPlacesByTextWithHttpInfoAsync(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -360,7 +360,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        public PlacesSearchResult SearchPlacesByArea(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0)
+        public PlacesSearchResult SearchPlacesByArea(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = SearchPlacesByAreaWithHttpInfo(placesByAreaRequest, categoryFilter, language);
             return localVarResponse.Data;
@@ -375,7 +375,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByAreaWithHttpInfo(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByAreaWithHttpInfo(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0)
         {
             // verify the required parameter 'placesByAreaRequest' is set
             if (placesByAreaRequest == null)
@@ -449,7 +449,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByAreaAsync(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByAreaAsync(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = await SearchPlacesByAreaWithHttpInfoAsync(placesByAreaRequest, categoryFilter, language, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -465,7 +465,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByAreaWithHttpInfoAsync(PlacesByAreaRequest placesByAreaRequest, List<string>? categoryFilter = default(List<string>?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByAreaWithHttpInfoAsync(PlacesByAreaRequest placesByAreaRequest, List<string> categoryFilter = default(List<string>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'placesByAreaRequest' is set
             if (placesByAreaRequest == null)
@@ -543,7 +543,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        public PlacesSearchResult SearchPlacesByPosition(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0)
+        public PlacesSearchResult SearchPlacesByPosition(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = SearchPlacesByPositionWithHttpInfo(latitude, longitude, radius, categoryFilter, limit, language);
             return localVarResponse.Data;
@@ -561,8 +561,20 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByPositionWithHttpInfo(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByPositionWithHttpInfo(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0)
         {
+            // verify the required parameter 'latitude' is set
+            if (latitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'latitude' when calling PlacesApi->SearchPlacesByPosition");
+            }
+
+            // verify the required parameter 'longitude' is set
+            if (longitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'longitude' when calling PlacesApi->SearchPlacesByPosition");
+            }
+
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -640,7 +652,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByPositionAsync(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByPositionAsync(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = await SearchPlacesByPositionWithHttpInfoAsync(latitude, longitude, radius, categoryFilter, limit, language, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -659,8 +671,20 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByPositionWithHttpInfoAsync(double latitude, double longitude, int? radius = default(int?), List<string>? categoryFilter = default(List<string>?), int? limit = default(int?), string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByPositionWithHttpInfoAsync(double? latitude, double? longitude, int? radius = default(int?), List<string> categoryFilter = default(List<string>), int? limit = default(int?), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
+            // verify the required parameter 'latitude' is set
+            if (latitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'latitude' when calling PlacesApi->SearchPlacesByPosition");
+            }
+
+            // verify the required parameter 'longitude' is set
+            if (longitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'longitude' when calling PlacesApi->SearchPlacesByPosition");
+            }
+
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -740,7 +764,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="boundingBox">Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>PlacesSearchResult</returns>
-        public PlacesSearchResult SearchPlacesByText(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0)
+        public PlacesSearchResult SearchPlacesByText(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = SearchPlacesByTextWithHttpInfo(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox);
             return localVarResponse.Data;
@@ -759,7 +783,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="boundingBox">Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PlacesSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByTextWithHttpInfo(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> SearchPlacesByTextWithHttpInfo(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -852,7 +876,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlacesSearchResult</returns>
-        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByTextAsync(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlacesSearchResult> SearchPlacesByTextAsync(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult> localVarResponse = await SearchPlacesByTextWithHttpInfoAsync(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -872,7 +896,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlacesSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByTextWithHttpInfoAsync(string searchText, List<string>? categoryFilter = default(List<string>?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<double>? center = default(List<double>?), int? radius = default(int?), List<double>? boundingBox = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlacesSearchResult>> SearchPlacesByTextWithHttpInfoAsync(string searchText, List<string> categoryFilter = default(List<string>), List<string> countryFilter = default(List<string>), string language = default(string), List<double?> center = default(List<double?>), int? radius = default(int?), List<double?> boundingBox = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)

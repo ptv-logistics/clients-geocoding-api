@@ -65,14 +65,14 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// A human readable name for the place category.
         /// </summary>
         /// <value>A human readable name for the place category.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
         /// An explanation of what kind of places are part of this place category.
         /// </summary>
         /// <value>An explanation of what kind of places are part of this place category.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

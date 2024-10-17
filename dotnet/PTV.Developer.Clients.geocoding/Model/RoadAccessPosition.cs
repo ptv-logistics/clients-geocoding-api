@@ -41,9 +41,19 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="latitude">The latitude value in degrees (WGS84/EPSG:4326) from south to north. (required).</param>
         /// <param name="longitude">The longitude value in degrees (WGS84/EPSG:4326) from west to east. (required).</param>
-        public RoadAccessPosition(double latitude = default(double), double longitude = default(double))
+        public RoadAccessPosition(double? latitude = default(double?), double? longitude = default(double?))
         {
+            // to ensure "latitude" is required (not null)
+            if (latitude == null)
+            {
+                throw new ArgumentNullException("latitude is a required property for RoadAccessPosition and cannot be null");
+            }
             this.Latitude = latitude;
+            // to ensure "longitude" is required (not null)
+            if (longitude == null)
+            {
+                throw new ArgumentNullException("longitude is a required property for RoadAccessPosition and cannot be null");
+            }
             this.Longitude = longitude;
         }
 
@@ -52,14 +62,14 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <value>The latitude value in degrees (WGS84/EPSG:4326) from south to north.</value>
         [DataMember(Name = "latitude", IsRequired = true, EmitDefaultValue = true)]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         /// <summary>
         /// The longitude value in degrees (WGS84/EPSG:4326) from west to east.
         /// </summary>
         /// <value>The longitude value in degrees (WGS84/EPSG:4326) from west to east.</value>
         [DataMember(Name = "longitude", IsRequired = true, EmitDefaultValue = true)]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,11 +118,13 @@ namespace PTV.Developer.Clients.geocoding.Model
             return 
                 (
                     this.Latitude == input.Latitude ||
-                    this.Latitude.Equals(input.Latitude)
+                    (this.Latitude != null &&
+                    this.Latitude.Equals(input.Latitude))
                 ) && 
                 (
                     this.Longitude == input.Longitude ||
-                    this.Longitude.Equals(input.Longitude)
+                    (this.Longitude != null &&
+                    this.Longitude.Equals(input.Longitude))
                 );
         }
 
@@ -125,8 +137,14 @@ namespace PTV.Developer.Clients.geocoding.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Latitude.GetHashCode();
-                hashCode = (hashCode * 59) + this.Longitude.GetHashCode();
+                if (this.Latitude != null)
+                {
+                    hashCode = (hashCode * 59) + this.Latitude.GetHashCode();
+                }
+                if (this.Longitude != null)
+                {
+                    hashCode = (hashCode * 59) + this.Longitude.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -136,30 +154,30 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Latitude (double) maximum
-            if (this.Latitude > (double)90)
+            // Latitude (double?) maximum
+            if (this.Latitude > (double?)90)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Latitude, must be a value less than or equal to 90.", new [] { "Latitude" });
+                yield return new ValidationResult("Invalid value for Latitude, must be a value less than or equal to 90.", new [] { "Latitude" });
             }
 
-            // Latitude (double) minimum
-            if (this.Latitude < (double)-90)
+            // Latitude (double?) minimum
+            if (this.Latitude < (double?)-90)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Latitude, must be a value greater than or equal to -90.", new [] { "Latitude" });
+                yield return new ValidationResult("Invalid value for Latitude, must be a value greater than or equal to -90.", new [] { "Latitude" });
             }
 
-            // Longitude (double) maximum
-            if (this.Longitude > (double)180)
+            // Longitude (double?) maximum
+            if (this.Longitude > (double?)180)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Longitude, must be a value less than or equal to 180.", new [] { "Longitude" });
+                yield return new ValidationResult("Invalid value for Longitude, must be a value less than or equal to 180.", new [] { "Longitude" });
             }
 
-            // Longitude (double) minimum
-            if (this.Longitude < (double)-180)
+            // Longitude (double?) minimum
+            if (this.Longitude < (double?)-180)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Longitude, must be a value greater than or equal to -180.", new [] { "Longitude" });
+                yield return new ValidationResult("Invalid value for Longitude, must be a value greater than or equal to -180.", new [] { "Longitude" });
             }
 
             yield break;

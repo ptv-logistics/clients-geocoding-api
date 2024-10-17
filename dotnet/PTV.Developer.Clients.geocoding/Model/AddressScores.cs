@@ -43,7 +43,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="subDistrict">The score for the returned subdistrict in \\[%\\]..</param>
         /// <param name="street">The score for the returned street in \\[%\\]..</param>
         /// <param name="houseNumber">The score for the returned house number in \\[%\\]..</param>
-        public AddressScores(int country = default(int), int state = default(int), int province = default(int), int postalCode = default(int), int city = default(int), int district = default(int), int subDistrict = default(int), int street = default(int), int houseNumber = default(int))
+        public AddressScores(int? country = default(int?), int? state = default(int?), int? province = default(int?), int? postalCode = default(int?), int? city = default(int?), int? district = default(int?), int? subDistrict = default(int?), int? street = default(int?), int? houseNumber = default(int?))
         {
             this.Country = country;
             this.State = state;
@@ -60,64 +60,64 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// The score for the returned country in \\[%\\].
         /// </summary>
         /// <value>The score for the returned country in \\[%\\].</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
-        public int Country { get; set; }
+        [DataMember(Name = "country", EmitDefaultValue = true)]
+        public int? Country { get; set; }
 
         /// <summary>
         /// The score for the returned state in \\[%\\].
         /// </summary>
         /// <value>The score for the returned state in \\[%\\].</value>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
-        public int State { get; set; }
+        [DataMember(Name = "state", EmitDefaultValue = true)]
+        public int? State { get; set; }
 
         /// <summary>
         /// The score for the returned province in \\[%\\].
         /// </summary>
         /// <value>The score for the returned province in \\[%\\].</value>
-        [DataMember(Name = "province", EmitDefaultValue = false)]
-        public int Province { get; set; }
+        [DataMember(Name = "province", EmitDefaultValue = true)]
+        public int? Province { get; set; }
 
         /// <summary>
         /// The score for the returned postalCode in \\[%\\].
         /// </summary>
         /// <value>The score for the returned postalCode in \\[%\\].</value>
-        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
-        public int PostalCode { get; set; }
+        [DataMember(Name = "postalCode", EmitDefaultValue = true)]
+        public int? PostalCode { get; set; }
 
         /// <summary>
         /// The score for the returned city in \\[%\\].
         /// </summary>
         /// <value>The score for the returned city in \\[%\\].</value>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
-        public int City { get; set; }
+        [DataMember(Name = "city", EmitDefaultValue = true)]
+        public int? City { get; set; }
 
         /// <summary>
         /// The score for the returned district in \\[%\\].
         /// </summary>
         /// <value>The score for the returned district in \\[%\\].</value>
-        [DataMember(Name = "district", EmitDefaultValue = false)]
-        public int District { get; set; }
+        [DataMember(Name = "district", EmitDefaultValue = true)]
+        public int? District { get; set; }
 
         /// <summary>
         /// The score for the returned subdistrict in \\[%\\].
         /// </summary>
         /// <value>The score for the returned subdistrict in \\[%\\].</value>
-        [DataMember(Name = "subDistrict", EmitDefaultValue = false)]
-        public int SubDistrict { get; set; }
+        [DataMember(Name = "subDistrict", EmitDefaultValue = true)]
+        public int? SubDistrict { get; set; }
 
         /// <summary>
         /// The score for the returned street in \\[%\\].
         /// </summary>
         /// <value>The score for the returned street in \\[%\\].</value>
-        [DataMember(Name = "street", EmitDefaultValue = false)]
-        public int Street { get; set; }
+        [DataMember(Name = "street", EmitDefaultValue = true)]
+        public int? Street { get; set; }
 
         /// <summary>
         /// The score for the returned house number in \\[%\\].
         /// </summary>
         /// <value>The score for the returned house number in \\[%\\].</value>
-        [DataMember(Name = "houseNumber", EmitDefaultValue = false)]
-        public int HouseNumber { get; set; }
+        [DataMember(Name = "houseNumber", EmitDefaultValue = true)]
+        public int? HouseNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -173,39 +173,48 @@ namespace PTV.Developer.Clients.geocoding.Model
             return 
                 (
                     this.Country == input.Country ||
-                    this.Country.Equals(input.Country)
+                    (this.Country != null &&
+                    this.Country.Equals(input.Country))
                 ) && 
                 (
                     this.State == input.State ||
-                    this.State.Equals(input.State)
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 ) && 
                 (
                     this.Province == input.Province ||
-                    this.Province.Equals(input.Province)
+                    (this.Province != null &&
+                    this.Province.Equals(input.Province))
                 ) && 
                 (
                     this.PostalCode == input.PostalCode ||
-                    this.PostalCode.Equals(input.PostalCode)
+                    (this.PostalCode != null &&
+                    this.PostalCode.Equals(input.PostalCode))
                 ) && 
                 (
                     this.City == input.City ||
-                    this.City.Equals(input.City)
+                    (this.City != null &&
+                    this.City.Equals(input.City))
                 ) && 
                 (
                     this.District == input.District ||
-                    this.District.Equals(input.District)
+                    (this.District != null &&
+                    this.District.Equals(input.District))
                 ) && 
                 (
                     this.SubDistrict == input.SubDistrict ||
-                    this.SubDistrict.Equals(input.SubDistrict)
+                    (this.SubDistrict != null &&
+                    this.SubDistrict.Equals(input.SubDistrict))
                 ) && 
                 (
                     this.Street == input.Street ||
-                    this.Street.Equals(input.Street)
+                    (this.Street != null &&
+                    this.Street.Equals(input.Street))
                 ) && 
                 (
                     this.HouseNumber == input.HouseNumber ||
-                    this.HouseNumber.Equals(input.HouseNumber)
+                    (this.HouseNumber != null &&
+                    this.HouseNumber.Equals(input.HouseNumber))
                 );
         }
 
@@ -218,15 +227,42 @@ namespace PTV.Developer.Clients.geocoding.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Country.GetHashCode();
-                hashCode = (hashCode * 59) + this.State.GetHashCode();
-                hashCode = (hashCode * 59) + this.Province.GetHashCode();
-                hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
-                hashCode = (hashCode * 59) + this.City.GetHashCode();
-                hashCode = (hashCode * 59) + this.District.GetHashCode();
-                hashCode = (hashCode * 59) + this.SubDistrict.GetHashCode();
-                hashCode = (hashCode * 59) + this.Street.GetHashCode();
-                hashCode = (hashCode * 59) + this.HouseNumber.GetHashCode();
+                if (this.Country != null)
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
+                }
+                if (this.State != null)
+                {
+                    hashCode = (hashCode * 59) + this.State.GetHashCode();
+                }
+                if (this.Province != null)
+                {
+                    hashCode = (hashCode * 59) + this.Province.GetHashCode();
+                }
+                if (this.PostalCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.PostalCode.GetHashCode();
+                }
+                if (this.City != null)
+                {
+                    hashCode = (hashCode * 59) + this.City.GetHashCode();
+                }
+                if (this.District != null)
+                {
+                    hashCode = (hashCode * 59) + this.District.GetHashCode();
+                }
+                if (this.SubDistrict != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubDistrict.GetHashCode();
+                }
+                if (this.Street != null)
+                {
+                    hashCode = (hashCode * 59) + this.Street.GetHashCode();
+                }
+                if (this.HouseNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.HouseNumber.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -236,7 +272,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

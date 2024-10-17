@@ -73,7 +73,6 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         [EnumMember(Value = "POINT_OF_INTEREST")]
         POINT_OF_INTEREST = 7
-
     }
 
 }

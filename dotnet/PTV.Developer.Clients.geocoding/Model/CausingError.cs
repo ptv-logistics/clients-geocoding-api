@@ -41,9 +41,9 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="description">A human readable message that describes the error. (required).</param>
         /// <param name="errorCode">A constant string that can be used to identify this error class programmatically. An errorCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.   Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.    **Error codes for** &#x60;GENERAL_VALIDATION_ERROR&#x60; * &#x60;GENERAL_INVALID_VALUE&#x60; - A parameter is set to an invalid value.     * &#x60;value&#x60; - The invalid value.    * &#x60;GENERAL_UNRECOGNIZED_PARAMETER&#x60; - A parameter is unknown.   * &#x60;GENERAL_MISSING_PARAMETER&#x60; - A required parameter is missing.   * &#x60;GENERAL_DUPLICATE_PARAMETER&#x60; - A parameter is duplicated.   * &#x60;GENERAL_MINIMUM_VALUE_VIOLATED&#x60; - The minimum value restriction is violated.     * &#x60;minimumValue&#x60; - The minimum value (integer or double).   * &#x60;GENERAL_MAXIMUM_VALUE_VIOLATED&#x60; - The maximum value restriction is violated.     * &#x60;maximumValue&#x60; - The maximum value (integer or double).   * &#x60;GENERAL_MINIMUM_LENGTH_VIOLATED&#x60; - The minimum length is violated.     * &#x60;minimumLength&#x60; - The minimum length (integer).   * &#x60;GENERAL_MAXIMUM_LENGTH_VIOLATED&#x60; - The maximum length is violated.     * &#x60;maximumLength&#x60; - The maximum length (integer). * &#x60;GEOCODING_PARAMETER_CONFLICT&#x60; - Conflicting parameters found. Only one of them is allowed.     * &#x60;conflictingParameter&#x60; - The name of the conflicting parameter. * &#x60;GEOCODING_PARAMETER_DEPENDENCY_VIOLATED&#x60; - A parameter depends on another parameter which is missing.     * &#x60;missingParameter&#x60; - The name of the missing parameter. (required).</param>
-        /// <param name="_parameter">The name of the affected query or path parameter or a JSONPath to the affected property of the request..</param>
+        /// <param name="varParameter">The name of the affected query or path parameter or a JSONPath to the affected property of the request..</param>
         /// <param name="details">Additional properties specific to this error class..</param>
-        public CausingError(string description = default(string), string errorCode = default(string), string _parameter = default(string), Dictionary<string, string> details = default(Dictionary<string, string>))
+        public CausingError(string description = default(string), string errorCode = default(string), string varParameter = default(string), Dictionary<string, string> details = default(Dictionary<string, string>))
         {
             // to ensure "description" is required (not null)
             if (description == null)
@@ -57,7 +57,7 @@ namespace PTV.Developer.Clients.geocoding.Model
                 throw new ArgumentNullException("errorCode is a required property for CausingError and cannot be null");
             }
             this.ErrorCode = errorCode;
-            this.Parameter = _parameter;
+            this.Parameter = varParameter;
             this.Details = details;
         }
 
@@ -79,7 +79,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// The name of the affected query or path parameter or a JSONPath to the affected property of the request.
         /// </summary>
         /// <value>The name of the affected query or path parameter or a JSONPath to the affected property of the request.</value>
-        [DataMember(Name = "parameter", EmitDefaultValue = false)]
+        [DataMember(Name = "parameter", EmitDefaultValue = true)]
         public string Parameter { get; set; }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

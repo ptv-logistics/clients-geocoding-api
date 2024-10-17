@@ -67,7 +67,6 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         [EnumMember(Value = "HOUSE_NUMBER")]
         HOUSE_NUMBER = 6
-
     }
 
 }

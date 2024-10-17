@@ -36,7 +36,6 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         [EnumMember(Value = "ADDRESS_SCORES")]
         ADDRESS_SCORES = 1
-
     }
 
 }

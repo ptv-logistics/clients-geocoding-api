@@ -66,84 +66,84 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// The country. In a response, it is represented by its full name (not abbreviated or encoded).
         /// </summary>
         /// <value>The country. In a response, it is represented by its full name (not abbreviated or encoded).</value>
-        [DataMember(Name = "countryName", EmitDefaultValue = false)]
+        [DataMember(Name = "countryName", EmitDefaultValue = true)]
         public string CountryName { get; set; }
 
         /// <summary>
         /// The name of the principal country subdivision which the address belongs to (for example, a state in the USA, or a canton in Switzerland).
         /// </summary>
         /// <value>The name of the principal country subdivision which the address belongs to (for example, a state in the USA, or a canton in Switzerland).</value>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
+        [DataMember(Name = "state", EmitDefaultValue = true)]
         public string State { get; set; }
 
         /// <summary>
         /// The name of the second-level country subdivision which the address belongs to (for example, a county in the UK, or a province in Italy).
         /// </summary>
         /// <value>The name of the second-level country subdivision which the address belongs to (for example, a county in the UK, or a province in Italy).</value>
-        [DataMember(Name = "province", EmitDefaultValue = false)]
+        [DataMember(Name = "province", EmitDefaultValue = true)]
         public string Province { get; set; }
 
         /// <summary>
         /// The postal code of the address.
         /// </summary>
         /// <value>The postal code of the address.</value>
-        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = true)]
         public string PostalCode { get; set; }
 
         /// <summary>
         /// The city of the address, i.e. the highest entity at the communal level which the address belongs to.
         /// </summary>
         /// <value>The city of the address, i.e. the highest entity at the communal level which the address belongs to.</value>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name = "city", EmitDefaultValue = true)]
         public string City { get; set; }
 
         /// <summary>
         /// The district of the address, i.e. the entity below city.
         /// </summary>
         /// <value>The district of the address, i.e. the entity below city.</value>
-        [DataMember(Name = "district", EmitDefaultValue = false)]
+        [DataMember(Name = "district", EmitDefaultValue = true)]
         public string District { get; set; }
 
         /// <summary>
         /// The subdistrict of the address, i.e. the entity below district.
         /// </summary>
         /// <value>The subdistrict of the address, i.e. the entity below district.</value>
-        [DataMember(Name = "subdistrict", EmitDefaultValue = false)]
+        [DataMember(Name = "subdistrict", EmitDefaultValue = true)]
         public string Subdistrict { get; set; }
 
         /// <summary>
         /// The street of the address.
         /// </summary>
         /// <value>The street of the address.</value>
-        [DataMember(Name = "street", EmitDefaultValue = false)]
+        [DataMember(Name = "street", EmitDefaultValue = true)]
         public string Street { get; set; }
 
         /// <summary>
         /// The house number of the address.
         /// </summary>
         /// <value>The house number of the address.</value>
-        [DataMember(Name = "houseNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "houseNumber", EmitDefaultValue = true)]
         public string HouseNumber { get; set; }
 
         /// <summary>
         /// The country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
         /// </summary>
         /// <value>The country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</value>
-        [DataMember(Name = "countryCodeIsoAlpha2", EmitDefaultValue = false)]
+        [DataMember(Name = "countryCodeIsoAlpha2", EmitDefaultValue = true)]
         public string CountryCodeIsoAlpha2 { get; set; }
 
         /// <summary>
         /// The country code according to [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
         /// </summary>
         /// <value>The country code according to [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).</value>
-        [DataMember(Name = "countryCodeIsoAlpha3", EmitDefaultValue = false)]
+        [DataMember(Name = "countryCodeIsoAlpha3", EmitDefaultValue = true)]
         public string CountryCodeIsoAlpha3 { get; set; }
 
         /// <summary>
         /// The country or subdivision represented by its code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision.
         /// </summary>
         /// <value>The country or subdivision represented by its code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision.</value>
-        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
+        [DataMember(Name = "countryCode", EmitDefaultValue = true)]
         public string CountryCode { get; set; }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -73,42 +73,42 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// The country of the suggested address or the provided input.
         /// </summary>
         /// <value>The country of the suggested address or the provided input.</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
+        [DataMember(Name = "country", EmitDefaultValue = true)]
         public string Country { get; set; }
 
         /// <summary>
         /// The state/province of the suggested address or the provided input.
         /// </summary>
         /// <value>The state/province of the suggested address or the provided input.</value>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
+        [DataMember(Name = "state", EmitDefaultValue = true)]
         public string State { get; set; }
 
         /// <summary>
         /// The postal code or zip code of the suggested address or the provided input.
         /// </summary>
         /// <value>The postal code or zip code of the suggested address or the provided input.</value>
-        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
+        [DataMember(Name = "postalCode", EmitDefaultValue = true)]
         public string PostalCode { get; set; }
 
         /// <summary>
         /// The locality of the suggested address or the provided input.
         /// </summary>
         /// <value>The locality of the suggested address or the provided input.</value>
-        [DataMember(Name = "locality", EmitDefaultValue = false)]
+        [DataMember(Name = "locality", EmitDefaultValue = true)]
         public string Locality { get; set; }
 
         /// <summary>
         /// The street of the suggested address or the provided input.
         /// </summary>
         /// <value>The street of the suggested address or the provided input.</value>
-        [DataMember(Name = "street", EmitDefaultValue = false)]
+        [DataMember(Name = "street", EmitDefaultValue = true)]
         public string Street { get; set; }
 
         /// <summary>
         /// The house number of the suggested address or the provided input.
         /// </summary>
         /// <value>The house number of the suggested address or the provided input.</value>
-        [DataMember(Name = "houseNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "houseNumber", EmitDefaultValue = true)]
         public string HouseNumber { get; set; }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

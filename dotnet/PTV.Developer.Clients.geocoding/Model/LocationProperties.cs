@@ -83,7 +83,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address.
         /// </summary>
         /// <value>A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address.</value>
-        [DataMember(Name = "formattedAddress", EmitDefaultValue = false)]
+        [DataMember(Name = "formattedAddress", EmitDefaultValue = true)]
         public string FormattedAddress { get; set; }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

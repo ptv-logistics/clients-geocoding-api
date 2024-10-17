@@ -95,7 +95,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// A unique identifier specific to this error instance. It can be used to trace errors by the support.
         /// </summary>
         /// <value>A unique identifier specific to this error instance. It can be used to trace errors by the support.</value>
-        [DataMember(Name = "errorId", EmitDefaultValue = false)]
+        [DataMember(Name = "errorId", EmitDefaultValue = true)]
         public string ErrorId { get; set; }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

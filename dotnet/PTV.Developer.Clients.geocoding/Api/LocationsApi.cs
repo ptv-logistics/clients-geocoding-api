@@ -42,7 +42,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByAddressResponse</returns>
-        SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0);
+        SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -60,7 +60,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByAddressResponse</returns>
-        ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0);
+        ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -73,7 +73,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="center">Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByTextResponse</returns>
-        SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0);
+        SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="center">Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByTextResponse</returns>
-        ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0);
+        ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -106,7 +106,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByAddress(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByAddress(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -126,7 +126,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -139,7 +139,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByPosition(double latitude, double longitude, string? language = default(string?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default(string), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -153,7 +153,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double latitude, double longitude, string? language = default(string?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default(string), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -167,7 +167,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByText(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -182,7 +182,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -209,7 +209,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByAddressResponse</returns>
-        System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -228,7 +228,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByAddressResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -242,7 +242,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByTextResponse</returns>
-        System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -257,7 +257,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByTextResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -277,7 +277,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -298,7 +298,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -312,7 +312,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double latitude, double longitude, string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -327,7 +327,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double latitude, double longitude, string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -342,7 +342,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -358,7 +358,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -492,7 +492,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByAddressResponse</returns>
-        public SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0)
+        public SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> localVarResponse = GetSuggestionsByAddressWithHttpInfo(inputField, country, state, locality, postalCode, street, houseNumber);
             return localVarResponse.Data;
@@ -511,7 +511,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByAddressResponse</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -598,7 +598,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByAddressResponse</returns>
-        public async System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> localVarResponse = await GetSuggestionsByAddressWithHttpInfoAsync(inputField, country, state, locality, postalCode, street, houseNumber, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -618,7 +618,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByAddressResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
@@ -702,7 +702,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="center">Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByTextResponse</returns>
-        public SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0)
+        public SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> localVarResponse = GetSuggestionsByTextWithHttpInfo(searchText, countryFilter, center);
             return localVarResponse.Data;
@@ -717,7 +717,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="center">Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByTextResponse</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -790,7 +790,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByTextResponse</returns>
-        public async System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> localVarResponse = await GetSuggestionsByTextWithHttpInfoAsync(searchText, countryFilter, center, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -806,7 +806,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByTextResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string>? countryFilter = default(List<string>?), List<double>? center = default(List<double>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -886,7 +886,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByAddress(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByAddress(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByAddressWithHttpInfo(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results);
             return localVarResponse.Data;
@@ -907,7 +907,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -1007,7 +1007,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByAddressWithHttpInfoAsync(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1029,7 +1029,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string? country = default(string?), string? state = default(string?), string? locality = default(string?), string? postalCode = default(string?), string? street = default(string?), string? houseNumber = default(string?), List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
@@ -1124,7 +1124,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByPosition(double latitude, double longitude, string? language = default(string?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default(string), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByPositionWithHttpInfo(latitude, longitude, language);
             return localVarResponse.Data;
@@ -1139,8 +1139,20 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double latitude, double longitude, string? language = default(string?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default(string), int operationIndex = 0)
         {
+            // verify the required parameter 'latitude' is set
+            if (latitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'latitude' when calling LocationsApi->SearchLocationsByPosition");
+            }
+
+            // verify the required parameter 'longitude' is set
+            if (longitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'longitude' when calling LocationsApi->SearchLocationsByPosition");
+            }
+
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1203,7 +1215,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double latitude, double longitude, string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByPositionWithHttpInfoAsync(latitude, longitude, language, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1219,8 +1231,20 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double latitude, double longitude, string? language = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
+            // verify the required parameter 'latitude' is set
+            if (latitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'latitude' when calling LocationsApi->SearchLocationsByPosition");
+            }
+
+            // verify the required parameter 'longitude' is set
+            if (longitude == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'longitude' when calling LocationsApi->SearchLocationsByPosition");
+            }
+
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -1285,7 +1309,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByText(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results);
             return localVarResponse.Data;
@@ -1301,7 +1325,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="results">Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -1379,7 +1403,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByTextWithHttpInfoAsync(searchText, countryFilter, language, results, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1396,7 +1420,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string>? countryFilter = default(List<string>?), string? language = default(string?), List<Results>? results = default(List<Results>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
