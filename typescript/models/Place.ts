@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { RoadAccessPosition } from './RoadAccessPosition';
+import {
+    RoadAccessPositionFromJSON,
+    RoadAccessPositionFromJSONTyped,
+    RoadAccessPositionToJSON,
+} from './RoadAccessPosition';
 import type { Address } from './Address';
 import {
     AddressFromJSON,
@@ -31,12 +37,6 @@ import {
     ReferencePositionFromJSONTyped,
     ReferencePositionToJSON,
 } from './ReferencePosition';
-import type { RoadAccessPosition } from './RoadAccessPosition';
-import {
-    RoadAccessPositionFromJSON,
-    RoadAccessPositionFromJSONTyped,
-    RoadAccessPositionToJSON,
-} from './RoadAccessPosition';
 
 /**
  * 
@@ -91,14 +91,12 @@ export interface Place {
 /**
  * Check if a given object implements the Place interface.
  */
-export function instanceOfPlace(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "referencePosition" in value;
-    isInstance = isInstance && "address" in value;
-    isInstance = isInstance && "categoryIds" in value;
-    isInstance = isInstance && "quality" in value;
-
-    return isInstance;
+export function instanceOfPlace(value: object): value is Place {
+    if (!('referencePosition' in value) || value['referencePosition'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    if (!('categoryIds' in value) || value['categoryIds'] === undefined) return false;
+    if (!('quality' in value) || value['quality'] === undefined) return false;
+    return true;
 }
 
 export function PlaceFromJSON(json: any): Place {
@@ -106,37 +104,34 @@ export function PlaceFromJSON(json: any): Place {
 }
 
 export function PlaceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Place {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'referencePosition': ReferencePositionFromJSON(json['referencePosition']),
-        'roadAccessPosition': !exists(json, 'roadAccessPosition') ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
+        'roadAccessPosition': json['roadAccessPosition'] == null ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
         'address': AddressFromJSON(json['address']),
-        'formattedAddress': !exists(json, 'formattedAddress') ? undefined : json['formattedAddress'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'formattedAddress': json['formattedAddress'] == null ? undefined : json['formattedAddress'],
+        'name': json['name'] == null ? undefined : json['name'],
         'categoryIds': json['categoryIds'],
         'quality': QualityFromJSON(json['quality']),
     };
 }
 
 export function PlaceToJSON(value?: Place | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'referencePosition': ReferencePositionToJSON(value.referencePosition),
-        'roadAccessPosition': RoadAccessPositionToJSON(value.roadAccessPosition),
-        'address': AddressToJSON(value.address),
-        'formattedAddress': value.formattedAddress,
-        'name': value.name,
-        'categoryIds': value.categoryIds,
-        'quality': QualityToJSON(value.quality),
+        'referencePosition': ReferencePositionToJSON(value['referencePosition']),
+        'roadAccessPosition': RoadAccessPositionToJSON(value['roadAccessPosition']),
+        'address': AddressToJSON(value['address']),
+        'formattedAddress': value['formattedAddress'],
+        'name': value['name'],
+        'categoryIds': value['categoryIds'],
+        'quality': QualityToJSON(value['quality']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Represents the address of a geographical object. Whenever a string, such as a city or street name, is available in multiple languages, it is returned in the default language specified by the country in which an object is located. Most of the fields are optional, because addressing schemes vary strongly between countries.
  * @export
@@ -96,10 +96,8 @@ export interface Address {
 /**
  * Check if a given object implements the Address interface.
  */
-export function instanceOfAddress(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfAddress(value: object): value is Address {
+    return true;
 }
 
 export function AddressFromJSON(json: any): Address {
@@ -107,47 +105,44 @@ export function AddressFromJSON(json: any): Address {
 }
 
 export function AddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): Address {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'countryName': !exists(json, 'countryName') ? undefined : json['countryName'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'province': !exists(json, 'province') ? undefined : json['province'],
-        'postalCode': !exists(json, 'postalCode') ? undefined : json['postalCode'],
-        'city': !exists(json, 'city') ? undefined : json['city'],
-        'district': !exists(json, 'district') ? undefined : json['district'],
-        'subdistrict': !exists(json, 'subdistrict') ? undefined : json['subdistrict'],
-        'street': !exists(json, 'street') ? undefined : json['street'],
-        'houseNumber': !exists(json, 'houseNumber') ? undefined : json['houseNumber'],
-        'countryCodeIsoAlpha2': !exists(json, 'countryCodeIsoAlpha2') ? undefined : json['countryCodeIsoAlpha2'],
-        'countryCodeIsoAlpha3': !exists(json, 'countryCodeIsoAlpha3') ? undefined : json['countryCodeIsoAlpha3'],
-        'countryCode': !exists(json, 'countryCode') ? undefined : json['countryCode'],
+        'countryName': json['countryName'] == null ? undefined : json['countryName'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'province': json['province'] == null ? undefined : json['province'],
+        'postalCode': json['postalCode'] == null ? undefined : json['postalCode'],
+        'city': json['city'] == null ? undefined : json['city'],
+        'district': json['district'] == null ? undefined : json['district'],
+        'subdistrict': json['subdistrict'] == null ? undefined : json['subdistrict'],
+        'street': json['street'] == null ? undefined : json['street'],
+        'houseNumber': json['houseNumber'] == null ? undefined : json['houseNumber'],
+        'countryCodeIsoAlpha2': json['countryCodeIsoAlpha2'] == null ? undefined : json['countryCodeIsoAlpha2'],
+        'countryCodeIsoAlpha3': json['countryCodeIsoAlpha3'] == null ? undefined : json['countryCodeIsoAlpha3'],
+        'countryCode': json['countryCode'] == null ? undefined : json['countryCode'],
     };
 }
 
 export function AddressToJSON(value?: Address | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'countryName': value.countryName,
-        'state': value.state,
-        'province': value.province,
-        'postalCode': value.postalCode,
-        'city': value.city,
-        'district': value.district,
-        'subdistrict': value.subdistrict,
-        'street': value.street,
-        'houseNumber': value.houseNumber,
-        'countryCodeIsoAlpha2': value.countryCodeIsoAlpha2,
-        'countryCodeIsoAlpha3': value.countryCodeIsoAlpha3,
-        'countryCode': value.countryCode,
+        'countryName': value['countryName'],
+        'state': value['state'],
+        'province': value['province'],
+        'postalCode': value['postalCode'],
+        'city': value['city'],
+        'district': value['district'],
+        'subdistrict': value['subdistrict'],
+        'street': value['street'],
+        'houseNumber': value['houseNumber'],
+        'countryCodeIsoAlpha2': value['countryCodeIsoAlpha2'],
+        'countryCodeIsoAlpha3': value['countryCodeIsoAlpha3'],
+        'countryCode': value['countryCode'],
     };
 }
 

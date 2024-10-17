@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The actual position of the object itself, such as the rooftop of a building, the center of a street, or the reference position of a city.
  * @export
@@ -36,12 +36,10 @@ export interface ReferencePosition {
 /**
  * Check if a given object implements the ReferencePosition interface.
  */
-export function instanceOfReferencePosition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "latitude" in value;
-    isInstance = isInstance && "longitude" in value;
-
-    return isInstance;
+export function instanceOfReferencePosition(value: object): value is ReferencePosition {
+    if (!('latitude' in value) || value['latitude'] === undefined) return false;
+    if (!('longitude' in value) || value['longitude'] === undefined) return false;
+    return true;
 }
 
 export function ReferencePositionFromJSON(json: any): ReferencePosition {
@@ -49,7 +47,7 @@ export function ReferencePositionFromJSON(json: any): ReferencePosition {
 }
 
 export function ReferencePositionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReferencePosition {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function ReferencePositionFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function ReferencePositionToJSON(value?: ReferencePosition | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'latitude': value.latitude,
-        'longitude': value.longitude,
+        'latitude': value['latitude'],
+        'longitude': value['longitude'],
     };
 }
 

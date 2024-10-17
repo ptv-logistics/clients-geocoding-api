@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Suggestion } from './Suggestion';
 import {
     SuggestionFromJSON,
@@ -49,11 +49,9 @@ export interface SuggestionsByTextResponse {
 /**
  * Check if a given object implements the SuggestionsByTextResponse interface.
  */
-export function instanceOfSuggestionsByTextResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "suggestions" in value;
-
-    return isInstance;
+export function instanceOfSuggestionsByTextResponse(value: object): value is SuggestionsByTextResponse {
+    if (!('suggestions' in value) || value['suggestions'] === undefined) return false;
+    return true;
 }
 
 export function SuggestionsByTextResponseFromJSON(json: any): SuggestionsByTextResponse {
@@ -61,27 +59,24 @@ export function SuggestionsByTextResponseFromJSON(json: any): SuggestionsByTextR
 }
 
 export function SuggestionsByTextResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestionsByTextResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'suggestions': ((json['suggestions'] as Array<any>).map(SuggestionFromJSON)),
-        'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
+        'warnings': json['warnings'] == null ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
     };
 }
 
 export function SuggestionsByTextResponseToJSON(value?: SuggestionsByTextResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'suggestions': ((value.suggestions as Array<any>).map(SuggestionToJSON)),
-        'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(WarningToJSON)),
+        'suggestions': ((value['suggestions'] as Array<any>).map(SuggestionToJSON)),
+        'warnings': value['warnings'] == null ? undefined : ((value['warnings'] as Array<any>).map(WarningToJSON)),
     };
 }
 

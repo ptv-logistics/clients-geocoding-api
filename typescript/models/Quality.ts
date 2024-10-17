@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AddressScores } from './AddressScores';
 import {
     AddressScoresFromJSON,
@@ -32,14 +32,14 @@ export interface Quality {
      * @type {number}
      * @memberof Quality
      */
-    distance?: number | null;
+    distance?: number;
     /**
      * An overall score in \[%\] for address searches. 100 percent represents a perfect match between the input and the result.  
      *  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
      * @type {number}
      * @memberof Quality
      */
-    totalScore?: number | null;
+    totalScore?: number;
     /**
      * 
      * @type {AddressScores}
@@ -51,10 +51,8 @@ export interface Quality {
 /**
  * Check if a given object implements the Quality interface.
  */
-export function instanceOfQuality(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfQuality(value: object): value is Quality {
+    return true;
 }
 
 export function QualityFromJSON(json: any): Quality {
@@ -62,29 +60,26 @@ export function QualityFromJSON(json: any): Quality {
 }
 
 export function QualityFromJSONTyped(json: any, ignoreDiscriminator: boolean): Quality {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'distance': !exists(json, 'distance') ? undefined : json['distance'],
-        'totalScore': !exists(json, 'totalScore') ? undefined : json['totalScore'],
-        'addressScores': !exists(json, 'addressScores') ? undefined : AddressScoresFromJSON(json['addressScores']),
+        'distance': json['distance'] == null ? undefined : json['distance'],
+        'totalScore': json['totalScore'] == null ? undefined : json['totalScore'],
+        'addressScores': json['addressScores'] == null ? undefined : AddressScoresFromJSON(json['addressScores']),
     };
 }
 
 export function QualityToJSON(value?: Quality | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'distance': value.distance,
-        'totalScore': value.totalScore,
-        'addressScores': AddressScoresToJSON(value.addressScores),
+        'distance': value['distance'],
+        'totalScore': value['totalScore'],
+        'addressScores': AddressScoresToJSON(value['addressScores']),
     };
 }
 

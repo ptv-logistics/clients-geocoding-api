@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * A position on or very close to a road that marks the entry to the object. Available only for objects which represent buildings with a complete address and only if present in the data.  
  *  The road from which the object can be accessed is not necessarily the road which is closest to the object.
@@ -37,12 +37,10 @@ export interface RoadAccessPosition {
 /**
  * Check if a given object implements the RoadAccessPosition interface.
  */
-export function instanceOfRoadAccessPosition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "latitude" in value;
-    isInstance = isInstance && "longitude" in value;
-
-    return isInstance;
+export function instanceOfRoadAccessPosition(value: object): value is RoadAccessPosition {
+    if (!('latitude' in value) || value['latitude'] === undefined) return false;
+    if (!('longitude' in value) || value['longitude'] === undefined) return false;
+    return true;
 }
 
 export function RoadAccessPositionFromJSON(json: any): RoadAccessPosition {
@@ -50,7 +48,7 @@ export function RoadAccessPositionFromJSON(json: any): RoadAccessPosition {
 }
 
 export function RoadAccessPositionFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoadAccessPosition {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -61,16 +59,13 @@ export function RoadAccessPositionFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function RoadAccessPositionToJSON(value?: RoadAccessPosition | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'latitude': value.latitude,
-        'longitude': value.longitude,
+        'latitude': value['latitude'],
+        'longitude': value['longitude'],
     };
 }
 

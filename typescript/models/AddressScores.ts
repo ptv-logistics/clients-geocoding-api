@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Quality indicators that help deciding how well a result fits to the search input.
  * @export
@@ -78,10 +78,8 @@ export interface AddressScores {
 /**
  * Check if a given object implements the AddressScores interface.
  */
-export function instanceOfAddressScores(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfAddressScores(value: object): value is AddressScores {
+    return true;
 }
 
 export function AddressScoresFromJSON(json: any): AddressScores {
@@ -89,41 +87,38 @@ export function AddressScoresFromJSON(json: any): AddressScores {
 }
 
 export function AddressScoresFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddressScores {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'country': !exists(json, 'country') ? undefined : json['country'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'province': !exists(json, 'province') ? undefined : json['province'],
-        'postalCode': !exists(json, 'postalCode') ? undefined : json['postalCode'],
-        'city': !exists(json, 'city') ? undefined : json['city'],
-        'district': !exists(json, 'district') ? undefined : json['district'],
-        'subDistrict': !exists(json, 'subDistrict') ? undefined : json['subDistrict'],
-        'street': !exists(json, 'street') ? undefined : json['street'],
-        'houseNumber': !exists(json, 'houseNumber') ? undefined : json['houseNumber'],
+        'country': json['country'] == null ? undefined : json['country'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'province': json['province'] == null ? undefined : json['province'],
+        'postalCode': json['postalCode'] == null ? undefined : json['postalCode'],
+        'city': json['city'] == null ? undefined : json['city'],
+        'district': json['district'] == null ? undefined : json['district'],
+        'subDistrict': json['subDistrict'] == null ? undefined : json['subDistrict'],
+        'street': json['street'] == null ? undefined : json['street'],
+        'houseNumber': json['houseNumber'] == null ? undefined : json['houseNumber'],
     };
 }
 
 export function AddressScoresToJSON(value?: AddressScores | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'country': value.country,
-        'state': value.state,
-        'province': value.province,
-        'postalCode': value.postalCode,
-        'city': value.city,
-        'district': value.district,
-        'subDistrict': value.subDistrict,
-        'street': value.street,
-        'houseNumber': value.houseNumber,
+        'country': value['country'],
+        'state': value['state'],
+        'province': value['province'],
+        'postalCode': value['postalCode'],
+        'city': value['city'],
+        'district': value['district'],
+        'subDistrict': value['subDistrict'],
+        'street': value['street'],
+        'houseNumber': value['houseNumber'],
     };
 }
 

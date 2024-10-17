@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaceCategory } from './PlaceCategory';
 import {
     PlaceCategoryFromJSON,
@@ -37,10 +37,8 @@ export interface PlaceCategories {
 /**
  * Check if a given object implements the PlaceCategories interface.
  */
-export function instanceOfPlaceCategories(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfPlaceCategories(value: object): value is PlaceCategories {
+    return true;
 }
 
 export function PlaceCategoriesFromJSON(json: any): PlaceCategories {
@@ -48,25 +46,22 @@ export function PlaceCategoriesFromJSON(json: any): PlaceCategories {
 }
 
 export function PlaceCategoriesFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaceCategories {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'placeCategories': !exists(json, 'placeCategories') ? undefined : ((json['placeCategories'] as Array<any>).map(PlaceCategoryFromJSON)),
+        'placeCategories': json['placeCategories'] == null ? undefined : ((json['placeCategories'] as Array<any>).map(PlaceCategoryFromJSON)),
     };
 }
 
 export function PlaceCategoriesToJSON(value?: PlaceCategories | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'placeCategories': value.placeCategories === undefined ? undefined : ((value.placeCategories as Array<any>).map(PlaceCategoryToJSON)),
+        'placeCategories': value['placeCategories'] == null ? undefined : ((value['placeCategories'] as Array<any>).map(PlaceCategoryToJSON)),
     };
 }
 

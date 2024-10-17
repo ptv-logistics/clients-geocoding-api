@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { SuggestedAddress } from './SuggestedAddress';
-import {
-    SuggestedAddressFromJSON,
-    SuggestedAddressFromJSONTyped,
-    SuggestedAddressToJSON,
-} from './SuggestedAddress';
+import { mapValues } from '../runtime';
 import type { Warning } from './Warning';
 import {
     WarningFromJSON,
     WarningFromJSONTyped,
     WarningToJSON,
 } from './Warning';
+import type { SuggestedAddress } from './SuggestedAddress';
+import {
+    SuggestedAddressFromJSON,
+    SuggestedAddressFromJSONTyped,
+    SuggestedAddressToJSON,
+} from './SuggestedAddress';
 
 /**
  * The list of suggested addresses.
@@ -49,11 +49,9 @@ export interface SuggestionsByAddressResponse {
 /**
  * Check if a given object implements the SuggestionsByAddressResponse interface.
  */
-export function instanceOfSuggestionsByAddressResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "suggestions" in value;
-
-    return isInstance;
+export function instanceOfSuggestionsByAddressResponse(value: object): value is SuggestionsByAddressResponse {
+    if (!('suggestions' in value) || value['suggestions'] === undefined) return false;
+    return true;
 }
 
 export function SuggestionsByAddressResponseFromJSON(json: any): SuggestionsByAddressResponse {
@@ -61,27 +59,24 @@ export function SuggestionsByAddressResponseFromJSON(json: any): SuggestionsByAd
 }
 
 export function SuggestionsByAddressResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestionsByAddressResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'suggestions': ((json['suggestions'] as Array<any>).map(SuggestedAddressFromJSON)),
-        'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
+        'warnings': json['warnings'] == null ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
     };
 }
 
 export function SuggestionsByAddressResponseToJSON(value?: SuggestionsByAddressResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'suggestions': ((value.suggestions as Array<any>).map(SuggestedAddressToJSON)),
-        'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(WarningToJSON)),
+        'suggestions': ((value['suggestions'] as Array<any>).map(SuggestedAddressToJSON)),
+        'warnings': value['warnings'] == null ? undefined : ((value['warnings'] as Array<any>).map(WarningToJSON)),
     };
 }
 

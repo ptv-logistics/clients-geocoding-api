@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Place } from './Place';
-import {
-    PlaceFromJSON,
-    PlaceFromJSONTyped,
-    PlaceToJSON,
-} from './Place';
+import { mapValues } from '../runtime';
 import type { Warning } from './Warning';
 import {
     WarningFromJSON,
     WarningFromJSONTyped,
     WarningToJSON,
 } from './Warning';
+import type { Place } from './Place';
+import {
+    PlaceFromJSON,
+    PlaceFromJSONTyped,
+    PlaceToJSON,
+} from './Place';
 
 /**
  * The result of a places search.
@@ -49,10 +49,8 @@ export interface PlacesSearchResult {
 /**
  * Check if a given object implements the PlacesSearchResult interface.
  */
-export function instanceOfPlacesSearchResult(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfPlacesSearchResult(value: object): value is PlacesSearchResult {
+    return true;
 }
 
 export function PlacesSearchResultFromJSON(json: any): PlacesSearchResult {
@@ -60,27 +58,24 @@ export function PlacesSearchResultFromJSON(json: any): PlacesSearchResult {
 }
 
 export function PlacesSearchResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlacesSearchResult {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'places': !exists(json, 'places') ? undefined : ((json['places'] as Array<any>).map(PlaceFromJSON)),
-        'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
+        'places': json['places'] == null ? undefined : ((json['places'] as Array<any>).map(PlaceFromJSON)),
+        'warnings': json['warnings'] == null ? undefined : ((json['warnings'] as Array<any>).map(WarningFromJSON)),
     };
 }
 
 export function PlacesSearchResultToJSON(value?: PlacesSearchResult | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'places': value.places === undefined ? undefined : ((value.places as Array<any>).map(PlaceToJSON)),
-        'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(WarningToJSON)),
+        'places': value['places'] == null ? undefined : ((value['places'] as Array<any>).map(PlaceToJSON)),
+        'warnings': value['warnings'] == null ? undefined : ((value['warnings'] as Array<any>).map(WarningToJSON)),
     };
 }
 

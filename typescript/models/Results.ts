@@ -23,6 +23,17 @@ export const Results = {
 export type Results = typeof Results[keyof typeof Results];
 
 
+export function instanceOfResults(value: any): boolean {
+    for (const key in Results) {
+        if (Object.prototype.hasOwnProperty.call(Results, key)) {
+            if (Results[key as keyof typeof Results] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function ResultsFromJSON(json: any): Results {
     return ResultsFromJSONTyped(json, false);
 }

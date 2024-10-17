@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { RoadAccessPosition } from './RoadAccessPosition';
+import {
+    RoadAccessPositionFromJSON,
+    RoadAccessPositionFromJSONTyped,
+    RoadAccessPositionToJSON,
+} from './RoadAccessPosition';
 import type { Address } from './Address';
 import {
     AddressFromJSON,
@@ -25,12 +31,6 @@ import {
     ReferencePositionFromJSONTyped,
     ReferencePositionToJSON,
 } from './ReferencePosition';
-import type { RoadAccessPosition } from './RoadAccessPosition';
-import {
-    RoadAccessPositionFromJSON,
-    RoadAccessPositionFromJSONTyped,
-    RoadAccessPositionToJSON,
-} from './RoadAccessPosition';
 
 /**
  * 
@@ -67,12 +67,10 @@ export interface LocationProperties {
 /**
  * Check if a given object implements the LocationProperties interface.
  */
-export function instanceOfLocationProperties(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "referencePosition" in value;
-    isInstance = isInstance && "address" in value;
-
-    return isInstance;
+export function instanceOfLocationProperties(value: object): value is LocationProperties {
+    if (!('referencePosition' in value) || value['referencePosition'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    return true;
 }
 
 export function LocationPropertiesFromJSON(json: any): LocationProperties {
@@ -80,31 +78,28 @@ export function LocationPropertiesFromJSON(json: any): LocationProperties {
 }
 
 export function LocationPropertiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): LocationProperties {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'referencePosition': ReferencePositionFromJSON(json['referencePosition']),
-        'roadAccessPosition': !exists(json, 'roadAccessPosition') ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
+        'roadAccessPosition': json['roadAccessPosition'] == null ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
         'address': AddressFromJSON(json['address']),
-        'formattedAddress': !exists(json, 'formattedAddress') ? undefined : json['formattedAddress'],
+        'formattedAddress': json['formattedAddress'] == null ? undefined : json['formattedAddress'],
     };
 }
 
 export function LocationPropertiesToJSON(value?: LocationProperties | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'referencePosition': ReferencePositionToJSON(value.referencePosition),
-        'roadAccessPosition': RoadAccessPositionToJSON(value.roadAccessPosition),
-        'address': AddressToJSON(value.address),
-        'formattedAddress': value.formattedAddress,
+        'referencePosition': ReferencePositionToJSON(value['referencePosition']),
+        'roadAccessPosition': RoadAccessPositionToJSON(value['roadAccessPosition']),
+        'address': AddressToJSON(value['address']),
+        'formattedAddress': value['formattedAddress'],
     };
 }
 

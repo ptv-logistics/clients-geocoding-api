@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -56,12 +56,10 @@ export interface Warning {
 /**
  * Check if a given object implements the Warning interface.
  */
-export function instanceOfWarning(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "warningCode" in value;
-
-    return isInstance;
+export function instanceOfWarning(value: object): value is Warning {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('warningCode' in value) || value['warningCode'] === undefined) return false;
+    return true;
 }
 
 export function WarningFromJSON(json: any): Warning {
@@ -69,29 +67,26 @@ export function WarningFromJSON(json: any): Warning {
 }
 
 export function WarningFromJSONTyped(json: any, ignoreDiscriminator: boolean): Warning {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
         'warningCode': json['warningCode'],
-        'details': !exists(json, 'details') ? undefined : json['details'],
+        'details': json['details'] == null ? undefined : json['details'],
     };
 }
 
 export function WarningToJSON(value?: Warning | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'description': value.description,
-        'warningCode': value.warningCode,
-        'details': value.details,
+        'description': value['description'],
+        'warningCode': value['warningCode'],
+        'details': value['details'],
     };
 }
 

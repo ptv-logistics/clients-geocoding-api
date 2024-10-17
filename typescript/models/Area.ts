@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines the area as [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) geometry. Supported geometry types are Polygon and MultiPolygon. Geometries that cause too long processing times will be rejected. In this case an error response is returned that explains the reason.
  * @export
@@ -30,11 +30,9 @@ export interface Area {
 /**
  * Check if a given object implements the Area interface.
  */
-export function instanceOfArea(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "geometry" in value;
-
-    return isInstance;
+export function instanceOfArea(value: object): value is Area {
+    if (!('geometry' in value) || value['geometry'] === undefined) return false;
+    return true;
 }
 
 export function AreaFromJSON(json: any): Area {
@@ -42,7 +40,7 @@ export function AreaFromJSON(json: any): Area {
 }
 
 export function AreaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Area {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function AreaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Area
 }
 
 export function AreaToJSON(value?: Area | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'geometry': value.geometry,
+        'geometry': value['geometry'],
     };
 }
 

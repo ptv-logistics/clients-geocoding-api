@@ -17,13 +17,13 @@ import * as runtime from '../runtime';
 import type {
   ErrorResponse,
   PlaceCategories,
-} from '../models';
+} from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     PlaceCategoriesFromJSON,
     PlaceCategoriesToJSON,
-} from '../models';
+} from '../models/index';
 
 /**
  * 
@@ -40,7 +40,7 @@ export class CategoriesApi extends runtime.BaseAPI {
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({

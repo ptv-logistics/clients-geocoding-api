@@ -34,6 +34,17 @@ export const InputField = {
 export type InputField = typeof InputField[keyof typeof InputField];
 
 
+export function instanceOfInputField(value: any): boolean {
+    for (const key in InputField) {
+        if (Object.prototype.hasOwnProperty.call(InputField, key)) {
+            if (InputField[key as keyof typeof InputField] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function InputFieldFromJSON(json: any): InputField {
     return InputFieldFromJSONTyped(json, false);
 }

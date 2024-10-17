@@ -12,37 +12,37 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Address } from './Address';
-import {
-    AddressFromJSON,
-    AddressFromJSONTyped,
-    AddressToJSON,
-} from './Address';
-import type { LocationType } from './LocationType';
-import {
-    LocationTypeFromJSON,
-    LocationTypeFromJSONTyped,
-    LocationTypeToJSON,
-} from './LocationType';
-import type { Quality } from './Quality';
-import {
-    QualityFromJSON,
-    QualityFromJSONTyped,
-    QualityToJSON,
-} from './Quality';
-import type { ReferencePosition } from './ReferencePosition';
-import {
-    ReferencePositionFromJSON,
-    ReferencePositionFromJSONTyped,
-    ReferencePositionToJSON,
-} from './ReferencePosition';
+import { mapValues } from '../runtime';
 import type { RoadAccessPosition } from './RoadAccessPosition';
 import {
     RoadAccessPositionFromJSON,
     RoadAccessPositionFromJSONTyped,
     RoadAccessPositionToJSON,
 } from './RoadAccessPosition';
+import type { Address } from './Address';
+import {
+    AddressFromJSON,
+    AddressFromJSONTyped,
+    AddressToJSON,
+} from './Address';
+import type { Quality } from './Quality';
+import {
+    QualityFromJSON,
+    QualityFromJSONTyped,
+    QualityToJSON,
+} from './Quality';
+import type { LocationType } from './LocationType';
+import {
+    LocationTypeFromJSON,
+    LocationTypeFromJSONTyped,
+    LocationTypeToJSON,
+} from './LocationType';
+import type { ReferencePosition } from './ReferencePosition';
+import {
+    ReferencePositionFromJSON,
+    ReferencePositionFromJSONTyped,
+    ReferencePositionToJSON,
+} from './ReferencePosition';
 
 /**
  * 
@@ -88,17 +88,17 @@ export interface Location {
     quality: Quality;
 }
 
+
+
 /**
  * Check if a given object implements the Location interface.
  */
-export function instanceOfLocation(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "referencePosition" in value;
-    isInstance = isInstance && "address" in value;
-    isInstance = isInstance && "locationType" in value;
-    isInstance = isInstance && "quality" in value;
-
-    return isInstance;
+export function instanceOfLocation(value: object): value is Location {
+    if (!('referencePosition' in value) || value['referencePosition'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    if (!('locationType' in value) || value['locationType'] === undefined) return false;
+    if (!('quality' in value) || value['quality'] === undefined) return false;
+    return true;
 }
 
 export function LocationFromJSON(json: any): Location {
@@ -106,35 +106,32 @@ export function LocationFromJSON(json: any): Location {
 }
 
 export function LocationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Location {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'referencePosition': ReferencePositionFromJSON(json['referencePosition']),
-        'roadAccessPosition': !exists(json, 'roadAccessPosition') ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
+        'roadAccessPosition': json['roadAccessPosition'] == null ? undefined : RoadAccessPositionFromJSON(json['roadAccessPosition']),
         'address': AddressFromJSON(json['address']),
-        'formattedAddress': !exists(json, 'formattedAddress') ? undefined : json['formattedAddress'],
+        'formattedAddress': json['formattedAddress'] == null ? undefined : json['formattedAddress'],
         'locationType': LocationTypeFromJSON(json['locationType']),
         'quality': QualityFromJSON(json['quality']),
     };
 }
 
 export function LocationToJSON(value?: Location | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'referencePosition': ReferencePositionToJSON(value.referencePosition),
-        'roadAccessPosition': RoadAccessPositionToJSON(value.roadAccessPosition),
-        'address': AddressToJSON(value.address),
-        'formattedAddress': value.formattedAddress,
-        'locationType': LocationTypeToJSON(value.locationType),
-        'quality': QualityToJSON(value.quality),
+        'referencePosition': ReferencePositionToJSON(value['referencePosition']),
+        'roadAccessPosition': RoadAccessPositionToJSON(value['roadAccessPosition']),
+        'address': AddressToJSON(value['address']),
+        'formattedAddress': value['formattedAddress'],
+        'locationType': LocationTypeToJSON(value['locationType']),
+        'quality': QualityToJSON(value['quality']),
     };
 }
 

@@ -21,7 +21,7 @@ import type {
   Results,
   SuggestionsByAddressResponse,
   SuggestionsByTextResponse,
-} from '../models';
+} from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -35,7 +35,7 @@ import {
     SuggestionsByAddressResponseToJSON,
     SuggestionsByTextResponseFromJSON,
     SuggestionsByTextResponseToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface GetSuggestionsByAddressRequest {
     inputField: InputField;
@@ -87,45 +87,48 @@ export class LocationsApi extends runtime.BaseAPI {
      * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
      */
     async getSuggestionsByAddressRaw(requestParameters: GetSuggestionsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByAddressResponse>> {
-        if (requestParameters.inputField === null || requestParameters.inputField === undefined) {
-            throw new runtime.RequiredError('inputField','Required parameter requestParameters.inputField was null or undefined when calling getSuggestionsByAddress.');
+        if (requestParameters['inputField'] == null) {
+            throw new runtime.RequiredError(
+                'inputField',
+                'Required parameter "inputField" was null or undefined when calling getSuggestionsByAddress().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.country !== undefined) {
-            queryParameters['country'] = requestParameters.country;
+        if (requestParameters['country'] != null) {
+            queryParameters['country'] = requestParameters['country'];
         }
 
-        if (requestParameters.state !== undefined) {
-            queryParameters['state'] = requestParameters.state;
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
         }
 
-        if (requestParameters.locality !== undefined) {
-            queryParameters['locality'] = requestParameters.locality;
+        if (requestParameters['locality'] != null) {
+            queryParameters['locality'] = requestParameters['locality'];
         }
 
-        if (requestParameters.postalCode !== undefined) {
-            queryParameters['postalCode'] = requestParameters.postalCode;
+        if (requestParameters['postalCode'] != null) {
+            queryParameters['postalCode'] = requestParameters['postalCode'];
         }
 
-        if (requestParameters.street !== undefined) {
-            queryParameters['street'] = requestParameters.street;
+        if (requestParameters['street'] != null) {
+            queryParameters['street'] = requestParameters['street'];
         }
 
-        if (requestParameters.houseNumber !== undefined) {
-            queryParameters['houseNumber'] = requestParameters.houseNumber;
+        if (requestParameters['houseNumber'] != null) {
+            queryParameters['houseNumber'] = requestParameters['houseNumber'];
         }
 
-        if (requestParameters.inputField !== undefined) {
-            queryParameters['inputField'] = requestParameters.inputField;
+        if (requestParameters['inputField'] != null) {
+            queryParameters['inputField'] = requestParameters['inputField'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -150,29 +153,32 @@ export class LocationsApi extends runtime.BaseAPI {
      * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
      */
     async getSuggestionsByTextRaw(requestParameters: GetSuggestionsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByTextResponse>> {
-        if (requestParameters.searchText === null || requestParameters.searchText === undefined) {
-            throw new runtime.RequiredError('searchText','Required parameter requestParameters.searchText was null or undefined when calling getSuggestionsByText.');
+        if (requestParameters['searchText'] == null) {
+            throw new runtime.RequiredError(
+                'searchText',
+                'Required parameter "searchText" was null or undefined when calling getSuggestionsByText().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.searchText !== undefined) {
-            queryParameters['searchText'] = requestParameters.searchText;
+        if (requestParameters['searchText'] != null) {
+            queryParameters['searchText'] = requestParameters['searchText'];
         }
 
-        if (requestParameters.countryFilter) {
-            queryParameters['countryFilter'] = requestParameters.countryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['countryFilter'] != null) {
+            queryParameters['countryFilter'] = requestParameters['countryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.center) {
-            queryParameters['center'] = requestParameters.center.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['center'] != null) {
+            queryParameters['center'] = requestParameters['center']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -199,47 +205,47 @@ export class LocationsApi extends runtime.BaseAPI {
     async searchLocationsByAddressRaw(requestParameters: SearchLocationsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
         const queryParameters: any = {};
 
-        if (requestParameters.country !== undefined) {
-            queryParameters['country'] = requestParameters.country;
+        if (requestParameters['country'] != null) {
+            queryParameters['country'] = requestParameters['country'];
         }
 
-        if (requestParameters.state !== undefined) {
-            queryParameters['state'] = requestParameters.state;
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
         }
 
-        if (requestParameters.locality !== undefined) {
-            queryParameters['locality'] = requestParameters.locality;
+        if (requestParameters['locality'] != null) {
+            queryParameters['locality'] = requestParameters['locality'];
         }
 
-        if (requestParameters.postalCode !== undefined) {
-            queryParameters['postalCode'] = requestParameters.postalCode;
+        if (requestParameters['postalCode'] != null) {
+            queryParameters['postalCode'] = requestParameters['postalCode'];
         }
 
-        if (requestParameters.street !== undefined) {
-            queryParameters['street'] = requestParameters.street;
+        if (requestParameters['street'] != null) {
+            queryParameters['street'] = requestParameters['street'];
         }
 
-        if (requestParameters.houseNumber !== undefined) {
-            queryParameters['houseNumber'] = requestParameters.houseNumber;
+        if (requestParameters['houseNumber'] != null) {
+            queryParameters['houseNumber'] = requestParameters['houseNumber'];
         }
 
-        if (requestParameters.countryFilter) {
-            queryParameters['countryFilter'] = requestParameters.countryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['countryFilter'] != null) {
+            queryParameters['countryFilter'] = requestParameters['countryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
-        if (requestParameters.results) {
-            queryParameters['results'] = requestParameters.results.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['results'] != null) {
+            queryParameters['results'] = requestParameters['results']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -264,29 +270,35 @@ export class LocationsApi extends runtime.BaseAPI {
      * Searches for locations near a given geographical position.
      */
     async searchLocationsByPositionRaw(requestParameters: SearchLocationsByPositionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
-        if (requestParameters.latitude === null || requestParameters.latitude === undefined) {
-            throw new runtime.RequiredError('latitude','Required parameter requestParameters.latitude was null or undefined when calling searchLocationsByPosition.');
+        if (requestParameters['latitude'] == null) {
+            throw new runtime.RequiredError(
+                'latitude',
+                'Required parameter "latitude" was null or undefined when calling searchLocationsByPosition().'
+            );
         }
 
-        if (requestParameters.longitude === null || requestParameters.longitude === undefined) {
-            throw new runtime.RequiredError('longitude','Required parameter requestParameters.longitude was null or undefined when calling searchLocationsByPosition.');
+        if (requestParameters['longitude'] == null) {
+            throw new runtime.RequiredError(
+                'longitude',
+                'Required parameter "longitude" was null or undefined when calling searchLocationsByPosition().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/locations/by-position/{latitude}/{longitude}`.replace(`{${"latitude"}}`, encodeURIComponent(String(requestParameters.latitude))).replace(`{${"longitude"}}`, encodeURIComponent(String(requestParameters.longitude))),
+            path: `/locations/by-position/{latitude}/{longitude}`.replace(`{${"latitude"}}`, encodeURIComponent(String(requestParameters['latitude']))).replace(`{${"longitude"}}`, encodeURIComponent(String(requestParameters['longitude']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -307,33 +319,36 @@ export class LocationsApi extends runtime.BaseAPI {
      * Searches for locations based on a single-field text input.
      */
     async searchLocationsByTextRaw(requestParameters: SearchLocationsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
-        if (requestParameters.searchText === null || requestParameters.searchText === undefined) {
-            throw new runtime.RequiredError('searchText','Required parameter requestParameters.searchText was null or undefined when calling searchLocationsByText.');
+        if (requestParameters['searchText'] == null) {
+            throw new runtime.RequiredError(
+                'searchText',
+                'Required parameter "searchText" was null or undefined when calling searchLocationsByText().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.searchText !== undefined) {
-            queryParameters['searchText'] = requestParameters.searchText;
+        if (requestParameters['searchText'] != null) {
+            queryParameters['searchText'] = requestParameters['searchText'];
         }
 
-        if (requestParameters.countryFilter) {
-            queryParameters['countryFilter'] = requestParameters.countryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['countryFilter'] != null) {
+            queryParameters['countryFilter'] = requestParameters['countryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
-        if (requestParameters.results) {
-            queryParameters['results'] = requestParameters.results.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['results'] != null) {
+            queryParameters['results'] = requestParameters['results']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({

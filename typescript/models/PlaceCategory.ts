@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,11 +42,9 @@ export interface PlaceCategory {
 /**
  * Check if a given object implements the PlaceCategory interface.
  */
-export function instanceOfPlaceCategory(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfPlaceCategory(value: object): value is PlaceCategory {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function PlaceCategoryFromJSON(json: any): PlaceCategory {
@@ -54,29 +52,26 @@ export function PlaceCategoryFromJSON(json: any): PlaceCategory {
 }
 
 export function PlaceCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaceCategory {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'id': json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
     };
 }
 
 export function PlaceCategoryToJSON(value?: PlaceCategory | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
     };
 }
 

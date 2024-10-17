@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Area } from './Area';
 import {
     AreaFromJSON,
@@ -37,11 +37,9 @@ export interface PlacesByAreaRequest {
 /**
  * Check if a given object implements the PlacesByAreaRequest interface.
  */
-export function instanceOfPlacesByAreaRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "area" in value;
-
-    return isInstance;
+export function instanceOfPlacesByAreaRequest(value: object): value is PlacesByAreaRequest {
+    if (!('area' in value) || value['area'] === undefined) return false;
+    return true;
 }
 
 export function PlacesByAreaRequestFromJSON(json: any): PlacesByAreaRequest {
@@ -49,7 +47,7 @@ export function PlacesByAreaRequestFromJSON(json: any): PlacesByAreaRequest {
 }
 
 export function PlacesByAreaRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlacesByAreaRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function PlacesByAreaRequestFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function PlacesByAreaRequestToJSON(value?: PlacesByAreaRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'area': AreaToJSON(value.area),
+        'area': AreaToJSON(value['area']),
     };
 }
 

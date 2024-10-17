@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * A search text suggested for the input of the searchLocationsByText endpoint.
  * @export
@@ -36,12 +36,10 @@ export interface Suggestion {
 /**
  * Check if a given object implements the Suggestion interface.
  */
-export function instanceOfSuggestion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "caption" in value;
-    isInstance = isInstance && "subCaption" in value;
-
-    return isInstance;
+export function instanceOfSuggestion(value: object): value is Suggestion {
+    if (!('caption' in value) || value['caption'] === undefined) return false;
+    if (!('subCaption' in value) || value['subCaption'] === undefined) return false;
+    return true;
 }
 
 export function SuggestionFromJSON(json: any): Suggestion {
@@ -49,7 +47,7 @@ export function SuggestionFromJSON(json: any): Suggestion {
 }
 
 export function SuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Suggestion {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function SuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function SuggestionToJSON(value?: Suggestion | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'caption': value.caption,
-        'subCaption': value.subCaption,
+        'caption': value['caption'],
+        'subCaption': value['subCaption'],
     };
 }
 

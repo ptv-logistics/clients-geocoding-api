@@ -18,7 +18,7 @@ import type {
   ErrorResponse,
   PlacesByAreaRequest,
   PlacesSearchResult,
-} from '../models';
+} from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -26,7 +26,7 @@ import {
     PlacesByAreaRequestToJSON,
     PlacesSearchResultFromJSON,
     PlacesSearchResultToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface SearchPlacesByAreaRequest {
     placesByAreaRequest: PlacesByAreaRequest;
@@ -62,18 +62,21 @@ export class PlacesApi extends runtime.BaseAPI {
      * Searches for places within a requested area.
      */
     async searchPlacesByAreaRaw(requestParameters: SearchPlacesByAreaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlacesSearchResult>> {
-        if (requestParameters.placesByAreaRequest === null || requestParameters.placesByAreaRequest === undefined) {
-            throw new runtime.RequiredError('placesByAreaRequest','Required parameter requestParameters.placesByAreaRequest was null or undefined when calling searchPlacesByArea.');
+        if (requestParameters['placesByAreaRequest'] == null) {
+            throw new runtime.RequiredError(
+                'placesByAreaRequest',
+                'Required parameter "placesByAreaRequest" was null or undefined when calling searchPlacesByArea().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.categoryFilter) {
-            queryParameters['categoryFilter'] = requestParameters.categoryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['categoryFilter'] != null) {
+            queryParameters['categoryFilter'] = requestParameters['categoryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -82,7 +85,7 @@ export class PlacesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -90,7 +93,7 @@ export class PlacesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlacesByAreaRequestToJSON(requestParameters.placesByAreaRequest),
+            body: PlacesByAreaRequestToJSON(requestParameters['placesByAreaRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PlacesSearchResultFromJSON(jsonValue));
@@ -108,41 +111,47 @@ export class PlacesApi extends runtime.BaseAPI {
      * Searches for places near a given geographical position.
      */
     async searchPlacesByPositionRaw(requestParameters: SearchPlacesByPositionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlacesSearchResult>> {
-        if (requestParameters.latitude === null || requestParameters.latitude === undefined) {
-            throw new runtime.RequiredError('latitude','Required parameter requestParameters.latitude was null or undefined when calling searchPlacesByPosition.');
+        if (requestParameters['latitude'] == null) {
+            throw new runtime.RequiredError(
+                'latitude',
+                'Required parameter "latitude" was null or undefined when calling searchPlacesByPosition().'
+            );
         }
 
-        if (requestParameters.longitude === null || requestParameters.longitude === undefined) {
-            throw new runtime.RequiredError('longitude','Required parameter requestParameters.longitude was null or undefined when calling searchPlacesByPosition.');
+        if (requestParameters['longitude'] == null) {
+            throw new runtime.RequiredError(
+                'longitude',
+                'Required parameter "longitude" was null or undefined when calling searchPlacesByPosition().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.radius !== undefined) {
-            queryParameters['radius'] = requestParameters.radius;
+        if (requestParameters['radius'] != null) {
+            queryParameters['radius'] = requestParameters['radius'];
         }
 
-        if (requestParameters.categoryFilter) {
-            queryParameters['categoryFilter'] = requestParameters.categoryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['categoryFilter'] != null) {
+            queryParameters['categoryFilter'] = requestParameters['categoryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/places/by-position/{latitude}/{longitude}`.replace(`{${"latitude"}}`, encodeURIComponent(String(requestParameters.latitude))).replace(`{${"longitude"}}`, encodeURIComponent(String(requestParameters.longitude))),
+            path: `/places/by-position/{latitude}/{longitude}`.replace(`{${"latitude"}}`, encodeURIComponent(String(requestParameters['latitude']))).replace(`{${"longitude"}}`, encodeURIComponent(String(requestParameters['longitude']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -163,45 +172,48 @@ export class PlacesApi extends runtime.BaseAPI {
      * Searches for places based on a single-field text input.
      */
     async searchPlacesByTextRaw(requestParameters: SearchPlacesByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlacesSearchResult>> {
-        if (requestParameters.searchText === null || requestParameters.searchText === undefined) {
-            throw new runtime.RequiredError('searchText','Required parameter requestParameters.searchText was null or undefined when calling searchPlacesByText.');
+        if (requestParameters['searchText'] == null) {
+            throw new runtime.RequiredError(
+                'searchText',
+                'Required parameter "searchText" was null or undefined when calling searchPlacesByText().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.searchText !== undefined) {
-            queryParameters['searchText'] = requestParameters.searchText;
+        if (requestParameters['searchText'] != null) {
+            queryParameters['searchText'] = requestParameters['searchText'];
         }
 
-        if (requestParameters.categoryFilter) {
-            queryParameters['categoryFilter'] = requestParameters.categoryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['categoryFilter'] != null) {
+            queryParameters['categoryFilter'] = requestParameters['categoryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.countryFilter) {
-            queryParameters['countryFilter'] = requestParameters.countryFilter.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['countryFilter'] != null) {
+            queryParameters['countryFilter'] = requestParameters['countryFilter']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.language !== undefined) {
-            queryParameters['language'] = requestParameters.language;
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
         }
 
-        if (requestParameters.center) {
-            queryParameters['center'] = requestParameters.center.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['center'] != null) {
+            queryParameters['center'] = requestParameters['center']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
-        if (requestParameters.radius !== undefined) {
-            queryParameters['radius'] = requestParameters.radius;
+        if (requestParameters['radius'] != null) {
+            queryParameters['radius'] = requestParameters['radius'];
         }
 
-        if (requestParameters.boundingBox) {
-            queryParameters['boundingBox'] = requestParameters.boundingBox.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters['boundingBox'] != null) {
+            queryParameters['boundingBox'] = requestParameters['boundingBox']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({

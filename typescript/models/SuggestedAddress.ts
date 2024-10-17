@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * An address suggested for the input of the searchLocationsByAddress endpoint.
  * @export
@@ -66,11 +66,9 @@ export interface SuggestedAddress {
 /**
  * Check if a given object implements the SuggestedAddress interface.
  */
-export function instanceOfSuggestedAddress(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "caption" in value;
-
-    return isInstance;
+export function instanceOfSuggestedAddress(value: object): value is SuggestedAddress {
+    if (!('caption' in value) || value['caption'] === undefined) return false;
+    return true;
 }
 
 export function SuggestedAddressFromJSON(json: any): SuggestedAddress {
@@ -78,37 +76,34 @@ export function SuggestedAddressFromJSON(json: any): SuggestedAddress {
 }
 
 export function SuggestedAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestedAddress {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'caption': json['caption'],
-        'country': !exists(json, 'country') ? undefined : json['country'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'postalCode': !exists(json, 'postalCode') ? undefined : json['postalCode'],
-        'locality': !exists(json, 'locality') ? undefined : json['locality'],
-        'street': !exists(json, 'street') ? undefined : json['street'],
-        'houseNumber': !exists(json, 'houseNumber') ? undefined : json['houseNumber'],
+        'country': json['country'] == null ? undefined : json['country'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'postalCode': json['postalCode'] == null ? undefined : json['postalCode'],
+        'locality': json['locality'] == null ? undefined : json['locality'],
+        'street': json['street'] == null ? undefined : json['street'],
+        'houseNumber': json['houseNumber'] == null ? undefined : json['houseNumber'],
     };
 }
 
 export function SuggestedAddressToJSON(value?: SuggestedAddress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'caption': value.caption,
-        'country': value.country,
-        'state': value.state,
-        'postalCode': value.postalCode,
-        'locality': value.locality,
-        'street': value.street,
-        'houseNumber': value.houseNumber,
+        'caption': value['caption'],
+        'country': value['country'],
+        'state': value['state'],
+        'postalCode': value['postalCode'],
+        'locality': value['locality'],
+        'street': value['street'],
+        'houseNumber': value['houseNumber'],
     };
 }
 
