@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * An address suggested for the input of the searchLocationsByAddress endpoint.
  */
@@ -40,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SuggestedAddress.JSON_PROPERTY_STREET,
   SuggestedAddress.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class SuggestedAddress {
   public static final String JSON_PROPERTY_CAPTION = "caption";
   private String caption;
@@ -71,14 +72,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * A summary of this suggestion that can be displayed on a user interface.
    * @return caption
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CAPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getCaption() {
     return caption;
   }
@@ -96,14 +96,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The country of the suggested address or the provided input.
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCountry() {
     return country;
   }
@@ -121,14 +120,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The state/province of the suggested address or the provided input.
    * @return state
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getState() {
     return state;
   }
@@ -146,14 +144,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The postal code or zip code of the suggested address or the provided input.
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getPostalCode() {
     return postalCode;
   }
@@ -171,14 +168,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The locality of the suggested address or the provided input.
    * @return locality
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LOCALITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getLocality() {
     return locality;
   }
@@ -196,14 +192,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The street of the suggested address or the provided input.
    * @return street
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STREET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getStreet() {
     return street;
   }
@@ -221,14 +216,13 @@ public class SuggestedAddress {
     return this;
   }
 
-   /**
+  /**
    * The house number of the suggested address or the provided input.
    * @return houseNumber
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getHouseNumber() {
     return houseNumber;
   }
@@ -327,37 +321,37 @@ public class SuggestedAddress {
 
     // add `caption` to the URL query string
     if (getCaption() != null) {
-      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `country` to the URL query string
     if (getCountry() != null) {
-      joiner.add(String.format("%scountry%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `state` to the URL query string
     if (getState() != null) {
-      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `postalCode` to the URL query string
     if (getPostalCode() != null) {
-      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `locality` to the URL query string
     if (getLocality() != null) {
-      joiner.add(String.format("%slocality%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocality()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%slocality%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLocality()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `street` to the URL query string
     if (getStreet() != null) {
-      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `houseNumber` to the URL query string
     if (getHouseNumber() != null) {
-      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

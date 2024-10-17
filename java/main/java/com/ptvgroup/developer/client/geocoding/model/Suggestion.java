@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * A search text suggested for the input of the searchLocationsByText endpoint.
  */
@@ -35,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Suggestion.JSON_PROPERTY_CAPTION,
   Suggestion.JSON_PROPERTY_SUB_CAPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Suggestion {
   public static final String JSON_PROPERTY_CAPTION = "caption";
   private String caption;
@@ -51,14 +52,13 @@ public class Suggestion {
     return this;
   }
 
-   /**
+  /**
    * A search address suggestion that can be displayed on a user interface as caption.
    * @return caption
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CAPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getCaption() {
     return caption;
   }
@@ -76,14 +76,13 @@ public class Suggestion {
     return this;
   }
 
-   /**
+  /**
    * An additional address information for the suggestion that can be displayed on a user interface as sub caption.
    * @return subCaption
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SUB_CAPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getSubCaption() {
     return subCaption;
   }
@@ -172,12 +171,12 @@ public class Suggestion {
 
     // add `caption` to the URL query string
     if (getCaption() != null) {
-      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `subCaption` to the URL query string
     if (getSubCaption() != null) {
-      joiner.add(String.format("%ssubCaption%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%ssubCaption%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

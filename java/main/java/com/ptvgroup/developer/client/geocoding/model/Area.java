@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,16 +24,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Defines the area as [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) geometry. Supported geometry types are Polygon and MultiPolygon. Geometries that cause too long processing times will be rejected. In this case an error response is returned that explains the reason.
  */
 @JsonPropertyOrder({
   Area.JSON_PROPERTY_GEOMETRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Area {
   public static final String JSON_PROPERTY_GEOMETRY = "geometry";
   private String geometry;
@@ -47,14 +48,13 @@ public class Area {
     return this;
   }
 
-   /**
+  /**
    * Get geometry
    * @return geometry
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_GEOMETRY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getGeometry() {
     return geometry;
   }
@@ -141,7 +141,7 @@ public class Area {
 
     // add `geometry` to the URL query string
     if (getGeometry() != null) {
-      joiner.add(String.format("%sgeometry%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGeometry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sgeometry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGeometry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

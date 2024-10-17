@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class LocationsApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -197,12 +197,13 @@ public class LocationsApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
    * @param searchText Free-form text input that partially describes a location. (required)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
-   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)
    * @return SuggestionsByTextResponse
    * @throws ApiException if fails to make API call
    */
@@ -215,8 +216,8 @@ public class LocationsApi {
    * 
    * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
    * @param searchText Free-form text input that partially describes a location. (required)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
-   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)
    * @return ApiResponse&lt;SuggestionsByTextResponse&gt;
    * @throws ApiException if fails to make API call
    */
@@ -292,6 +293,7 @@ public class LocationsApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Searches for locations based on a multi-field address input.
@@ -301,9 +303,9 @@ public class LocationsApi {
    * @param postalCode The postal code, or zip-code, which is used by a postal authority of a country to identify where the address is located. (optional)
    * @param street The name of the road where the address is located. It must not contain additional information like building names, floor numbers or apartment numbers. It may contain a house number, but using the **houseNumber** field instead will lead to better results. (optional)
    * @param houseNumber The house number of the address. (optional)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional
+   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
@@ -321,9 +323,9 @@ public class LocationsApi {
    * @param postalCode The postal code, or zip-code, which is used by a postal authority of a country to identify where the address is located. (optional)
    * @param street The name of the road where the address is located. It must not contain additional information like building names, floor numbers or apartment numbers. It may contain a house number, but using the **houseNumber** field instead will lead to better results. (optional)
    * @param houseNumber The house number of the address. (optional)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional
+   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
@@ -407,6 +409,7 @@ public class LocationsApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Searches for locations near a given geographical position.
@@ -504,13 +507,14 @@ public class LocationsApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Searches for locations based on a single-field text input.
    * @param searchText Free-form text input that describes a location. (required)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional
+   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
@@ -523,9 +527,9 @@ public class LocationsApi {
    * 
    * Searches for locations based on a single-field text input.
    * @param searchText Free-form text input that describes a location. (required)
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional
+   * @param results Comma-separated list that defines which results will be returned.  * _ADDRESS_SCORES_  Populate Location.quality.addressScores. (optional)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
@@ -603,4 +607,5 @@ public class LocationsApi {
     }
     return localVarRequestBuilder;
   }
+
 }

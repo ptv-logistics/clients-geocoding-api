@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,10 +27,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.ptvgroup.developer.client.geocoding.model.Location;
 import com.ptvgroup.developer.client.geocoding.model.Warning;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * The result of a locations search.
  */
@@ -39,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   LocationsSearchResult.JSON_PROPERTY_LOCATIONS,
   LocationsSearchResult.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class LocationsSearchResult {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   private List<Location> locations;
@@ -56,18 +57,20 @@ public class LocationsSearchResult {
   }
 
   public LocationsSearchResult addLocationsItem(Location locationsItem) {
+    if (this.locations == null) {
+      this.locations = new ArrayList<>();
+    }
     this.locations.add(locationsItem);
     return this;
   }
 
-   /**
+  /**
    * The found locations.
    * @return locations
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_LOCATIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public List<Location> getLocations() {
     return locations;
   }
@@ -93,14 +96,13 @@ public class LocationsSearchResult {
     return this;
   }
 
-   /**
+  /**
    * A list of warnings concerning the validity of the result.
    * @return warnings
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<Warning> getWarnings() {
     return warnings;
   }

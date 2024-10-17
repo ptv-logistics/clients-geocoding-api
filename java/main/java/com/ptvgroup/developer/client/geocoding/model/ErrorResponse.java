@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,12 +26,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ptvgroup.developer.client.geocoding.model.CausingError;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * ErrorResponse
  */
@@ -44,7 +45,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ErrorResponse.JSON_PROPERTY_CAUSES,
   ErrorResponse.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class ErrorResponse {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
@@ -72,14 +73,13 @@ public class ErrorResponse {
     return this;
   }
 
-   /**
+  /**
    * A human readable message that describes the error.
    * @return description
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getDescription() {
     return description;
   }
@@ -97,14 +97,13 @@ public class ErrorResponse {
     return this;
   }
 
-   /**
+  /**
    * A constant string that can be used to identify this error class programmatically. An errorCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.    Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.    **HTTP status code: 400**   * &#x60;GENERAL_VALIDATION_ERROR&#x60; - The validation of the request failed. Details can be found in **causes**.   * &#x60;GENERAL_PARSING_ERROR&#x60; - The JSON syntax is invalid.    **HTTP status code: 401**   * &#x60;GENERAL_UNAUTHENTICATED&#x60; - Invalid or missing authentication credentials.     * &#x60;message&#x60; - An additional error message.    **HTTP status code: 403**   * &#x60;GENERAL_FORBIDDEN&#x60; - Insufficient access rights.   * &#x60;GENERAL_QUOTA_EXCEEDED&#x60; - The transaction limit is exceeded.     * &#x60;message&#x60; - An additional error message.    **HTTP status code: 404**   * &#x60;GENERAL_RESOURCE_NOT_FOUND&#x60; - A requested resource does not exist.     * &#x60;message&#x60; - An additional error message.    **HTTP status code: 429**   * &#x60;GENERAL_RATE_LIMIT_EXCEEDED&#x60; - The rate limit is exceeded.    **HTTP status code: 500**   * &#x60;GENERAL_INTERNAL_SERVER_ERROR&#x60; - The request could not be processed due to an internal error.     * &#x60;message&#x60; - An additional error message.     * &#x60;hint&#x60; - A hint how to solve the problem.    **HTTP status code: 503**   * &#x60;GENERAL_SERVICE_UNAVAILABLE&#x60; - The service is temporarily unavailable.
    * @return errorCode
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ERROR_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getErrorCode() {
     return errorCode;
   }
@@ -122,14 +121,13 @@ public class ErrorResponse {
     return this;
   }
 
-   /**
+  /**
    * A unique identifier of the corresponding trace forest. It can be used to trace errors by the support.
    * @return traceId
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_TRACE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getTraceId() {
     return traceId;
   }
@@ -147,14 +145,13 @@ public class ErrorResponse {
     return this;
   }
 
-   /**
+  /**
    * A unique identifier specific to this error instance. It can be used to trace errors by the support.
    * @return errorId
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ERROR_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getErrorId() {
     return errorId;
   }
@@ -180,14 +177,13 @@ public class ErrorResponse {
     return this;
   }
 
-   /**
+  /**
    * A list of affected parameters and/or properties that caused this error.
    * @return causes
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CAUSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<CausingError> getCauses() {
     return causes;
   }
@@ -206,18 +202,20 @@ public class ErrorResponse {
   }
 
   public ErrorResponse putDetailsItem(String key, Object detailsItem) {
+    if (this.details == null) {
+      this.details = new HashMap<>();
+    }
     this.details.put(key, detailsItem);
     return this;
   }
 
-   /**
+  /**
    * Additional properties specific to this error class.
    * @return details
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DETAILS)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
   public Map<String, Object> getDetails() {
     return details;
   }
@@ -314,22 +312,22 @@ public class ErrorResponse {
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `errorCode` to the URL query string
     if (getErrorCode() != null) {
-      joiner.add(String.format("%serrorCode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getErrorCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%serrorCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getErrorCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `traceId` to the URL query string
     if (getTraceId() != null) {
-      joiner.add(String.format("%straceId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTraceId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%straceId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTraceId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `errorId` to the URL query string
     if (getErrorId() != null) {
-      joiner.add(String.format("%serrorId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getErrorId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%serrorId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getErrorId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `causes` to the URL query string
@@ -347,7 +345,7 @@ public class ErrorResponse {
       for (String _key : getDetails().keySet()) {
         joiner.add(String.format("%sdetails%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getDetails().get(_key), URLEncoder.encode(String.valueOf(getDetails().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+            getDetails().get(_key), URLEncoder.encode(ApiClient.valueToString(getDetails().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
       }
     }
 

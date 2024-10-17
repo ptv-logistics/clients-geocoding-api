@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,10 +27,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.ptvgroup.developer.client.geocoding.model.SuggestedAddress;
 import com.ptvgroup.developer.client.geocoding.model.Warning;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * The list of suggested addresses.
  */
@@ -39,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SuggestionsByAddressResponse.JSON_PROPERTY_SUGGESTIONS,
   SuggestionsByAddressResponse.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class SuggestionsByAddressResponse {
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
   private List<SuggestedAddress> suggestions;
@@ -56,18 +57,20 @@ public class SuggestionsByAddressResponse {
   }
 
   public SuggestionsByAddressResponse addSuggestionsItem(SuggestedAddress suggestionsItem) {
+    if (this.suggestions == null) {
+      this.suggestions = new ArrayList<>();
+    }
     this.suggestions.add(suggestionsItem);
     return this;
   }
 
-   /**
+  /**
    * The list of suggested addresses.
    * @return suggestions
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public List<SuggestedAddress> getSuggestions() {
     return suggestions;
   }
@@ -93,14 +96,13 @@ public class SuggestionsByAddressResponse {
     return this;
   }
 
-   /**
+  /**
    * A list of warnings concerning the validity of the result.
    * @return warnings
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_WARNINGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<Warning> getWarnings() {
     return warnings;
   }

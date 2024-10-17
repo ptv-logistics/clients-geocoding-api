@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Quality indicators that help deciding how well a result fits to the search input.
  */
@@ -42,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AddressScores.JSON_PROPERTY_STREET,
   AddressScores.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class AddressScores {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   private Integer country;
@@ -79,14 +80,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned country in \\[%\\].
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getCountry() {
     return country;
   }
@@ -104,14 +104,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned state in \\[%\\].
    * @return state
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getState() {
     return state;
   }
@@ -129,14 +128,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned province in \\[%\\].
    * @return province
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PROVINCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getProvince() {
     return province;
   }
@@ -154,14 +152,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned postalCode in \\[%\\].
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getPostalCode() {
     return postalCode;
   }
@@ -179,14 +176,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned city in \\[%\\].
    * @return city
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getCity() {
     return city;
   }
@@ -204,14 +200,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned district in \\[%\\].
    * @return district
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getDistrict() {
     return district;
   }
@@ -229,14 +224,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned subdistrict in \\[%\\].
    * @return subDistrict
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SUB_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSubDistrict() {
     return subDistrict;
   }
@@ -254,14 +248,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned street in \\[%\\].
    * @return street
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STREET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getStreet() {
     return street;
   }
@@ -279,14 +272,13 @@ public class AddressScores {
     return this;
   }
 
-   /**
+  /**
    * The score for the returned house number in \\[%\\].
    * @return houseNumber
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getHouseNumber() {
     return houseNumber;
   }
@@ -389,47 +381,47 @@ public class AddressScores {
 
     // add `country` to the URL query string
     if (getCountry() != null) {
-      joiner.add(String.format("%scountry%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `state` to the URL query string
     if (getState() != null) {
-      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `province` to the URL query string
     if (getProvince() != null) {
-      joiner.add(String.format("%sprovince%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getProvince()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sprovince%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getProvince()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `postalCode` to the URL query string
     if (getPostalCode() != null) {
-      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `city` to the URL query string
     if (getCity() != null) {
-      joiner.add(String.format("%scity%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCity()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scity%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCity()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `district` to the URL query string
     if (getDistrict() != null) {
-      joiner.add(String.format("%sdistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdistrict%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `subDistrict` to the URL query string
     if (getSubDistrict() != null) {
-      joiner.add(String.format("%ssubDistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%ssubDistrict%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `street` to the URL query string
     if (getStreet() != null) {
-      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `houseNumber` to the URL query string
     if (getHouseNumber() != null) {
-      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

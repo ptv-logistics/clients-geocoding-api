@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,10 +29,12 @@ import com.ptvgroup.developer.client.geocoding.model.Quality;
 import com.ptvgroup.developer.client.geocoding.model.ReferencePosition;
 import com.ptvgroup.developer.client.geocoding.model.RoadAccessPosition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Place
  */
@@ -46,7 +47,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Place.JSON_PROPERTY_CATEGORY_IDS,
   Place.JSON_PROPERTY_QUALITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Place {
   public static final String JSON_PROPERTY_REFERENCE_POSITION = "referencePosition";
   private ReferencePosition referencePosition;
@@ -77,14 +78,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * Get referencePosition
    * @return referencePosition
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_REFERENCE_POSITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public ReferencePosition getReferencePosition() {
     return referencePosition;
   }
@@ -102,14 +102,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * Get roadAccessPosition
    * @return roadAccessPosition
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ROAD_ACCESS_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public RoadAccessPosition getRoadAccessPosition() {
     return roadAccessPosition;
   }
@@ -127,14 +126,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * Get address
    * @return address
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public Address getAddress() {
     return address;
   }
@@ -152,14 +150,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address.
    * @return formattedAddress
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_FORMATTED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getFormattedAddress() {
     return formattedAddress;
   }
@@ -177,14 +174,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * The name of the place.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getName() {
     return name;
   }
@@ -203,18 +199,20 @@ public class Place {
   }
 
   public Place addCategoryIdsItem(String categoryIdsItem) {
+    if (this.categoryIds == null) {
+      this.categoryIds = new ArrayList<>();
+    }
     this.categoryIds.add(categoryIdsItem);
     return this;
   }
 
-   /**
+  /**
    * An array of place category IDs representing the categories this place is assigned to.
    * @return categoryIds
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CATEGORY_IDS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public List<String> getCategoryIds() {
     return categoryIds;
   }
@@ -232,14 +230,13 @@ public class Place {
     return this;
   }
 
-   /**
+  /**
    * Get quality
    * @return quality
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_QUALITY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public Quality getQuality() {
     return quality;
   }
@@ -353,12 +350,12 @@ public class Place {
 
     // add `formattedAddress` to the URL query string
     if (getFormattedAddress() != null) {
-      joiner.add(String.format("%sformattedAddress%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFormattedAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sformattedAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFormattedAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `categoryIds` to the URL query string
@@ -366,7 +363,7 @@ public class Place {
       for (int i = 0; i < getCategoryIds().size(); i++) {
         joiner.add(String.format("%scategoryIds%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(String.valueOf(getCategoryIds().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+            URLEncoder.encode(ApiClient.valueToString(getCategoryIds().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
       }
     }
 

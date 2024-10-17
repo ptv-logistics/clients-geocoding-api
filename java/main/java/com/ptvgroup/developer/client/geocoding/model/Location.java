@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,9 +29,11 @@ import com.ptvgroup.developer.client.geocoding.model.LocationType;
 import com.ptvgroup.developer.client.geocoding.model.Quality;
 import com.ptvgroup.developer.client.geocoding.model.ReferencePosition;
 import com.ptvgroup.developer.client.geocoding.model.RoadAccessPosition;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Location
  */
@@ -44,7 +45,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Location.JSON_PROPERTY_LOCATION_TYPE,
   Location.JSON_PROPERTY_QUALITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Location {
   public static final String JSON_PROPERTY_REFERENCE_POSITION = "referencePosition";
   private ReferencePosition referencePosition;
@@ -72,14 +73,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * Get referencePosition
    * @return referencePosition
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_REFERENCE_POSITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public ReferencePosition getReferencePosition() {
     return referencePosition;
   }
@@ -97,14 +97,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * Get roadAccessPosition
    * @return roadAccessPosition
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ROAD_ACCESS_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public RoadAccessPosition getRoadAccessPosition() {
     return roadAccessPosition;
   }
@@ -122,14 +121,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * Get address
    * @return address
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public Address getAddress() {
     return address;
   }
@@ -147,14 +145,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address.
    * @return formattedAddress
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_FORMATTED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getFormattedAddress() {
     return formattedAddress;
   }
@@ -172,14 +169,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * Get locationType
    * @return locationType
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_LOCATION_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public LocationType getLocationType() {
     return locationType;
   }
@@ -197,14 +193,13 @@ public class Location {
     return this;
   }
 
-   /**
+  /**
    * Get quality
    * @return quality
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_QUALITY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public Quality getQuality() {
     return quality;
   }
@@ -316,12 +311,12 @@ public class Location {
 
     // add `formattedAddress` to the URL query string
     if (getFormattedAddress() != null) {
-      joiner.add(String.format("%sformattedAddress%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFormattedAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sformattedAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFormattedAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `locationType` to the URL query string
     if (getLocationType() != null) {
-      joiner.add(String.format("%slocationType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocationType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%slocationType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLocationType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `quality` to the URL query string

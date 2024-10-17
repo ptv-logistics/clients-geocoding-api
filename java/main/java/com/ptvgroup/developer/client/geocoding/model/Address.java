@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Represents the address of a geographical object. Whenever a string, such as a city or street name, is available in multiple languages, it is returned in the default language specified by the country in which an object is located. Most of the fields are optional, because addressing schemes vary strongly between countries.
  */
@@ -45,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Address.JSON_PROPERTY_COUNTRY_CODE_ISO_ALPHA3,
   Address.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Address {
   public static final String JSON_PROPERTY_COUNTRY_NAME = "countryName";
   private String countryName;
@@ -91,14 +92,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The country. In a response, it is represented by its full name (not abbreviated or encoded).
    * @return countryName
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCountryName() {
     return countryName;
   }
@@ -116,14 +116,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The name of the principal country subdivision which the address belongs to (for example, a state in the USA, or a canton in Switzerland).
    * @return state
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getState() {
     return state;
   }
@@ -141,14 +140,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The name of the second-level country subdivision which the address belongs to (for example, a county in the UK, or a province in Italy).
    * @return province
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PROVINCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getProvince() {
     return province;
   }
@@ -166,14 +164,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The postal code of the address.
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getPostalCode() {
     return postalCode;
   }
@@ -191,14 +188,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The city of the address, i.e. the highest entity at the communal level which the address belongs to.
    * @return city
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCity() {
     return city;
   }
@@ -216,14 +212,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The district of the address, i.e. the entity below city.
    * @return district
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getDistrict() {
     return district;
   }
@@ -241,14 +236,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The subdistrict of the address, i.e. the entity below district.
    * @return subdistrict
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SUBDISTRICT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getSubdistrict() {
     return subdistrict;
   }
@@ -266,14 +260,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The street of the address.
    * @return street
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STREET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getStreet() {
     return street;
   }
@@ -291,14 +284,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The house number of the address.
    * @return houseNumber
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getHouseNumber() {
     return houseNumber;
   }
@@ -316,14 +308,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
    * @return countryCodeIsoAlpha2
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY_CODE_ISO_ALPHA2)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCountryCodeIsoAlpha2() {
     return countryCodeIsoAlpha2;
   }
@@ -341,14 +332,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The country code according to [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
    * @return countryCodeIsoAlpha3
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY_CODE_ISO_ALPHA3)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCountryCodeIsoAlpha3() {
     return countryCodeIsoAlpha3;
   }
@@ -366,14 +356,13 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The country or subdivision represented by its code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision.
    * @return countryCode
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_COUNTRY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getCountryCode() {
     return countryCode;
   }
@@ -482,62 +471,62 @@ public class Address {
 
     // add `countryName` to the URL query string
     if (getCountryName() != null) {
-      joiner.add(String.format("%scountryName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountryName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountryName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountryName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `state` to the URL query string
     if (getState() != null) {
-      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `province` to the URL query string
     if (getProvince() != null) {
-      joiner.add(String.format("%sprovince%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getProvince()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sprovince%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getProvince()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `postalCode` to the URL query string
     if (getPostalCode() != null) {
-      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%spostalCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPostalCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `city` to the URL query string
     if (getCity() != null) {
-      joiner.add(String.format("%scity%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCity()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scity%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCity()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `district` to the URL query string
     if (getDistrict() != null) {
-      joiner.add(String.format("%sdistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdistrict%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `subdistrict` to the URL query string
     if (getSubdistrict() != null) {
-      joiner.add(String.format("%ssubdistrict%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubdistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%ssubdistrict%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubdistrict()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `street` to the URL query string
     if (getStreet() != null) {
-      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstreet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStreet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `houseNumber` to the URL query string
     if (getHouseNumber() != null) {
-      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%shouseNumber%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHouseNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `countryCodeIsoAlpha2` to the URL query string
     if (getCountryCodeIsoAlpha2() != null) {
-      joiner.add(String.format("%scountryCodeIsoAlpha2%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountryCodeIsoAlpha2()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountryCodeIsoAlpha2%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountryCodeIsoAlpha2()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `countryCodeIsoAlpha3` to the URL query string
     if (getCountryCodeIsoAlpha3() != null) {
-      joiner.add(String.format("%scountryCodeIsoAlpha3%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountryCodeIsoAlpha3()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountryCodeIsoAlpha3%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountryCodeIsoAlpha3()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `countryCode` to the URL query string
     if (getCountryCode() != null) {
-      joiner.add(String.format("%scountryCode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCountryCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%scountryCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCountryCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

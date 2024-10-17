@@ -17,7 +17,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,13 +25,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ptvgroup.developer.client.geocoding.model.AddressScores;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
  * Quality indicators that help deciding how well a result fits to the search input.
  */
@@ -41,13 +38,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Quality.JSON_PROPERTY_TOTAL_SCORE,
   Quality.JSON_PROPERTY_ADDRESS_SCORES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Quality {
   public static final String JSON_PROPERTY_DISTANCE = "distance";
-  private JsonNullable<Integer> distance = JsonNullable.<Integer>undefined();
+  private Integer distance;
 
   public static final String JSON_PROPERTY_TOTAL_SCORE = "totalScore";
-  private JsonNullable<Integer> totalScore = JsonNullable.<Integer>undefined();
+  private Integer totalScore;
 
   public static final String JSON_PROPERTY_ADDRESS_SCORES = "addressScores";
   private AddressScores addressScores;
@@ -56,68 +53,50 @@ public class Quality {
   }
 
   public Quality distance(Integer distance) {
-    this.distance = JsonNullable.<Integer>of(distance);
+    this.distance = distance;
     return this;
   }
 
-   /**
+  /**
    * The spatial distance in \\[m\\] between the location or the place and the input of a position search.    This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.
    * @return distance
-  **/
+   */
   @javax.annotation.Nullable
-  @JsonIgnore
-
+  @JsonProperty(JSON_PROPERTY_DISTANCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getDistance() {
-        return distance.orElse(null);
+    return distance;
   }
+
 
   @JsonProperty(JSON_PROPERTY_DISTANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getDistance_JsonNullable() {
-    return distance;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DISTANCE)
-  public void setDistance_JsonNullable(JsonNullable<Integer> distance) {
-    this.distance = distance;
-  }
-
   public void setDistance(Integer distance) {
-    this.distance = JsonNullable.<Integer>of(distance);
+    this.distance = distance;
   }
 
 
   public Quality totalScore(Integer totalScore) {
-    this.totalScore = JsonNullable.<Integer>of(totalScore);
+    this.totalScore = totalScore;
     return this;
   }
 
-   /**
+  /**
    * An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
    * @return totalScore
-  **/
+   */
   @javax.annotation.Nullable
-  @JsonIgnore
-
+  @JsonProperty(JSON_PROPERTY_TOTAL_SCORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTotalScore() {
-        return totalScore.orElse(null);
+    return totalScore;
   }
+
 
   @JsonProperty(JSON_PROPERTY_TOTAL_SCORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getTotalScore_JsonNullable() {
-    return totalScore;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TOTAL_SCORE)
-  public void setTotalScore_JsonNullable(JsonNullable<Integer> totalScore) {
-    this.totalScore = totalScore;
-  }
-
   public void setTotalScore(Integer totalScore) {
-    this.totalScore = JsonNullable.<Integer>of(totalScore);
+    this.totalScore = totalScore;
   }
 
 
@@ -126,14 +105,13 @@ public class Quality {
     return this;
   }
 
-   /**
+  /**
    * Get addressScores
    * @return addressScores
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ADDRESS_SCORES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public AddressScores getAddressScores() {
     return addressScores;
   }
@@ -158,25 +136,14 @@ public class Quality {
       return false;
     }
     Quality quality = (Quality) o;
-    return equalsNullable(this.distance, quality.distance) &&
-        equalsNullable(this.totalScore, quality.totalScore) &&
+    return Objects.equals(this.distance, quality.distance) &&
+        Objects.equals(this.totalScore, quality.totalScore) &&
         Objects.equals(this.addressScores, quality.addressScores);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(distance), hashCodeNullable(totalScore), addressScores);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(distance, totalScore, addressScores);
   }
 
   @Override
@@ -235,12 +202,12 @@ public class Quality {
 
     // add `distance` to the URL query string
     if (getDistance() != null) {
-      joiner.add(String.format("%sdistance%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDistance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdistance%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDistance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `totalScore` to the URL query string
     if (getTotalScore() != null) {
-      joiner.add(String.format("%stotalScore%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTotalScore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%stotalScore%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTotalScore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `addressScores` to the URL query string

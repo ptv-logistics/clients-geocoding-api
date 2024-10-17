@@ -46,7 +46,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-09T07:41:04.078820292Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class PlacesApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -87,7 +87,7 @@ public class PlacesApi {
    * 
    * Searches for places within a requested area.
    * @param placesByAreaRequest  (required)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return PlacesSearchResult
    * @throws ApiException if fails to make API call
@@ -101,7 +101,7 @@ public class PlacesApi {
    * 
    * Searches for places within a requested area.
    * @param placesByAreaRequest  (required)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return ApiResponse&lt;PlacesSearchResult&gt;
    * @throws ApiException if fails to make API call
@@ -182,13 +182,14 @@ public class PlacesApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Searches for places near a given geographical position.
    * @param latitude  (required)
    * @param longitude  (required)
    * @param radius The search radius [m] around the given position. (optional, default to 1000)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
    * @param limit Limits the number of results that are returned. (optional, default to 5)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return PlacesSearchResult
@@ -205,7 +206,7 @@ public class PlacesApi {
    * @param latitude  (required)
    * @param longitude  (required)
    * @param radius The search radius [m] around the given position. (optional, default to 1000)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
    * @param limit Limits the number of results that are returned. (optional, default to 5)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return ApiResponse&lt;PlacesSearchResult&gt;
@@ -291,16 +292,17 @@ public class PlacesApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Searches for places based on a single-field text input.
    * @param searchText Free-form text input that describes a place. (required)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional
+   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional)
    * @param radius The search radius [m] around the given position. (optional, default to 1000)
-   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional
+   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)
    * @return PlacesSearchResult
    * @throws ApiException if fails to make API call
    */
@@ -313,12 +315,12 @@ public class PlacesApi {
    * 
    * Searches for places based on a single-field text input.
    * @param searchText Free-form text input that describes a place. (required)
-   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional
-   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional
+   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional)
    * @param radius The search radius [m] around the given position. (optional, default to 1000)
-   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional
+   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)
    * @return ApiResponse&lt;PlacesSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
@@ -402,4 +404,5 @@ public class PlacesApi {
     }
     return localVarRequestBuilder;
   }
+
 }
