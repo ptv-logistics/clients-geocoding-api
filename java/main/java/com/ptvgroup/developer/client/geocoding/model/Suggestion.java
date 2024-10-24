@@ -36,7 +36,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   Suggestion.JSON_PROPERTY_CAPTION,
   Suggestion.JSON_PROPERTY_SUB_CAPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-17T12:47:15.116384154Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-24T08:18:40.692297456Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Suggestion {
   public static final String JSON_PROPERTY_CAPTION = "caption";
   private String caption;
