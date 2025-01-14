@@ -23,69 +23,73 @@ namespace PTV.Developer.Clients.geocoding.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICategoriesApiSync : IApiAccessor
+    public interface IFeedbackApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns the list of place categories.
+        /// Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </remarks>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>PlaceCategories</returns>
-        PlaceCategories GetPlaceCategories(int operationIndex = 0);
+        /// <returns></returns>
+        void ProvideFeedback(Guid? feedbackId, int operationIndex = 0);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns the list of place categories.
+        /// Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </remarks>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of PlaceCategories</returns>
-        ApiResponse<PlaceCategories> GetPlaceCategoriesWithHttpInfo(int operationIndex = 0);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ProvideFeedbackWithHttpInfo(Guid? feedbackId, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICategoriesApiAsync : IApiAccessor
+    public interface IFeedbackApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns the list of place categories.
+        /// Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </remarks>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PlaceCategories</returns>
-        System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ProvideFeedbackAsync(Guid? feedbackId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns the list of place categories.
+        /// Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </remarks>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PlaceCategories)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ProvideFeedbackWithHttpInfoAsync(Guid? feedbackId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICategoriesApi : ICategoriesApiSync, ICategoriesApiAsync
+    public interface IFeedbackApi : IFeedbackApiSync, IFeedbackApiAsync
     {
 
     }
@@ -93,23 +97,23 @@ namespace PTV.Developer.Clients.geocoding.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class CategoriesApi : ICategoriesApi
+    public partial class FeedbackApi : IFeedbackApi
     {
         private PTV.Developer.Clients.geocoding.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoriesApi"/> class.
+        /// Initializes a new instance of the <see cref="FeedbackApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public CategoriesApi() : this((string)null)
+        public FeedbackApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoriesApi"/> class.
+        /// Initializes a new instance of the <see cref="FeedbackApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public CategoriesApi(string basePath)
+        public FeedbackApi(string basePath)
         {
             this.Configuration = PTV.Developer.Clients.geocoding.Client.Configuration.MergeConfigurations(
                 PTV.Developer.Clients.geocoding.Client.GlobalConfiguration.Instance,
@@ -121,12 +125,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoriesApi"/> class
+        /// Initializes a new instance of the <see cref="FeedbackApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public CategoriesApi(PTV.Developer.Clients.geocoding.Client.Configuration configuration)
+        public FeedbackApi(PTV.Developer.Clients.geocoding.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -140,13 +144,13 @@ namespace PTV.Developer.Clients.geocoding.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoriesApi"/> class
+        /// Initializes a new instance of the <see cref="FeedbackApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public CategoriesApi(PTV.Developer.Clients.geocoding.Client.ISynchronousClient client, PTV.Developer.Clients.geocoding.Client.IAsynchronousClient asyncClient, PTV.Developer.Clients.geocoding.Client.IReadableConfiguration configuration)
+        public FeedbackApi(PTV.Developer.Clients.geocoding.Client.ISynchronousClient client, PTV.Developer.Clients.geocoding.Client.IAsynchronousClient asyncClient, PTV.Developer.Clients.geocoding.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -200,25 +204,32 @@ namespace PTV.Developer.Clients.geocoding.Api
         }
 
         /// <summary>
-        ///  Returns the list of place categories.
+        ///  Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </summary>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>PlaceCategories</returns>
-        public PlaceCategories GetPlaceCategories(int operationIndex = 0)
+        /// <returns></returns>
+        public void ProvideFeedback(Guid? feedbackId, int operationIndex = 0)
         {
-            PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories> localVarResponse = GetPlaceCategoriesWithHttpInfo();
-            return localVarResponse.Data;
+            ProvideFeedbackWithHttpInfo(feedbackId);
         }
 
         /// <summary>
-        ///  Returns the list of place categories.
+        ///  Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </summary>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of PlaceCategories</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories> GetPlaceCategoriesWithHttpInfo(int operationIndex = 0)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<Object> ProvideFeedbackWithHttpInfo(Guid? feedbackId, int operationIndex = 0)
         {
+            // verify the required parameter 'feedbackId' is set
+            if (feedbackId == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'feedbackId' when calling FeedbackApi->ProvideFeedback");
+            }
+
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -241,8 +252,9 @@ namespace PTV.Developer.Clients.geocoding.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.geocoding.Client.ClientUtils.ParameterToMultiMap("", "feedbackId", feedbackId));
 
-            localVarRequestOptions.Operation = "CategoriesApi.GetPlaceCategories";
+            localVarRequestOptions.Operation = "FeedbackApi.ProvideFeedback";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (apiKeyAuth) required
@@ -252,10 +264,10 @@ namespace PTV.Developer.Clients.geocoding.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<PlaceCategories>("/place-categories", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<Object>("/feedback", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetPlaceCategories", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ProvideFeedback", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -266,27 +278,34 @@ namespace PTV.Developer.Clients.geocoding.Api
         }
 
         /// <summary>
-        ///  Returns the list of place categories.
+        ///  Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </summary>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PlaceCategories</returns>
-        public async System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ProvideFeedbackAsync(Guid? feedbackId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories> localVarResponse = await GetPlaceCategoriesWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
+            await ProvideFeedbackWithHttpInfoAsync(feedbackId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
-        ///  Returns the list of place categories.
+        ///  Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
         /// </summary>
         /// <exception cref="PTV.Developer.Clients.geocoding.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PlaceCategories)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<Object>> ProvideFeedbackWithHttpInfoAsync(Guid? feedbackId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
+            // verify the required parameter 'feedbackId' is set
+            if (feedbackId == null)
+            {
+                throw new PTV.Developer.Clients.geocoding.Client.ApiException(400, "Missing required parameter 'feedbackId' when calling FeedbackApi->ProvideFeedback");
+            }
+
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -310,8 +329,9 @@ namespace PTV.Developer.Clients.geocoding.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.geocoding.Client.ClientUtils.ParameterToMultiMap("", "feedbackId", feedbackId));
 
-            localVarRequestOptions.Operation = "CategoriesApi.GetPlaceCategories";
+            localVarRequestOptions.Operation = "FeedbackApi.ProvideFeedback";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (apiKeyAuth) required
@@ -321,11 +341,11 @@ namespace PTV.Developer.Clients.geocoding.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<PlaceCategories>("/place-categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/feedback", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetPlaceCategories", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ProvideFeedback", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
