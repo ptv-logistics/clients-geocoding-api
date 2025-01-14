@@ -18,7 +18,7 @@ import com.ptvgroup.developer.client.geocoding.ApiResponse;
 import com.ptvgroup.developer.client.geocoding.Pair;
 
 import com.ptvgroup.developer.client.geocoding.model.ErrorResponse;
-import com.ptvgroup.developer.client.geocoding.model.PlaceCategories;
+import java.util.UUID;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +46,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T09:53:24.245915307Z[Etc/UTC]", comments = "Generator version: 7.8.0")
-public class CategoriesApi {
+public class FeedbackApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
@@ -55,11 +55,11 @@ public class CategoriesApi {
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
   private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
-  public CategoriesApi() {
+  public FeedbackApi() {
     this(new ApiClient());
   }
 
-  public CategoriesApi(ApiClient apiClient) {
+  public FeedbackApi(ApiClient apiClient) {
     memberVarHttpClient = apiClient.getHttpClient();
     memberVarObjectMapper = apiClient.getObjectMapper();
     memberVarBaseUri = apiClient.getBaseUri();
@@ -84,23 +84,23 @@ public class CategoriesApi {
 
   /**
    * 
-   * Returns the list of place categories.
-   * @return PlaceCategories
+   * Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
+   * @param feedbackId A unique identifier for a location or a place in UUID format that can be used to provide feedback. (required)
    * @throws ApiException if fails to make API call
    */
-  public PlaceCategories getPlaceCategories() throws ApiException {
-    ApiResponse<PlaceCategories> localVarResponse = getPlaceCategoriesWithHttpInfo();
-    return localVarResponse.getData();
+  public void provideFeedback(UUID feedbackId) throws ApiException {
+    provideFeedbackWithHttpInfo(feedbackId);
   }
 
   /**
    * 
-   * Returns the list of place categories.
-   * @return ApiResponse&lt;PlaceCategories&gt;
+   * Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
+   * @param feedbackId A unique identifier for a location or a place in UUID format that can be used to provide feedback. (required)
+   * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PlaceCategories> getPlaceCategoriesWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPlaceCategoriesRequestBuilder();
+  public ApiResponse<Void> provideFeedbackWithHttpInfo(UUID feedbackId) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = provideFeedbackRequestBuilder(feedbackId);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -110,14 +110,19 @@ public class CategoriesApi {
       }
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getPlaceCategories", localVarResponse);
+          throw getApiException("provideFeedback", localVarResponse);
         }
-        return new ApiResponse<PlaceCategories>(
+        return new ApiResponse<Void>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlaceCategories>() {}) // closes the InputStream
+          null
         );
       } finally {
+        // Drain the InputStream
+        while (localVarResponse.body().read() != -1) {
+            // Ignore
+        }
+        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -128,17 +133,36 @@ public class CategoriesApi {
     }
   }
 
-  private HttpRequest.Builder getPlaceCategoriesRequestBuilder() throws ApiException {
+  private HttpRequest.Builder provideFeedbackRequestBuilder(UUID feedbackId) throws ApiException {
+    // verify the required parameter 'feedbackId' is set
+    if (feedbackId == null) {
+      throw new ApiException(400, "Missing the required parameter 'feedbackId' when calling provideFeedback");
+    }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/place-categories";
+    String localVarPath = "/feedback";
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "feedbackId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("feedbackId", feedbackId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
