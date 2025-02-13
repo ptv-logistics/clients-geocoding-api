@@ -46,7 +46,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   Address.JSON_PROPERTY_COUNTRY_CODE_ISO_ALPHA3,
   Address.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T07:25:12.440047141Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-13T12:08:40.920784314Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Address {
   public static final String JSON_PROPERTY_COUNTRY_NAME = "countryName";
   private String countryName;

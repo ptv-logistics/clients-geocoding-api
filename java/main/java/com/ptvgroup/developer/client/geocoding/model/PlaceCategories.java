@@ -38,7 +38,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
 @JsonPropertyOrder({
   PlaceCategories.JSON_PROPERTY_PLACE_CATEGORIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T07:25:12.440047141Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-13T12:08:40.920784314Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class PlaceCategories {
   public static final String JSON_PROPERTY_PLACE_CATEGORIES = "placeCategories";
   private List<PlaceCategory> placeCategories;
