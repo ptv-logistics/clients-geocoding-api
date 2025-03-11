@@ -26,27 +26,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Distinguishes different types of Locations:    * &#x60;LOCALITY&#x60; - Represents a locality (town, city or place).    * &#x60;POSTAL_CODE&#x60; - Represents a postal code area.    * &#x60;STREET&#x60; - Represents a street, or a section of a street.    * &#x60;EXACT_ADDRESS:&#x60; - An address that is contained exactly in the geocoding data.     * &#x60;INTERPOLATED_ADDRESS&#x60; - An address that was interpolated from an address range.     * &#x60;INTERSECTION&#x60; - An at-grade junction where two streets meet.     * &#x60;POINT_OF_INTEREST&#x60; - A point of interest, like e.g. a shop, a service, or a museum.
+ * Enumeration to specify the type of total score calculation.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future.
  */
-public enum LocationType {
+public enum TotalScoreType {
   
-  LOCALITY("LOCALITY"),
+  INPUT_AND_RESULT_BASED("INPUT_AND_RESULT_BASED"),
   
-  POSTAL_CODE("POSTAL_CODE"),
-  
-  STREET("STREET"),
-  
-  EXACT_ADDRESS("EXACT_ADDRESS"),
-  
-  INTERPOLATED_ADDRESS("INTERPOLATED_ADDRESS"),
-  
-  INTERSECTION("INTERSECTION"),
-  
-  POINT_OF_INTEREST("POINT_OF_INTEREST");
+  RESULT_BASED("RESULT_BASED");
 
   private String value;
 
-  LocationType(String value) {
+  TotalScoreType(String value) {
     this.value = value;
   }
 
@@ -61,8 +51,8 @@ public enum LocationType {
   }
 
   @JsonCreator
-  public static LocationType fromValue(String value) {
-    for (LocationType b : LocationType.values()) {
+  public static TotalScoreType fromValue(String value) {
+    for (TotalScoreType b : TotalScoreType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
