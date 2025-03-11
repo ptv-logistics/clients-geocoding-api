@@ -23,4 +23,5 @@ export * from './SuggestedAddress';
 export * from './Suggestion';
 export * from './SuggestionsByAddressResponse';
 export * from './SuggestionsByTextResponse';
+export * from './TotalScoreType';
 export * from './Warning';
