@@ -33,7 +33,13 @@ export interface ErrorResponse {
      */
     description: string;
     /**
-     * A constant string that can be used to identify this error class programmatically. An errorCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.  
+     * A constant string that can be used to identify this error class programmatically.
+     * 
+     * If additional information is available for an errorCode, it will be provided as key-value pairs with the parameter **details**. The keys available for a specific errorCode are documented directly with the errorCode. Unless stated otherwise, the values are of type string.
+     * 
+     * As an example, the following errorCode provides one key-value pair in the **details**. The key is called **message**.
+     * * `GENERAL_UNAUTHENTICATED` - Invalid or missing authentication credentials.
+     *   * `message` - An additional error message.
      * 
      * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.  
      * 

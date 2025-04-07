@@ -26,9 +26,19 @@ export interface Warning {
      */
     description: string;
     /**
-     * A constant string that can be used to identify this warning class programmatically. A warningCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.  
+     * A constant string that can be used to identify this warning class programmatically.
      * 
-     * Note that additional warningCodes as well as the **details** of existing warningCodes may be added at any time. Furthermore, the **description** may change at any time.  
+     * If additional information is available for a warningCode, it will be provided as key-value pairs with the parameter **details**. The keys available for a specific warningCode are documented directly with the warningCode. Unless stated otherwise, the values are of type string.
+     * 
+     * As an example, the following warningCode provides four key-value pairs in the **details**. 
+     * The keys are called **parameter**, **value**, **relatedParameter** and **relatedValue**.
+     * * `GENERAL_PARAMETER_IGNORED` - A parameter was ignored.
+     *   * `parameter` - The ignored parameter.
+     *   * `value` - The value of the ignored parameter.
+     *   * `relatedParameter` - The parameter which caused the parameter in question to be ignored.
+     *   * `relatedValue` - The value which caused the parameter in question to be ignored. Not present if the conflict is independent of the value.
+     * 
+     * Note that additional warningCode as well as the **details** of existing warningCode may be added at any time. Furthermore, the **description** may change at any time.  
      * 
      * * `GEOCODING_COUNTRY_FILTER_MODIFIED` - A given code in **countryFilter** referring to a subdivision of a country was modified to its corresponding country code.  
      *   * `requestedSubdivisionCode` - The subdivision code that was originally requested.  
