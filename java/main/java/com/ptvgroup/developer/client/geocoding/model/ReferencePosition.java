@@ -36,7 +36,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   ReferencePosition.JSON_PROPERTY_LATITUDE,
   ReferencePosition.JSON_PROPERTY_LONGITUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-11T09:26:27.479574509Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-07T09:53:55.686006534Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class ReferencePosition {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   private Double latitude;

@@ -38,7 +38,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   Quality.JSON_PROPERTY_TOTAL_SCORE,
   Quality.JSON_PROPERTY_ADDRESS_SCORES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-11T09:26:27.479574509Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-07T09:53:55.686006534Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class Quality {
   public static final String JSON_PROPERTY_DISTANCE = "distance";
   private Integer distance;
