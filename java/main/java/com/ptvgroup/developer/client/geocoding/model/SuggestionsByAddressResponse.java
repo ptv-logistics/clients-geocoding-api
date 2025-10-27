@@ -40,7 +40,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   SuggestionsByAddressResponse.JSON_PROPERTY_SUGGESTIONS,
   SuggestionsByAddressResponse.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-25T08:00:34.656092099Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
 public class SuggestionsByAddressResponse {
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
   private List<SuggestedAddress> suggestions;
