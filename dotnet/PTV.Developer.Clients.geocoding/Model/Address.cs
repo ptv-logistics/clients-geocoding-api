@@ -46,7 +46,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="countryCodeIsoAlpha2">The country code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)..</param>
         /// <param name="countryCodeIsoAlpha3">The country code according to [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)..</param>
         /// <param name="countryCode">The country or subdivision represented by its code according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision..</param>
-        public Address(string countryName = default(string), string state = default(string), string province = default(string), string postalCode = default(string), string city = default(string), string district = default(string), string subdistrict = default(string), string street = default(string), string houseNumber = default(string), string countryCodeIsoAlpha2 = default(string), string countryCodeIsoAlpha3 = default(string), string countryCode = default(string))
+        public Address(string countryName = default, string state = default, string province = default, string postalCode = default, string city = default, string district = default, string subdistrict = default, string street = default, string houseNumber = default, string countryCodeIsoAlpha2 = default, string countryCodeIsoAlpha3 = default, string countryCode = default)
         {
             this.CountryName = countryName;
             this.State = state;

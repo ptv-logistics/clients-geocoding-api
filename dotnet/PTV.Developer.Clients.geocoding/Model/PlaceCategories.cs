@@ -35,7 +35,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// Initializes a new instance of the <see cref="PlaceCategories" /> class.
         /// </summary>
         /// <param name="placeCategories">The individual place categories..</param>
-        public PlaceCategories(List<PlaceCategory> placeCategories = default(List<PlaceCategory>))
+        public PlaceCategories(List<PlaceCategory> placeCategories = default)
         {
             this._PlaceCategories = placeCategories;
         }

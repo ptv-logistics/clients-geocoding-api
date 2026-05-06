@@ -37,7 +37,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="distance">The spatial distance in \\[m\\] between the location or the place and the input of a position search.    This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**..</param>
         /// <param name="totalScore">An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results..</param>
         /// <param name="addressScores">addressScores.</param>
-        public Quality(int? distance = default(int?), int? totalScore = default(int?), AddressScores addressScores = default(AddressScores))
+        public Quality(int? distance = default, int? totalScore = default, AddressScores addressScores = default)
         {
             this.Distance = distance;
             this.TotalScore = totalScore;

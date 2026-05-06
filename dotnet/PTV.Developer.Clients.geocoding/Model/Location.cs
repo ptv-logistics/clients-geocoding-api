@@ -52,7 +52,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback. It can also be used to provide feedback that none of the returned locations or places was a match.     This is experimental and may change at any time in the future..</param>
         /// <param name="locationType">locationType (required).</param>
         /// <param name="quality">quality (required).</param>
-        public Location(ReferencePosition referencePosition = default(ReferencePosition), RoadAccessPosition roadAccessPosition = default(RoadAccessPosition), Address address = default(Address), string formattedAddress = default(string), Guid? feedbackId = default(Guid?), LocationType locationType = default(LocationType), Quality quality = default(Quality))
+        public Location(ReferencePosition referencePosition = default, RoadAccessPosition roadAccessPosition = default, Address address = default, string formattedAddress = default, Guid? feedbackId = default, LocationType locationType = default, Quality quality = default)
         {
             // to ensure "referencePosition" is required (not null)
             if (referencePosition == null)

@@ -41,7 +41,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="suggestions">The list of suggested addresses. (required).</param>
         /// <param name="warnings">A list of warnings concerning the validity of the result..</param>
-        public SuggestionsByAddressResponse(List<SuggestedAddress> suggestions = default(List<SuggestedAddress>), List<Warning> warnings = default(List<Warning>))
+        public SuggestionsByAddressResponse(List<SuggestedAddress> suggestions = default, List<Warning> warnings = default)
         {
             // to ensure "suggestions" is required (not null)
             if (suggestions == null)

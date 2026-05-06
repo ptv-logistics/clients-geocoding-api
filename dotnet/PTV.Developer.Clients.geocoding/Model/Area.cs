@@ -40,7 +40,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// Initializes a new instance of the <see cref="Area" /> class.
         /// </summary>
         /// <param name="geometry">The geometry of the area as a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) representation (WGS84/EPSG:4326). (required).</param>
-        public Area(string geometry = default(string))
+        public Area(string geometry = default)
         {
             // to ensure "geometry" is required (not null)
             if (geometry == null)

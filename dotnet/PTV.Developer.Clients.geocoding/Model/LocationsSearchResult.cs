@@ -42,7 +42,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="locations">The found locations. (required).</param>
         /// <param name="noMatchFeedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback. It can also be used to provide feedback that none of the returned locations or places was a match.     This is experimental and may change at any time in the future..</param>
         /// <param name="warnings">A list of warnings concerning the validity of the result..</param>
-        public LocationsSearchResult(List<Location> locations = default(List<Location>), Guid? noMatchFeedbackId = default(Guid?), List<Warning> warnings = default(List<Warning>))
+        public LocationsSearchResult(List<Location> locations = default, Guid? noMatchFeedbackId = default, List<Warning> warnings = default)
         {
             // to ensure "locations" is required (not null)
             if (locations == null)

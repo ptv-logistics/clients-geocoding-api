@@ -47,7 +47,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="name">The name of the place..</param>
         /// <param name="categoryIds">An array of place category IDs representing the categories this place is assigned to. (required).</param>
         /// <param name="quality">quality (required).</param>
-        public Place(ReferencePosition referencePosition = default(ReferencePosition), RoadAccessPosition roadAccessPosition = default(RoadAccessPosition), Address address = default(Address), string formattedAddress = default(string), Guid? feedbackId = default(Guid?), string name = default(string), List<string> categoryIds = default(List<string>), Quality quality = default(Quality))
+        public Place(ReferencePosition referencePosition = default, RoadAccessPosition roadAccessPosition = default, Address address = default, string formattedAddress = default, Guid? feedbackId = default, string name = default, List<string> categoryIds = default, Quality quality = default)
         {
             // to ensure "referencePosition" is required (not null)
             if (referencePosition == null)

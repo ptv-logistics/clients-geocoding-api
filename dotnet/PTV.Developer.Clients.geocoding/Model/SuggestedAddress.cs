@@ -46,7 +46,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="locality">The locality of the suggested address or the provided input..</param>
         /// <param name="street">The street of the suggested address or the provided input..</param>
         /// <param name="houseNumber">The house number of the suggested address or the provided input..</param>
-        public SuggestedAddress(string caption = default(string), string country = default(string), string state = default(string), string postalCode = default(string), string locality = default(string), string street = default(string), string houseNumber = default(string))
+        public SuggestedAddress(string caption = default, string country = default, string state = default, string postalCode = default, string locality = default, string street = default, string houseNumber = default)
         {
             // to ensure "caption" is required (not null)
             if (caption == null)

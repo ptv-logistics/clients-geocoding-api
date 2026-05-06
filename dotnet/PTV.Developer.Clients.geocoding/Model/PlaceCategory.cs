@@ -42,7 +42,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="id">The identifier string of the place category. (required).</param>
         /// <param name="name">A human readable name for the place category..</param>
         /// <param name="description">An explanation of what kind of places are part of this place category..</param>
-        public PlaceCategory(string id = default(string), string name = default(string), string description = default(string))
+        public PlaceCategory(string id = default, string name = default, string description = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)

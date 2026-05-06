@@ -40,7 +40,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// Initializes a new instance of the <see cref="PlacesByAreaRequest" /> class.
         /// </summary>
         /// <param name="area">area (required).</param>
-        public PlacesByAreaRequest(Area area = default(Area))
+        public PlacesByAreaRequest(Area area = default)
         {
             // to ensure "area" is required (not null)
             if (area == null)

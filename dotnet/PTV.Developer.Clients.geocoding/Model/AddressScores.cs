@@ -43,7 +43,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="subDistrict">The score for the returned subdistrict in \\[%\\]..</param>
         /// <param name="street">The score for the returned street in \\[%\\]..</param>
         /// <param name="houseNumber">The score for the returned house number in \\[%\\]..</param>
-        public AddressScores(int? country = default(int?), int? state = default(int?), int? province = default(int?), int? postalCode = default(int?), int? city = default(int?), int? district = default(int?), int? subDistrict = default(int?), int? street = default(int?), int? houseNumber = default(int?))
+        public AddressScores(int? country = default, int? state = default, int? province = default, int? postalCode = default, int? city = default, int? district = default, int? subDistrict = default, int? street = default, int? houseNumber = default)
         {
             this.Country = country;
             this.State = state;

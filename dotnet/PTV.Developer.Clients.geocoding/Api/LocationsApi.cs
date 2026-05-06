@@ -39,11 +39,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByAddressResponse</returns>
-        SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0);
+        SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -58,11 +58,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByAddressResponse</returns>
-        ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0);
+        ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByTextResponse</returns>
-        SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0);
+        SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByTextResponse</returns>
-        ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0);
+        ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -107,11 +107,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByAddress(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByAddress(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -128,11 +128,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -146,7 +146,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="minimumPopulation">If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -161,7 +161,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="minimumPopulation">If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -172,11 +172,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0);
+        LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -188,11 +188,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0);
+        ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -215,12 +215,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByAddressResponse</returns>
-        System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -235,12 +235,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByAddressResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// 
         /// </summary>
@@ -255,7 +255,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByTextResponse</returns>
-        System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -271,7 +271,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByTextResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// 
         /// </summary>
@@ -287,12 +287,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -309,12 +309,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// 
         /// </summary>
@@ -329,7 +329,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -345,7 +345,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// 
         /// </summary>
@@ -356,12 +356,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -373,12 +373,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -509,11 +509,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByAddressResponse</returns>
-        public SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0)
+        public SuggestionsByAddressResponse GetSuggestionsByAddress(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> localVarResponse = GetSuggestionsByAddressWithHttpInfo(inputField, country, state, locality, postalCode, street, houseNumber, language);
             return localVarResponse.Data;
@@ -529,11 +529,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByAddressResponse</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> GetSuggestionsByAddressWithHttpInfo(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -546,6 +546,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -620,12 +621,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByAddressResponse</returns>
-        public async System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuggestionsByAddressResponse> GetSuggestionsByAddressAsync(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse> localVarResponse = await GetSuggestionsByAddressWithHttpInfoAsync(inputField, country, state, locality, postalCode, street, houseNumber, language, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -641,12 +642,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="locality">The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)</param>
         /// <param name="postalCode">The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)</param>
         /// <param name="street">The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)</param>
-        /// <param name="houseNumber">The exact house number to which the suggestion search is limited. (optional)</param>
+        /// <param name="houseNumber">The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByAddressResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByAddressResponse>> GetSuggestionsByAddressWithHttpInfoAsync(InputField inputField, string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
@@ -735,7 +736,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuggestionsByTextResponse</returns>
-        public SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0)
+        public SuggestionsByTextResponse GetSuggestionsByText(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> localVarResponse = GetSuggestionsByTextWithHttpInfo(searchText, countryFilter, center, language);
             return localVarResponse.Data;
@@ -751,7 +752,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuggestionsByTextResponse</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> GetSuggestionsByTextWithHttpInfo(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -770,6 +771,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -829,7 +831,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuggestionsByTextResponse</returns>
-        public async System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuggestionsByTextResponse> GetSuggestionsByTextAsync(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse> localVarResponse = await GetSuggestionsByTextWithHttpInfoAsync(searchText, countryFilter, center, language, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -846,7 +848,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuggestionsByTextResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), List<double?> center = default(List<double?>), string language = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<SuggestionsByTextResponse>> GetSuggestionsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default, List<double?> center = default, string language = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -927,11 +929,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByAddress(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByAddress(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByAddressWithHttpInfo(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType);
             return localVarResponse.Data;
@@ -949,11 +951,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByAddressWithHttpInfo(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
 
@@ -966,6 +968,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1053,12 +1056,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByAddressAsync(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByAddressWithHttpInfoAsync(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1076,12 +1079,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="houseNumber">The house number of the address. (optional)</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="totalScoreType">Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default(string), string state = default(string), string locality = default(string), string postalCode = default(string), string street = default(string), string houseNumber = default(string), List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), TotalScoreType? totalScoreType = default(TotalScoreType?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByAddressWithHttpInfoAsync(string country = default, string state = default, string locality = default, string postalCode = default, string street = default, string houseNumber = default, List<string> countryFilter = default, string language = default, List<Results> results = default, TotalScoreType? totalScoreType = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();
@@ -1181,7 +1184,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="minimumPopulation">If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByPosition(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByPositionWithHttpInfo(latitude, longitude, language, minimumPopulation);
             return localVarResponse.Data;
@@ -1197,7 +1200,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="minimumPopulation">If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByPositionWithHttpInfo(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0)
         {
             // verify the required parameter 'latitude' is set
             if (latitude == null)
@@ -1222,6 +1225,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1278,7 +1282,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByPositionAsync(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByPositionWithHttpInfoAsync(latitude, longitude, language, minimumPopulation, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1295,7 +1299,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default(string), int? minimumPopulation = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByPositionWithHttpInfoAsync(double? latitude, double? longitude, string language = default, int? minimumPopulation = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'latitude' is set
             if (latitude == null)
@@ -1374,11 +1378,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LocationsSearchResult</returns>
-        public LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0)
+        public LocationsSearchResult SearchLocationsByText(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = SearchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput);
             return localVarResponse.Data;
@@ -1391,11 +1395,11 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LocationsSearchResult</returns>
-        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0)
+        public PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> SearchLocationsByTextWithHttpInfo(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)
@@ -1414,6 +1418,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -1473,12 +1478,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LocationsSearchResult</returns>
-        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<LocationsSearchResult> SearchLocationsByTextAsync(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult> localVarResponse = await SearchLocationsByTextWithHttpInfoAsync(searchText, countryFilter, language, results, cleanInput, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1491,12 +1496,12 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="searchText">Free-form text input that describes a location.</param>
         /// <param name="countryFilter">A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)</param>
         /// <param name="language">The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)</param>
-        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)</param>
+        /// <param name="results">Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)</param>
         /// <param name="cleanInput">If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LocationsSearchResult)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default(List<string>), string language = default(string), List<Results> results = default(List<Results>), bool? cleanInput = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<LocationsSearchResult>> SearchLocationsByTextWithHttpInfoAsync(string searchText, List<string> countryFilter = default, string language = default, List<Results> results = default, bool? cleanInput = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'searchText' is set
             if (searchText == null)

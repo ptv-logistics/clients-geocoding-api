@@ -66,7 +66,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlaceCategories</returns>
-        System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -78,7 +78,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlaceCategories)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -230,6 +230,7 @@ namespace PTV.Developer.Clients.geocoding.Api
             };
 
             var localVarContentType = PTV.Developer.Clients.geocoding.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarMultipartFormData = localVarContentType == "multipart/form-data";
             if (localVarContentType != null)
             {
                 localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
@@ -272,7 +273,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PlaceCategories</returns>
-        public async System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PlaceCategories> GetPlaceCategoriesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories> localVarResponse = await GetPlaceCategoriesWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -285,7 +286,7 @@ namespace PTV.Developer.Clients.geocoding.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PlaceCategories)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.geocoding.Client.ApiResponse<PlaceCategories>> GetPlaceCategoriesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             PTV.Developer.Clients.geocoding.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.geocoding.Client.RequestOptions();

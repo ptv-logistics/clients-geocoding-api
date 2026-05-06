@@ -41,7 +41,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="latitude">The latitude value in degrees (WGS84/EPSG:4326) from south to north. (required).</param>
         /// <param name="longitude">The longitude value in degrees (WGS84/EPSG:4326) from west to east. (required).</param>
-        public RoadAccessPosition(double? latitude = default(double?), double? longitude = default(double?))
+        public RoadAccessPosition(double? latitude = default, double? longitude = default)
         {
             // to ensure "latitude" is required (not null)
             if (latitude == null)

@@ -44,7 +44,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <param name="address">address (required).</param>
         /// <param name="formattedAddress">A single string representing the address, typically consisting of the street, house number, postal code, city, and country. The precise format may differ based on what is appropriate for the address..</param>
         /// <param name="feedbackId">A unique identifier for a location or a place in UUID format that can be used to provide feedback. It can also be used to provide feedback that none of the returned locations or places was a match.     This is experimental and may change at any time in the future..</param>
-        public LocationProperties(ReferencePosition referencePosition = default(ReferencePosition), RoadAccessPosition roadAccessPosition = default(RoadAccessPosition), Address address = default(Address), string formattedAddress = default(string), Guid? feedbackId = default(Guid?))
+        public LocationProperties(ReferencePosition referencePosition = default, RoadAccessPosition roadAccessPosition = default, Address address = default, string formattedAddress = default, Guid? feedbackId = default)
         {
             // to ensure "referencePosition" is required (not null)
             if (referencePosition == null)

@@ -41,7 +41,7 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="caption">A search address suggestion that can be displayed on a user interface as caption. (required).</param>
         /// <param name="subCaption">An additional address information for the suggestion that can be displayed on a user interface as sub caption. (required).</param>
-        public Suggestion(string caption = default(string), string subCaption = default(string))
+        public Suggestion(string caption = default, string subCaption = default)
         {
             // to ensure "caption" is required (not null)
             if (caption == null)
