@@ -49,10 +49,15 @@ export function AreaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Area
     };
 }
 
-export function AreaToJSON(value?: Area | null): any {
+export function AreaToJSON(json: any): Area {
+    return AreaToJSONTyped(json, false);
+}
+
+export function AreaToJSONTyped(value?: Area | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'geometry': value['geometry'],

@@ -59,3 +59,7 @@ export function LocationTypeToJSON(value?: LocationType | null): any {
     return value as any;
 }
 
+export function LocationTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): LocationType {
+    return value as LocationType;
+}
+

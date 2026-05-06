@@ -105,10 +105,15 @@ export function AddressScoresFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function AddressScoresToJSON(value?: AddressScores | null): any {
+export function AddressScoresToJSON(json: any): AddressScores {
+    return AddressScoresToJSONTyped(json, false);
+}
+
+export function AddressScoresToJSONTyped(value?: AddressScores | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'country': value['country'],

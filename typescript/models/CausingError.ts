@@ -61,7 +61,9 @@ export interface CausingError {
      * * `GENERAL_PATTERN_VIOLATED` - The value of a string parameter does not satisfy the required pattern.  
      *   * `pattern` - The pattern.  
      * * `GENERAL_ENUM_VIOLATED` - The value of a parameter is not one of the specified enum values.  
-     *   * `enum` - The allowed enum values.
+     *   * `enum` - The allowed enum values.  
+     * * `GENERAL_INVALID_LIST` - A list has an invalid format such as duplicate commas.  
+     *   * `value` - The invalid list.
      * @type {string}
      * @memberof CausingError
      */
@@ -106,10 +108,15 @@ export function CausingErrorFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function CausingErrorToJSON(value?: CausingError | null): any {
+export function CausingErrorToJSON(json: any): CausingError {
+    return CausingErrorToJSONTyped(json, false);
+}
+
+export function CausingErrorToJSONTyped(value?: CausingError | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'description': value['description'],

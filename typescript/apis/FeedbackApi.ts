@@ -12,15 +12,12 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  ErrorResponse,
-} from '../models/index';
 import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-} from '../models/index';
+} from '../models/ErrorResponse';
 
 export interface ProvideFeedbackRequest {
     feedbackId: string;
@@ -32,9 +29,9 @@ export interface ProvideFeedbackRequest {
 export class FeedbackApi extends runtime.BaseAPI {
 
     /**
-     * Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
+     * Creates request options for provideFeedback without sending the request
      */
-    async provideFeedbackRaw(requestParameters: ProvideFeedbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async provideFeedbackRequestOpts(requestParameters: ProvideFeedbackRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['feedbackId'] == null) {
             throw new runtime.RequiredError(
                 'feedbackId',
@@ -54,12 +51,23 @@ export class FeedbackApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/feedback`,
+
+        let urlPath = `/feedback`;
+
+        return {
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Provides feedback about which location or place was considered to be the best match in an array obtained for the corresponding input address, position, or text. This is a fire and forget operation.     This endpoint is experimental and may change at any time in the future.
+     */
+    async provideFeedbackRaw(requestParameters: ProvideFeedbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.provideFeedbackRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

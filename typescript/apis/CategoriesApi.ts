@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  ErrorResponse,
-  PlaceCategories,
-} from '../models/index';
 import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+} from '../models/ErrorResponse';
+import {
+    type PlaceCategories,
     PlaceCategoriesFromJSON,
     PlaceCategoriesToJSON,
-} from '../models/index';
+} from '../models/PlaceCategories';
 
 /**
  * 
@@ -31,9 +30,9 @@ import {
 export class CategoriesApi extends runtime.BaseAPI {
 
     /**
-     * Returns the list of place categories.
+     * Creates request options for getPlaceCategories without sending the request
      */
-    async getPlaceCategoriesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaceCategories>> {
+    async getPlaceCategoriesRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -42,12 +41,23 @@ export class CategoriesApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/place-categories`,
+
+        let urlPath = `/place-categories`;
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns the list of place categories.
+     */
+    async getPlaceCategoriesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaceCategories>> {
+        const requestOptions = await this.getPlaceCategoriesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PlaceCategoriesFromJSON(jsonValue));
     }

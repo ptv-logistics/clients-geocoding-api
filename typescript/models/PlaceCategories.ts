@@ -18,6 +18,7 @@ import {
     PlaceCategoryFromJSON,
     PlaceCategoryFromJSONTyped,
     PlaceCategoryToJSON,
+    PlaceCategoryToJSONTyped,
 } from './PlaceCategory';
 
 /**
@@ -55,10 +56,15 @@ export function PlaceCategoriesFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function PlaceCategoriesToJSON(value?: PlaceCategories | null): any {
+export function PlaceCategoriesToJSON(json: any): PlaceCategories {
+    return PlaceCategoriesToJSONTyped(json, false);
+}
+
+export function PlaceCategoriesToJSONTyped(value?: PlaceCategories | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'placeCategories': value['placeCategories'] == null ? undefined : ((value['placeCategories'] as Array<any>).map(PlaceCategoryToJSON)),

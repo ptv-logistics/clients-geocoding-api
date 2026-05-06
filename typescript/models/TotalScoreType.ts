@@ -51,3 +51,7 @@ export function TotalScoreTypeToJSON(value?: TotalScoreType | null): any {
     return value as any;
 }
 
+export function TotalScoreTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): TotalScoreType {
+    return value as TotalScoreType;
+}
+

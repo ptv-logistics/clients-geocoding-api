@@ -125,10 +125,15 @@ export function AddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
     };
 }
 
-export function AddressToJSON(value?: Address | null): any {
+export function AddressToJSON(json: any): Address {
+    return AddressToJSONTyped(json, false);
+}
+
+export function AddressToJSONTyped(value?: Address | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'countryName': value['countryName'],

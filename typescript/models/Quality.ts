@@ -18,6 +18,7 @@ import {
     AddressScoresFromJSON,
     AddressScoresFromJSONTyped,
     AddressScoresToJSON,
+    AddressScoresToJSONTyped,
 } from './AddressScores';
 
 /**
@@ -71,10 +72,15 @@ export function QualityFromJSONTyped(json: any, ignoreDiscriminator: boolean): Q
     };
 }
 
-export function QualityToJSON(value?: Quality | null): any {
+export function QualityToJSON(json: any): Quality {
+    return QualityToJSONTyped(json, false);
+}
+
+export function QualityToJSONTyped(value?: Quality | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'distance': value['distance'],

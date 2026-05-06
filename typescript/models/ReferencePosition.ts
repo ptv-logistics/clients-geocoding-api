@@ -57,10 +57,15 @@ export function ReferencePositionFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function ReferencePositionToJSON(value?: ReferencePosition | null): any {
+export function ReferencePositionToJSON(json: any): ReferencePosition {
+    return ReferencePositionToJSONTyped(json, false);
+}
+
+export function ReferencePositionToJSONTyped(value?: ReferencePosition | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'latitude': value['latitude'],

@@ -18,24 +18,28 @@ import {
     RoadAccessPositionFromJSON,
     RoadAccessPositionFromJSONTyped,
     RoadAccessPositionToJSON,
+    RoadAccessPositionToJSONTyped,
 } from './RoadAccessPosition';
 import type { Address } from './Address';
 import {
     AddressFromJSON,
     AddressFromJSONTyped,
     AddressToJSON,
+    AddressToJSONTyped,
 } from './Address';
 import type { Quality } from './Quality';
 import {
     QualityFromJSON,
     QualityFromJSONTyped,
     QualityToJSON,
+    QualityToJSONTyped,
 } from './Quality';
 import type { ReferencePosition } from './ReferencePosition';
 import {
     ReferencePositionFromJSON,
     ReferencePositionFromJSONTyped,
     ReferencePositionToJSON,
+    ReferencePositionToJSONTyped,
 } from './ReferencePosition';
 
 /**
@@ -128,10 +132,15 @@ export function PlaceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pla
     };
 }
 
-export function PlaceToJSON(value?: Place | null): any {
+export function PlaceToJSON(json: any): Place {
+    return PlaceToJSONTyped(json, false);
+}
+
+export function PlaceToJSONTyped(value?: Place | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'referencePosition': ReferencePositionToJSON(value['referencePosition']),

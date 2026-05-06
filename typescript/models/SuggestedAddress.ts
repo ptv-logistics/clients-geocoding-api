@@ -91,10 +91,15 @@ export function SuggestedAddressFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function SuggestedAddressToJSON(value?: SuggestedAddress | null): any {
+export function SuggestedAddressToJSON(json: any): SuggestedAddress {
+    return SuggestedAddressToJSONTyped(json, false);
+}
+
+export function SuggestedAddressToJSONTyped(value?: SuggestedAddress | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'caption': value['caption'],

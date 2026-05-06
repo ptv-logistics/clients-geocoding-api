@@ -12,33 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  ErrorResponse,
-  InputField,
-  LocationsSearchResult,
-  Results,
-  SuggestionsByAddressResponse,
-  SuggestionsByTextResponse,
-  TotalScoreType,
-} from '../models/index';
 import {
+    type ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+} from '../models/ErrorResponse';
+import {
+    type InputField,
     InputFieldFromJSON,
     InputFieldToJSON,
+} from '../models/InputField';
+import {
+    type LocationsSearchResult,
     LocationsSearchResultFromJSON,
     LocationsSearchResultToJSON,
+} from '../models/LocationsSearchResult';
+import {
+    type Results,
     ResultsFromJSON,
     ResultsToJSON,
+} from '../models/Results';
+import {
+    type SuggestionsByAddressResponse,
     SuggestionsByAddressResponseFromJSON,
     SuggestionsByAddressResponseToJSON,
+} from '../models/SuggestionsByAddressResponse';
+import {
+    type SuggestionsByTextResponse,
     SuggestionsByTextResponseFromJSON,
     SuggestionsByTextResponseToJSON,
+} from '../models/SuggestionsByTextResponse';
+import {
+    type TotalScoreType,
     TotalScoreTypeFromJSON,
     TotalScoreTypeToJSON,
-} from '../models/index';
+} from '../models/TotalScoreType';
 
 export interface GetSuggestionsByAddressRequest {
     inputField: InputField;
@@ -92,9 +101,9 @@ export interface SearchLocationsByTextRequest {
 export class LocationsApi extends runtime.BaseAPI {
 
     /**
-     * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
+     * Creates request options for getSuggestionsByAddress without sending the request
      */
-    async getSuggestionsByAddressRaw(requestParameters: GetSuggestionsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByAddressResponse>> {
+    async getSuggestionsByAddressRequestOpts(requestParameters: GetSuggestionsByAddressRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['inputField'] == null) {
             throw new runtime.RequiredError(
                 'inputField',
@@ -142,12 +151,23 @@ export class LocationsApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/suggestions/by-address`,
+
+        let urlPath = `/suggestions/by-address`;
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
+     */
+    async getSuggestionsByAddressRaw(requestParameters: GetSuggestionsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByAddressResponse>> {
+        const requestOptions = await this.getSuggestionsByAddressRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuggestionsByAddressResponseFromJSON(jsonValue));
     }
@@ -161,9 +181,9 @@ export class LocationsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
+     * Creates request options for getSuggestionsByText without sending the request
      */
-    async getSuggestionsByTextRaw(requestParameters: GetSuggestionsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByTextResponse>> {
+    async getSuggestionsByTextRequestOpts(requestParameters: GetSuggestionsByTextRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['searchText'] == null) {
             throw new runtime.RequiredError(
                 'searchText',
@@ -195,12 +215,23 @@ export class LocationsApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/suggestions/by-text`,
+
+        let urlPath = `/suggestions/by-text`;
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
+     */
+    async getSuggestionsByTextRaw(requestParameters: GetSuggestionsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestionsByTextResponse>> {
+        const requestOptions = await this.getSuggestionsByTextRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuggestionsByTextResponseFromJSON(jsonValue));
     }
@@ -214,9 +245,9 @@ export class LocationsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Searches for locations based on a multi-field address input.
+     * Creates request options for searchLocationsByAddress without sending the request
      */
-    async searchLocationsByAddressRaw(requestParameters: SearchLocationsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+    async searchLocationsByAddressRequestOpts(requestParameters: SearchLocationsByAddressRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['country'] != null) {
@@ -265,12 +296,23 @@ export class LocationsApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/locations/by-address`,
+
+        let urlPath = `/locations/by-address`;
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Searches for locations based on a multi-field address input.
+     */
+    async searchLocationsByAddressRaw(requestParameters: SearchLocationsByAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+        const requestOptions = await this.searchLocationsByAddressRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LocationsSearchResultFromJSON(jsonValue));
     }
@@ -284,9 +326,9 @@ export class LocationsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Searches for locations near a given geographical position.
+     * Creates request options for searchLocationsByPosition without sending the request
      */
-    async searchLocationsByPositionRaw(requestParameters: SearchLocationsByPositionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+    async searchLocationsByPositionRequestOpts(requestParameters: SearchLocationsByPositionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['latitude'] == null) {
             throw new runtime.RequiredError(
                 'latitude',
@@ -317,12 +359,25 @@ export class LocationsApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/locations/by-position/{latitude}/{longitude}`.replace(`{${"latitude"}}`, encodeURIComponent(String(requestParameters['latitude']))).replace(`{${"longitude"}}`, encodeURIComponent(String(requestParameters['longitude']))),
+
+        let urlPath = `/locations/by-position/{latitude}/{longitude}`;
+        urlPath = urlPath.replace('{latitude}', encodeURIComponent(String(requestParameters['latitude'])));
+        urlPath = urlPath.replace('{longitude}', encodeURIComponent(String(requestParameters['longitude'])));
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Searches for locations near a given geographical position.
+     */
+    async searchLocationsByPositionRaw(requestParameters: SearchLocationsByPositionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+        const requestOptions = await this.searchLocationsByPositionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LocationsSearchResultFromJSON(jsonValue));
     }
@@ -336,9 +391,9 @@ export class LocationsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Searches for locations based on a single-field text input.
+     * Creates request options for searchLocationsByText without sending the request
      */
-    async searchLocationsByTextRaw(requestParameters: SearchLocationsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+    async searchLocationsByTextRequestOpts(requestParameters: SearchLocationsByTextRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['searchText'] == null) {
             throw new runtime.RequiredError(
                 'searchText',
@@ -374,12 +429,23 @@ export class LocationsApi extends runtime.BaseAPI {
             headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
-        const response = await this.request({
-            path: `/locations/by-text`,
+
+        let urlPath = `/locations/by-text`;
+
+        return {
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Searches for locations based on a single-field text input.
+     */
+    async searchLocationsByTextRaw(requestParameters: SearchLocationsByTextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LocationsSearchResult>> {
+        const requestOptions = await this.searchLocationsByTextRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LocationsSearchResultFromJSON(jsonValue));
     }

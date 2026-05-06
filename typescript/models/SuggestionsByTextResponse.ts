@@ -18,12 +18,14 @@ import {
     SuggestionFromJSON,
     SuggestionFromJSONTyped,
     SuggestionToJSON,
+    SuggestionToJSONTyped,
 } from './Suggestion';
 import type { Warning } from './Warning';
 import {
     WarningFromJSON,
     WarningFromJSONTyped,
     WarningToJSON,
+    WarningToJSONTyped,
 } from './Warning';
 
 /**
@@ -69,10 +71,15 @@ export function SuggestionsByTextResponseFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function SuggestionsByTextResponseToJSON(value?: SuggestionsByTextResponse | null): any {
+export function SuggestionsByTextResponseToJSON(json: any): SuggestionsByTextResponse {
+    return SuggestionsByTextResponseToJSONTyped(json, false);
+}
+
+export function SuggestionsByTextResponseToJSONTyped(value?: SuggestionsByTextResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'suggestions': ((value['suggestions'] as Array<any>).map(SuggestionToJSON)),

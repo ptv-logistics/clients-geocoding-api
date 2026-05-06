@@ -57,3 +57,7 @@ export function InputFieldToJSON(value?: InputField | null): any {
     return value as any;
 }
 
+export function InputFieldToJSONTyped(value: any, ignoreDiscriminator: boolean): InputField {
+    return value as InputField;
+}
+

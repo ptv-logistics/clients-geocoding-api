@@ -57,10 +57,15 @@ export function SuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function SuggestionToJSON(value?: Suggestion | null): any {
+export function SuggestionToJSON(json: any): Suggestion {
+    return SuggestionToJSONTyped(json, false);
+}
+
+export function SuggestionToJSONTyped(value?: Suggestion | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'caption': value['caption'],

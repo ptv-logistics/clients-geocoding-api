@@ -58,10 +58,15 @@ export function RoadAccessPositionFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function RoadAccessPositionToJSON(value?: RoadAccessPosition | null): any {
+export function RoadAccessPositionToJSON(json: any): RoadAccessPosition {
+    return RoadAccessPositionToJSONTyped(json, false);
+}
+
+export function RoadAccessPositionToJSONTyped(value?: RoadAccessPosition | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'latitude': value['latitude'],

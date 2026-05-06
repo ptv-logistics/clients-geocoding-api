@@ -63,10 +63,15 @@ export function PlaceCategoryFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function PlaceCategoryToJSON(value?: PlaceCategory | null): any {
+export function PlaceCategoryToJSON(json: any): PlaceCategory {
+    return PlaceCategoryToJSONTyped(json, false);
+}
+
+export function PlaceCategoryToJSONTyped(value?: PlaceCategory | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

@@ -18,6 +18,7 @@ import {
     AreaFromJSON,
     AreaFromJSONTyped,
     AreaToJSON,
+    AreaToJSONTyped,
 } from './Area';
 
 /**
@@ -56,10 +57,15 @@ export function PlacesByAreaRequestFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function PlacesByAreaRequestToJSON(value?: PlacesByAreaRequest | null): any {
+export function PlacesByAreaRequestToJSON(json: any): PlacesByAreaRequest {
+    return PlacesByAreaRequestToJSONTyped(json, false);
+}
+
+export function PlacesByAreaRequestToJSONTyped(value?: PlacesByAreaRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'area': AreaToJSON(value['area']),
