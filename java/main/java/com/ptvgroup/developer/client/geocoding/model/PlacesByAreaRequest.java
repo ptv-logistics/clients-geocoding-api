@@ -36,15 +36,16 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
 @JsonPropertyOrder({
   PlacesByAreaRequest.JSON_PROPERTY_AREA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class PlacesByAreaRequest {
   public static final String JSON_PROPERTY_AREA = "area";
+  @javax.annotation.Nonnull
   private Area area;
 
   public PlacesByAreaRequest() { 
   }
 
-  public PlacesByAreaRequest area(Area area) {
+  public PlacesByAreaRequest area(@javax.annotation.Nonnull Area area) {
     this.area = area;
     return this;
   }
@@ -54,16 +55,16 @@ public class PlacesByAreaRequest {
    * @return area
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AREA)
+  @JsonProperty(value = JSON_PROPERTY_AREA, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Area getArea() {
     return area;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AREA)
+  @JsonProperty(value = JSON_PROPERTY_AREA, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setArea(Area area) {
+  public void setArea(@javax.annotation.Nonnull Area area) {
     this.area = area;
   }
 
@@ -102,10 +103,7 @@ public class PlacesByAreaRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

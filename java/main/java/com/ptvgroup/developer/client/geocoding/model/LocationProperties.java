@@ -43,27 +43,32 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   LocationProperties.JSON_PROPERTY_FORMATTED_ADDRESS,
   LocationProperties.JSON_PROPERTY_FEEDBACK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class LocationProperties {
   public static final String JSON_PROPERTY_REFERENCE_POSITION = "referencePosition";
+  @javax.annotation.Nonnull
   private ReferencePosition referencePosition;
 
   public static final String JSON_PROPERTY_ROAD_ACCESS_POSITION = "roadAccessPosition";
+  @javax.annotation.Nullable
   private RoadAccessPosition roadAccessPosition;
 
   public static final String JSON_PROPERTY_ADDRESS = "address";
+  @javax.annotation.Nonnull
   private Address address;
 
   public static final String JSON_PROPERTY_FORMATTED_ADDRESS = "formattedAddress";
+  @javax.annotation.Nullable
   private String formattedAddress;
 
   public static final String JSON_PROPERTY_FEEDBACK_ID = "feedbackId";
+  @javax.annotation.Nullable
   private UUID feedbackId;
 
   public LocationProperties() { 
   }
 
-  public LocationProperties referencePosition(ReferencePosition referencePosition) {
+  public LocationProperties referencePosition(@javax.annotation.Nonnull ReferencePosition referencePosition) {
     this.referencePosition = referencePosition;
     return this;
   }
@@ -73,21 +78,21 @@ public class LocationProperties {
    * @return referencePosition
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REFERENCE_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_REFERENCE_POSITION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ReferencePosition getReferencePosition() {
     return referencePosition;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REFERENCE_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_REFERENCE_POSITION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReferencePosition(ReferencePosition referencePosition) {
+  public void setReferencePosition(@javax.annotation.Nonnull ReferencePosition referencePosition) {
     this.referencePosition = referencePosition;
   }
 
 
-  public LocationProperties roadAccessPosition(RoadAccessPosition roadAccessPosition) {
+  public LocationProperties roadAccessPosition(@javax.annotation.Nullable RoadAccessPosition roadAccessPosition) {
     this.roadAccessPosition = roadAccessPosition;
     return this;
   }
@@ -97,21 +102,21 @@ public class LocationProperties {
    * @return roadAccessPosition
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ROAD_ACCESS_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_ROAD_ACCESS_POSITION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public RoadAccessPosition getRoadAccessPosition() {
     return roadAccessPosition;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ROAD_ACCESS_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_ROAD_ACCESS_POSITION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoadAccessPosition(RoadAccessPosition roadAccessPosition) {
+  public void setRoadAccessPosition(@javax.annotation.Nullable RoadAccessPosition roadAccessPosition) {
     this.roadAccessPosition = roadAccessPosition;
   }
 
 
-  public LocationProperties address(Address address) {
+  public LocationProperties address(@javax.annotation.Nonnull Address address) {
     this.address = address;
     return this;
   }
@@ -121,21 +126,21 @@ public class LocationProperties {
    * @return address
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_ADDRESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Address getAddress() {
     return address;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_ADDRESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAddress(Address address) {
+  public void setAddress(@javax.annotation.Nonnull Address address) {
     this.address = address;
   }
 
 
-  public LocationProperties formattedAddress(String formattedAddress) {
+  public LocationProperties formattedAddress(@javax.annotation.Nullable String formattedAddress) {
     this.formattedAddress = formattedAddress;
     return this;
   }
@@ -145,21 +150,21 @@ public class LocationProperties {
    * @return formattedAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORMATTED_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_FORMATTED_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getFormattedAddress() {
     return formattedAddress;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORMATTED_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_FORMATTED_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormattedAddress(String formattedAddress) {
+  public void setFormattedAddress(@javax.annotation.Nullable String formattedAddress) {
     this.formattedAddress = formattedAddress;
   }
 
 
-  public LocationProperties feedbackId(UUID feedbackId) {
+  public LocationProperties feedbackId(@javax.annotation.Nullable UUID feedbackId) {
     this.feedbackId = feedbackId;
     return this;
   }
@@ -169,16 +174,16 @@ public class LocationProperties {
    * @return feedbackId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FEEDBACK_ID)
+  @JsonProperty(value = JSON_PROPERTY_FEEDBACK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UUID getFeedbackId() {
     return feedbackId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FEEDBACK_ID)
+  @JsonProperty(value = JSON_PROPERTY_FEEDBACK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFeedbackId(UUID feedbackId) {
+  public void setFeedbackId(@javax.annotation.Nullable UUID feedbackId) {
     this.feedbackId = feedbackId;
   }
 
@@ -225,10 +230,7 @@ public class LocationProperties {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -280,12 +282,12 @@ public class LocationProperties {
 
     // add `formattedAddress` to the URL query string
     if (getFormattedAddress() != null) {
-      joiner.add(String.format("%sformattedAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFormattedAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sformattedAddress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFormattedAddress()))));
     }
 
     // add `feedbackId` to the URL query string
     if (getFeedbackId() != null) {
-      joiner.add(String.format("%sfeedbackId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFeedbackId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfeedbackId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFeedbackId()))));
     }
 
     return joiner.toString();

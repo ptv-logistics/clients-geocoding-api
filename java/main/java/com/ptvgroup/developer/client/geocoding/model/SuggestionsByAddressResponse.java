@@ -40,18 +40,20 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   SuggestionsByAddressResponse.JSON_PROPERTY_SUGGESTIONS,
   SuggestionsByAddressResponse.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class SuggestionsByAddressResponse {
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
+  @javax.annotation.Nonnull
   private List<SuggestedAddress> suggestions;
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  @javax.annotation.Nullable
   private List<Warning> warnings;
 
   public SuggestionsByAddressResponse() { 
   }
 
-  public SuggestionsByAddressResponse suggestions(List<SuggestedAddress> suggestions) {
+  public SuggestionsByAddressResponse suggestions(@javax.annotation.Nonnull List<SuggestedAddress> suggestions) {
     this.suggestions = suggestions;
     return this;
   }
@@ -69,21 +71,21 @@ public class SuggestionsByAddressResponse {
    * @return suggestions
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
+  @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<SuggestedAddress> getSuggestions() {
     return suggestions;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
+  @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSuggestions(List<SuggestedAddress> suggestions) {
+  public void setSuggestions(@javax.annotation.Nonnull List<SuggestedAddress> suggestions) {
     this.suggestions = suggestions;
   }
 
 
-  public SuggestionsByAddressResponse warnings(List<Warning> warnings) {
+  public SuggestionsByAddressResponse warnings(@javax.annotation.Nullable List<Warning> warnings) {
     this.warnings = warnings;
     return this;
   }
@@ -101,16 +103,16 @@ public class SuggestionsByAddressResponse {
    * @return warnings
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Warning> getWarnings() {
     return warnings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<Warning> warnings) {
+  public void setWarnings(@javax.annotation.Nullable List<Warning> warnings) {
     this.warnings = warnings;
   }
 
@@ -151,10 +153,7 @@ public class SuggestionsByAddressResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -193,8 +192,8 @@ public class SuggestionsByAddressResponse {
     if (getSuggestions() != null) {
       for (int i = 0; i < getSuggestions().size(); i++) {
         if (getSuggestions().get(i) != null) {
-          joiner.add(getSuggestions().get(i).toUrlQueryString(String.format("%ssuggestions%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getSuggestions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssuggestions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
@@ -203,8 +202,8 @@ public class SuggestionsByAddressResponse {
     if (getWarnings() != null) {
       for (int i = 0; i < getWarnings().size(); i++) {
         if (getWarnings().get(i) != null) {
-          joiner.add(getWarnings().get(i).toUrlQueryString(String.format("%swarnings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getWarnings().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swarnings%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

@@ -36,18 +36,20 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   Suggestion.JSON_PROPERTY_CAPTION,
   Suggestion.JSON_PROPERTY_SUB_CAPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class Suggestion {
   public static final String JSON_PROPERTY_CAPTION = "caption";
+  @javax.annotation.Nonnull
   private String caption;
 
   public static final String JSON_PROPERTY_SUB_CAPTION = "subCaption";
+  @javax.annotation.Nonnull
   private String subCaption;
 
   public Suggestion() { 
   }
 
-  public Suggestion caption(String caption) {
+  public Suggestion caption(@javax.annotation.Nonnull String caption) {
     this.caption = caption;
     return this;
   }
@@ -57,21 +59,21 @@ public class Suggestion {
    * @return caption
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CAPTION)
+  @JsonProperty(value = JSON_PROPERTY_CAPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCaption() {
     return caption;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CAPTION)
+  @JsonProperty(value = JSON_PROPERTY_CAPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCaption(String caption) {
+  public void setCaption(@javax.annotation.Nonnull String caption) {
     this.caption = caption;
   }
 
 
-  public Suggestion subCaption(String subCaption) {
+  public Suggestion subCaption(@javax.annotation.Nonnull String subCaption) {
     this.subCaption = subCaption;
     return this;
   }
@@ -81,16 +83,16 @@ public class Suggestion {
    * @return subCaption
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUB_CAPTION)
+  @JsonProperty(value = JSON_PROPERTY_SUB_CAPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSubCaption() {
     return subCaption;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUB_CAPTION)
+  @JsonProperty(value = JSON_PROPERTY_SUB_CAPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSubCaption(String subCaption) {
+  public void setSubCaption(@javax.annotation.Nonnull String subCaption) {
     this.subCaption = subCaption;
   }
 
@@ -131,10 +133,7 @@ public class Suggestion {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -171,12 +170,12 @@ public class Suggestion {
 
     // add `caption` to the URL query string
     if (getCaption() != null) {
-      joiner.add(String.format("%scaption%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scaption%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCaption()))));
     }
 
     // add `subCaption` to the URL query string
     if (getSubCaption() != null) {
-      joiner.add(String.format("%ssubCaption%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubCaption()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubCaption%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubCaption()))));
     }
 
     return joiner.toString();

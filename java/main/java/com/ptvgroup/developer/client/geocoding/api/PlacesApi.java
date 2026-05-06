@@ -15,6 +15,7 @@ package com.ptvgroup.developer.client.geocoding.api;
 import com.ptvgroup.developer.client.geocoding.ApiClient;
 import com.ptvgroup.developer.client.geocoding.ApiException;
 import com.ptvgroup.developer.client.geocoding.ApiResponse;
+import com.ptvgroup.developer.client.geocoding.Configuration;
 import com.ptvgroup.developer.client.geocoding.Pair;
 
 import com.ptvgroup.developer.client.geocoding.model.ErrorResponse;
@@ -46,18 +47,38 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class PlacesApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public PlacesApi() {
-    this(new ApiClient());
+    this(Configuration.getDefaultApiClient());
   }
 
   public PlacesApi(ApiClient apiClient) {
@@ -70,8 +91,17 @@ public class PlacesApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -84,6 +114,57 @@ public class PlacesApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Searches for places within a requested area.
    * @param placesByAreaRequest  (required)
@@ -92,8 +173,22 @@ public class PlacesApi {
    * @return PlacesSearchResult
    * @throws ApiException if fails to make API call
    */
-  public PlacesSearchResult searchPlacesByArea(PlacesByAreaRequest placesByAreaRequest, List<String> categoryFilter, String language) throws ApiException {
-    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByAreaWithHttpInfo(placesByAreaRequest, categoryFilter, language);
+  public PlacesSearchResult searchPlacesByArea(@javax.annotation.Nonnull PlacesByAreaRequest placesByAreaRequest, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable String language) throws ApiException {
+    return searchPlacesByArea(placesByAreaRequest, categoryFilter, language, null);
+  }
+
+  /**
+   * 
+   * Searches for places within a requested area.
+   * @param placesByAreaRequest  (required)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return PlacesSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public PlacesSearchResult searchPlacesByArea(@javax.annotation.Nonnull PlacesByAreaRequest placesByAreaRequest, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByAreaWithHttpInfo(placesByAreaRequest, categoryFilter, language, headers);
     return localVarResponse.getData();
   }
 
@@ -106,8 +201,22 @@ public class PlacesApi {
    * @return ApiResponse&lt;PlacesSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PlacesSearchResult> searchPlacesByAreaWithHttpInfo(PlacesByAreaRequest placesByAreaRequest, List<String> categoryFilter, String language) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchPlacesByAreaRequestBuilder(placesByAreaRequest, categoryFilter, language);
+  public ApiResponse<PlacesSearchResult> searchPlacesByAreaWithHttpInfo(@javax.annotation.Nonnull PlacesByAreaRequest placesByAreaRequest, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable String language) throws ApiException {
+    return searchPlacesByAreaWithHttpInfo(placesByAreaRequest, categoryFilter, language, null);
+  }
+
+  /**
+   * 
+   * Searches for places within a requested area.
+   * @param placesByAreaRequest  (required)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PlacesSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PlacesSearchResult> searchPlacesByAreaWithHttpInfo(@javax.annotation.Nonnull PlacesByAreaRequest placesByAreaRequest, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchPlacesByAreaRequestBuilder(placesByAreaRequest, categoryFilter, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -115,16 +224,35 @@ public class PlacesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchPlacesByArea", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PlacesSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PlacesSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PlacesSearchResult>() {});
+        
+
         return new ApiResponse<PlacesSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlacesSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -135,7 +263,7 @@ public class PlacesApi {
     }
   }
 
-  private HttpRequest.Builder searchPlacesByAreaRequestBuilder(PlacesByAreaRequest placesByAreaRequest, List<String> categoryFilter, String language) throws ApiException {
+  private HttpRequest.Builder searchPlacesByAreaRequestBuilder(@javax.annotation.Nonnull PlacesByAreaRequest placesByAreaRequest, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'placesByAreaRequest' is set
     if (placesByAreaRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'placesByAreaRequest' when calling searchPlacesByArea");
@@ -176,6 +304,8 @@ public class PlacesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -194,8 +324,25 @@ public class PlacesApi {
    * @return PlacesSearchResult
    * @throws ApiException if fails to make API call
    */
-  public PlacesSearchResult searchPlacesByPosition(Double latitude, Double longitude, Integer radius, List<String> categoryFilter, Integer limit, String language) throws ApiException {
-    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByPositionWithHttpInfo(latitude, longitude, radius, categoryFilter, limit, language);
+  public PlacesSearchResult searchPlacesByPosition(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String language) throws ApiException {
+    return searchPlacesByPosition(latitude, longitude, radius, categoryFilter, limit, language, null);
+  }
+
+  /**
+   * 
+   * Searches for places near a given geographical position.
+   * @param latitude  (required)
+   * @param longitude  (required)
+   * @param radius The search radius [m] around the given position. (optional, default to 1000)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param limit Limits the number of results that are returned. (optional, default to 5)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return PlacesSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public PlacesSearchResult searchPlacesByPosition(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByPositionWithHttpInfo(latitude, longitude, radius, categoryFilter, limit, language, headers);
     return localVarResponse.getData();
   }
 
@@ -211,8 +358,25 @@ public class PlacesApi {
    * @return ApiResponse&lt;PlacesSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PlacesSearchResult> searchPlacesByPositionWithHttpInfo(Double latitude, Double longitude, Integer radius, List<String> categoryFilter, Integer limit, String language) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchPlacesByPositionRequestBuilder(latitude, longitude, radius, categoryFilter, limit, language);
+  public ApiResponse<PlacesSearchResult> searchPlacesByPositionWithHttpInfo(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String language) throws ApiException {
+    return searchPlacesByPositionWithHttpInfo(latitude, longitude, radius, categoryFilter, limit, language, null);
+  }
+
+  /**
+   * 
+   * Searches for places near a given geographical position.
+   * @param latitude  (required)
+   * @param longitude  (required)
+   * @param radius The search radius [m] around the given position. (optional, default to 1000)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param limit Limits the number of results that are returned. (optional, default to 5)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PlacesSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PlacesSearchResult> searchPlacesByPositionWithHttpInfo(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchPlacesByPositionRequestBuilder(latitude, longitude, radius, categoryFilter, limit, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -220,16 +384,35 @@ public class PlacesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchPlacesByPosition", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PlacesSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PlacesSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PlacesSearchResult>() {});
+        
+
         return new ApiResponse<PlacesSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlacesSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -240,7 +423,7 @@ public class PlacesApi {
     }
   }
 
-  private HttpRequest.Builder searchPlacesByPositionRequestBuilder(Double latitude, Double longitude, Integer radius, List<String> categoryFilter, Integer limit, String language) throws ApiException {
+  private HttpRequest.Builder searchPlacesByPositionRequestBuilder(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'latitude' is set
     if (latitude == null) {
       throw new ApiException(400, "Missing the required parameter 'latitude' when calling searchPlacesByPosition");
@@ -285,6 +468,8 @@ public class PlacesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -304,8 +489,26 @@ public class PlacesApi {
    * @return PlacesSearchResult
    * @throws ApiException if fails to make API call
    */
-  public PlacesSearchResult searchPlacesByText(String searchText, List<String> categoryFilter, List<String> countryFilter, String language, List<Double> center, Integer radius, List<Double> boundingBox) throws ApiException {
-    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByTextWithHttpInfo(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox);
+  public PlacesSearchResult searchPlacesByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<Double> boundingBox) throws ApiException {
+    return searchPlacesByText(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox, null);
+  }
+
+  /**
+   * 
+   * Searches for places based on a single-field text input.
+   * @param searchText Free-form text input that describes a place. (required)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional)
+   * @param radius The search radius [m] around the given position. (optional, default to 1000)
+   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)
+   * @param headers Optional headers to include in the request
+   * @return PlacesSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public PlacesSearchResult searchPlacesByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<Double> boundingBox, Map<String, String> headers) throws ApiException {
+    ApiResponse<PlacesSearchResult> localVarResponse = searchPlacesByTextWithHttpInfo(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox, headers);
     return localVarResponse.getData();
   }
 
@@ -322,8 +525,26 @@ public class PlacesApi {
    * @return ApiResponse&lt;PlacesSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PlacesSearchResult> searchPlacesByTextWithHttpInfo(String searchText, List<String> categoryFilter, List<String> countryFilter, String language, List<Double> center, Integer radius, List<Double> boundingBox) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchPlacesByTextRequestBuilder(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox);
+  public ApiResponse<PlacesSearchResult> searchPlacesByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<Double> boundingBox) throws ApiException {
+    return searchPlacesByTextWithHttpInfo(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox, null);
+  }
+
+  /**
+   * 
+   * Searches for places based on a single-field text input.
+   * @param searchText Free-form text input that describes a place. (required)
+   * @param categoryFilter A comma-separated list of place category IDs. Only results having one of these categories will be returned. If no filter is specified, all categories will be returned. However, empty values are not allowed. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param center Defines a circular search context. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). A certain radius around the center is considered and this can be adapted by setting the parameter &#x60;radius&#x60; in addition. Note: The parameters &#x60;center&#x60; respectively &#x60;radius&#x60; and &#x60;boundingBox&#x60; (if available) are mutually exclusive. (optional)
+   * @param radius The search radius [m] around the given position. (optional, default to 1000)
+   * @param boundingBox Defines a rectangular search context. The format of the &#x60;boundingBox&#x60; parameter is a comma-separated list of double values setting the maximum latitude _top_, the minimum longitude _left_, the minimum latitude _bottom_ and the maximum longitude _right_, i. e. &#x60;&lt;top&gt;,&lt;left&gt;,&lt;bottom&gt;,&lt;right&gt;&#x60;. The values for _top_ and _bottom_ from south to north between -90 and 90 as well as for _left_ and _right_ between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). Note: The parameters &#x60;boundingBox&#x60; and &#x60;center&#x60; respectively &#x60;radius&#x60; are mutually exclusive. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PlacesSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PlacesSearchResult> searchPlacesByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<Double> boundingBox, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchPlacesByTextRequestBuilder(searchText, categoryFilter, countryFilter, language, center, radius, boundingBox, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -331,16 +552,35 @@ public class PlacesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchPlacesByText", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PlacesSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PlacesSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PlacesSearchResult>() {});
+        
+
         return new ApiResponse<PlacesSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlacesSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -351,7 +591,7 @@ public class PlacesApi {
     }
   }
 
-  private HttpRequest.Builder searchPlacesByTextRequestBuilder(String searchText, List<String> categoryFilter, List<String> countryFilter, String language, List<Double> center, Integer radius, List<Double> boundingBox) throws ApiException {
+  private HttpRequest.Builder searchPlacesByTextRequestBuilder(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> categoryFilter, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable Integer radius, @javax.annotation.Nullable List<Double> boundingBox, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'searchText' is set
     if (searchText == null) {
       throw new ApiException(400, "Missing the required parameter 'searchText' when calling searchPlacesByText");
@@ -396,6 +636,8 @@ public class PlacesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

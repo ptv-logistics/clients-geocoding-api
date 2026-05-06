@@ -38,15 +38,16 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
 @JsonPropertyOrder({
   PlaceCategories.JSON_PROPERTY_PLACE_CATEGORIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class PlaceCategories {
   public static final String JSON_PROPERTY_PLACE_CATEGORIES = "placeCategories";
+  @javax.annotation.Nullable
   private List<PlaceCategory> placeCategories;
 
   public PlaceCategories() { 
   }
 
-  public PlaceCategories placeCategories(List<PlaceCategory> placeCategories) {
+  public PlaceCategories placeCategories(@javax.annotation.Nullable List<PlaceCategory> placeCategories) {
     this.placeCategories = placeCategories;
     return this;
   }
@@ -64,16 +65,16 @@ public class PlaceCategories {
    * @return placeCategories
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PLACE_CATEGORIES)
+  @JsonProperty(value = JSON_PROPERTY_PLACE_CATEGORIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PlaceCategory> getPlaceCategories() {
     return placeCategories;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PLACE_CATEGORIES)
+  @JsonProperty(value = JSON_PROPERTY_PLACE_CATEGORIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlaceCategories(List<PlaceCategory> placeCategories) {
+  public void setPlaceCategories(@javax.annotation.Nullable List<PlaceCategory> placeCategories) {
     this.placeCategories = placeCategories;
   }
 
@@ -112,10 +113,7 @@ public class PlaceCategories {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -154,8 +152,8 @@ public class PlaceCategories {
     if (getPlaceCategories() != null) {
       for (int i = 0; i < getPlaceCategories().size(); i++) {
         if (getPlaceCategories().get(i) != null) {
-          joiner.add(getPlaceCategories().get(i).toUrlQueryString(String.format("%splaceCategories%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getPlaceCategories().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splaceCategories%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

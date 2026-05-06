@@ -38,21 +38,24 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   Quality.JSON_PROPERTY_TOTAL_SCORE,
   Quality.JSON_PROPERTY_ADDRESS_SCORES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class Quality {
   public static final String JSON_PROPERTY_DISTANCE = "distance";
+  @javax.annotation.Nullable
   private Integer distance;
 
   public static final String JSON_PROPERTY_TOTAL_SCORE = "totalScore";
+  @javax.annotation.Nullable
   private Integer totalScore;
 
   public static final String JSON_PROPERTY_ADDRESS_SCORES = "addressScores";
+  @javax.annotation.Nullable
   private AddressScores addressScores;
 
   public Quality() { 
   }
 
-  public Quality distance(Integer distance) {
+  public Quality distance(@javax.annotation.Nullable Integer distance) {
     this.distance = distance;
     return this;
   }
@@ -62,21 +65,21 @@ public class Quality {
    * @return distance
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DISTANCE)
+  @JsonProperty(value = JSON_PROPERTY_DISTANCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getDistance() {
     return distance;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISTANCE)
+  @JsonProperty(value = JSON_PROPERTY_DISTANCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDistance(Integer distance) {
+  public void setDistance(@javax.annotation.Nullable Integer distance) {
     this.distance = distance;
   }
 
 
-  public Quality totalScore(Integer totalScore) {
+  public Quality totalScore(@javax.annotation.Nullable Integer totalScore) {
     this.totalScore = totalScore;
     return this;
   }
@@ -86,21 +89,21 @@ public class Quality {
    * @return totalScore
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TOTAL_SCORE)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_SCORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTotalScore() {
     return totalScore;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL_SCORE)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_SCORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotalScore(Integer totalScore) {
+  public void setTotalScore(@javax.annotation.Nullable Integer totalScore) {
     this.totalScore = totalScore;
   }
 
 
-  public Quality addressScores(AddressScores addressScores) {
+  public Quality addressScores(@javax.annotation.Nullable AddressScores addressScores) {
     this.addressScores = addressScores;
     return this;
   }
@@ -110,16 +113,16 @@ public class Quality {
    * @return addressScores
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADDRESS_SCORES)
+  @JsonProperty(value = JSON_PROPERTY_ADDRESS_SCORES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AddressScores getAddressScores() {
     return addressScores;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ADDRESS_SCORES)
+  @JsonProperty(value = JSON_PROPERTY_ADDRESS_SCORES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAddressScores(AddressScores addressScores) {
+  public void setAddressScores(@javax.annotation.Nullable AddressScores addressScores) {
     this.addressScores = addressScores;
   }
 
@@ -162,10 +165,7 @@ public class Quality {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -202,12 +202,12 @@ public class Quality {
 
     // add `distance` to the URL query string
     if (getDistance() != null) {
-      joiner.add(String.format("%sdistance%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDistance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdistance%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistance()))));
     }
 
     // add `totalScore` to the URL query string
     if (getTotalScore() != null) {
-      joiner.add(String.format("%stotalScore%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTotalScore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotalScore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotalScore()))));
     }
 
     // add `addressScores` to the URL query string

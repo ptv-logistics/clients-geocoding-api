@@ -15,6 +15,7 @@ package com.ptvgroup.developer.client.geocoding.api;
 import com.ptvgroup.developer.client.geocoding.ApiClient;
 import com.ptvgroup.developer.client.geocoding.ApiException;
 import com.ptvgroup.developer.client.geocoding.ApiResponse;
+import com.ptvgroup.developer.client.geocoding.Configuration;
 import com.ptvgroup.developer.client.geocoding.Pair;
 
 import com.ptvgroup.developer.client.geocoding.model.ErrorResponse;
@@ -50,18 +51,38 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class LocationsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public LocationsApi() {
-    this(new ApiClient());
+    this(Configuration.getDefaultApiClient());
   }
 
   public LocationsApi(ApiClient apiClient) {
@@ -74,8 +95,17 @@ public class LocationsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -88,6 +118,57 @@ public class LocationsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
    * @param inputField Used to specify for which parameter of the suggestions/by-address request a suggestion is desired. (required)
@@ -96,13 +177,32 @@ public class LocationsApi {
    * @param locality The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)
    * @param postalCode The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)
    * @param street The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)
-   * @param houseNumber The exact house number to which the suggestion search is limited. (optional)
+   * @param houseNumber The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return SuggestionsByAddressResponse
    * @throws ApiException if fails to make API call
    */
-  public SuggestionsByAddressResponse getSuggestionsByAddress(InputField inputField, String country, String state, String locality, String postalCode, String street, String houseNumber, String language) throws ApiException {
-    ApiResponse<SuggestionsByAddressResponse> localVarResponse = getSuggestionsByAddressWithHttpInfo(inputField, country, state, locality, postalCode, street, houseNumber, language);
+  public SuggestionsByAddressResponse getSuggestionsByAddress(@javax.annotation.Nonnull InputField inputField, @javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable String language) throws ApiException {
+    return getSuggestionsByAddress(inputField, country, state, locality, postalCode, street, houseNumber, language, null);
+  }
+
+  /**
+   * 
+   * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
+   * @param inputField Used to specify for which parameter of the suggestions/by-address request a suggestion is desired. (required)
+   * @param country The country or its initial characters to which the suggestion search is limited. A country may be defined by name, ISO code (ISO 3166-1 alpha-2 or alpha-3) or country code plate. (optional)
+   * @param state The state or its initial characters to which the suggestion search is limited. A state is a subdivision of a country, for example a real state, a region or a province. (optional)
+   * @param locality The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)
+   * @param postalCode The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)
+   * @param street The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)
+   * @param houseNumber The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return SuggestionsByAddressResponse
+   * @throws ApiException if fails to make API call
+   */
+  public SuggestionsByAddressResponse getSuggestionsByAddress(@javax.annotation.Nonnull InputField inputField, @javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<SuggestionsByAddressResponse> localVarResponse = getSuggestionsByAddressWithHttpInfo(inputField, country, state, locality, postalCode, street, houseNumber, language, headers);
     return localVarResponse.getData();
   }
 
@@ -115,13 +215,32 @@ public class LocationsApi {
    * @param locality The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)
    * @param postalCode The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)
    * @param street The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)
-   * @param houseNumber The exact house number to which the suggestion search is limited. (optional)
+   * @param houseNumber The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @return ApiResponse&lt;SuggestionsByAddressResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SuggestionsByAddressResponse> getSuggestionsByAddressWithHttpInfo(InputField inputField, String country, String state, String locality, String postalCode, String street, String houseNumber, String language) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getSuggestionsByAddressRequestBuilder(inputField, country, state, locality, postalCode, street, houseNumber, language);
+  public ApiResponse<SuggestionsByAddressResponse> getSuggestionsByAddressWithHttpInfo(@javax.annotation.Nonnull InputField inputField, @javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable String language) throws ApiException {
+    return getSuggestionsByAddressWithHttpInfo(inputField, country, state, locality, postalCode, street, houseNumber, language, null);
+  }
+
+  /**
+   * 
+   * Gets suggestions for the address input of the searchLocationsByAddress endpoint.
+   * @param inputField Used to specify for which parameter of the suggestions/by-address request a suggestion is desired. (required)
+   * @param country The country or its initial characters to which the suggestion search is limited. A country may be defined by name, ISO code (ISO 3166-1 alpha-2 or alpha-3) or country code plate. (optional)
+   * @param state The state or its initial characters to which the suggestion search is limited. A state is a subdivision of a country, for example a real state, a region or a province. (optional)
+   * @param locality The locality or its initial characters to which the suggestion search is limited. The locality may be a city, a district or subdistrict. (optional)
+   * @param postalCode The postal code or zip-code or its initial characters to which the suggestion search is limited. (optional)
+   * @param street The name of the road or its initial characters to which the suggestion search is limited. It must not contain additional information like building names, floor numbers or apartment numbers. (optional)
+   * @param houseNumber The house number or its initial characters to which the suggestion search is limited. If only a space is given, a list of all house numbers in the specified street will be suggested. Suggestions for house numbers are only provided if a street is specified. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SuggestionsByAddressResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuggestionsByAddressResponse> getSuggestionsByAddressWithHttpInfo(@javax.annotation.Nonnull InputField inputField, @javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSuggestionsByAddressRequestBuilder(inputField, country, state, locality, postalCode, street, houseNumber, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -129,16 +248,35 @@ public class LocationsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getSuggestionsByAddress", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SuggestionsByAddressResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SuggestionsByAddressResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SuggestionsByAddressResponse>() {});
+        
+
         return new ApiResponse<SuggestionsByAddressResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SuggestionsByAddressResponse>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -149,7 +287,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder getSuggestionsByAddressRequestBuilder(InputField inputField, String country, String state, String locality, String postalCode, String street, String houseNumber, String language) throws ApiException {
+  private HttpRequest.Builder getSuggestionsByAddressRequestBuilder(@javax.annotation.Nonnull InputField inputField, @javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'inputField' is set
     if (inputField == null) {
       throw new ApiException(400, "Missing the required parameter 'inputField' when calling getSuggestionsByAddress");
@@ -196,6 +334,8 @@ public class LocationsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -212,8 +352,23 @@ public class LocationsApi {
    * @return SuggestionsByTextResponse
    * @throws ApiException if fails to make API call
    */
-  public SuggestionsByTextResponse getSuggestionsByText(String searchText, List<String> countryFilter, List<Double> center, String language) throws ApiException {
-    ApiResponse<SuggestionsByTextResponse> localVarResponse = getSuggestionsByTextWithHttpInfo(searchText, countryFilter, center, language);
+  public SuggestionsByTextResponse getSuggestionsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable String language) throws ApiException {
+    return getSuggestionsByText(searchText, countryFilter, center, language, null);
+  }
+
+  /**
+   * 
+   * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
+   * @param searchText Free-form text input that partially describes a location. (required)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return SuggestionsByTextResponse
+   * @throws ApiException if fails to make API call
+   */
+  public SuggestionsByTextResponse getSuggestionsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    ApiResponse<SuggestionsByTextResponse> localVarResponse = getSuggestionsByTextWithHttpInfo(searchText, countryFilter, center, language, headers);
     return localVarResponse.getData();
   }
 
@@ -227,8 +382,23 @@ public class LocationsApi {
    * @return ApiResponse&lt;SuggestionsByTextResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SuggestionsByTextResponse> getSuggestionsByTextWithHttpInfo(String searchText, List<String> countryFilter, List<Double> center, String language) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getSuggestionsByTextRequestBuilder(searchText, countryFilter, center, language);
+  public ApiResponse<SuggestionsByTextResponse> getSuggestionsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable String language) throws ApiException {
+    return getSuggestionsByTextWithHttpInfo(searchText, countryFilter, center, language, null);
+  }
+
+  /**
+   * 
+   * Gets suggestions for the input of the searchLocationsByText endpoint.  This method is in a preview state. It is stable, but feature changes could be introduced in the future.
+   * @param searchText Free-form text input that partially describes a location. (required)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param center Defines a search center. The format of the &#x60;center&#x60; parameter is a comma-separated pair of double values setting the latitude and longitude, i. e. &#x60;&lt;lat&gt;,&lt;lon&gt;&#x60;. The values for the latitude from south to north between -90 and 90 and for the longitude between -180 and 180 from west to east are in degrees (WGS84/EPSG:4326). (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SuggestionsByTextResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuggestionsByTextResponse> getSuggestionsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSuggestionsByTextRequestBuilder(searchText, countryFilter, center, language, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -236,16 +406,35 @@ public class LocationsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getSuggestionsByText", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SuggestionsByTextResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SuggestionsByTextResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SuggestionsByTextResponse>() {});
+        
+
         return new ApiResponse<SuggestionsByTextResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SuggestionsByTextResponse>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -256,7 +445,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder getSuggestionsByTextRequestBuilder(String searchText, List<String> countryFilter, List<Double> center, String language) throws ApiException {
+  private HttpRequest.Builder getSuggestionsByTextRequestBuilder(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable List<Double> center, @javax.annotation.Nullable String language, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'searchText' is set
     if (searchText == null) {
       throw new ApiException(400, "Missing the required parameter 'searchText' when calling getSuggestionsByText");
@@ -295,6 +484,8 @@ public class LocationsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -312,13 +503,34 @@ public class LocationsApi {
    * @param houseNumber The house number of the address. (optional)
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
    * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
-  public LocationsSearchResult searchLocationsByAddress(String country, String state, String locality, String postalCode, String street, String houseNumber, List<String> countryFilter, String language, List<Results> results, TotalScoreType totalScoreType) throws ApiException {
-    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByAddressWithHttpInfo(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType);
+  public LocationsSearchResult searchLocationsByAddress(@javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable TotalScoreType totalScoreType) throws ApiException {
+    return searchLocationsByAddress(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType, null);
+  }
+
+  /**
+   * 
+   * Searches for locations based on a multi-field address input.
+   * @param country The country in which the locations should be searched. A country may be defined by name, ISO code (ISO 3166-1 alpha-2 or alpha-3) or country code plate. (optional)
+   * @param state A subdivision of a country, for example a state, a region or a province. Using this field narrows down the search and reduces the number of possible results. (optional)
+   * @param locality The locality of the address, which may be a city, a district or subdistrict. (optional)
+   * @param postalCode The postal code, or zip-code, which is used by a postal authority of a country to identify where the address is located. (optional)
+   * @param street The name of the road where the address is located. It must not contain additional information like building names, floor numbers or apartment numbers. It may contain a house number, but using the **houseNumber** field instead will lead to better results. (optional)
+   * @param houseNumber The house number of the address. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param headers Optional headers to include in the request
+   * @return LocationsSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public LocationsSearchResult searchLocationsByAddress(@javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable TotalScoreType totalScoreType, Map<String, String> headers) throws ApiException {
+    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByAddressWithHttpInfo(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType, headers);
     return localVarResponse.getData();
   }
 
@@ -333,13 +545,34 @@ public class LocationsApi {
    * @param houseNumber The house number of the address. (optional)
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
    * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LocationsSearchResult> searchLocationsByAddressWithHttpInfo(String country, String state, String locality, String postalCode, String street, String houseNumber, List<String> countryFilter, String language, List<Results> results, TotalScoreType totalScoreType) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchLocationsByAddressRequestBuilder(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType);
+  public ApiResponse<LocationsSearchResult> searchLocationsByAddressWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable TotalScoreType totalScoreType) throws ApiException {
+    return searchLocationsByAddressWithHttpInfo(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType, null);
+  }
+
+  /**
+   * 
+   * Searches for locations based on a multi-field address input.
+   * @param country The country in which the locations should be searched. A country may be defined by name, ISO code (ISO 3166-1 alpha-2 or alpha-3) or country code plate. (optional)
+   * @param state A subdivision of a country, for example a state, a region or a province. Using this field narrows down the search and reduces the number of possible results. (optional)
+   * @param locality The locality of the address, which may be a city, a district or subdistrict. (optional)
+   * @param postalCode The postal code, or zip-code, which is used by a postal authority of a country to identify where the address is located. (optional)
+   * @param street The name of the road where the address is located. It must not contain additional information like building names, floor numbers or apartment numbers. It may contain a house number, but using the **houseNumber** field instead will lead to better results. (optional)
+   * @param houseNumber The house number of the address. (optional)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LocationsSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LocationsSearchResult> searchLocationsByAddressWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable TotalScoreType totalScoreType, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchLocationsByAddressRequestBuilder(country, state, locality, postalCode, street, houseNumber, countryFilter, language, results, totalScoreType, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -347,16 +580,35 @@ public class LocationsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchLocationsByAddress", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LocationsSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LocationsSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LocationsSearchResult>() {});
+        
+
         return new ApiResponse<LocationsSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<LocationsSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -367,7 +619,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder searchLocationsByAddressRequestBuilder(String country, String state, String locality, String postalCode, String street, String houseNumber, List<String> countryFilter, String language, List<Results> results, TotalScoreType totalScoreType) throws ApiException {
+  private HttpRequest.Builder searchLocationsByAddressRequestBuilder(@javax.annotation.Nullable String country, @javax.annotation.Nullable String state, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String postalCode, @javax.annotation.Nullable String street, @javax.annotation.Nullable String houseNumber, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable TotalScoreType totalScoreType, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -414,6 +666,8 @@ public class LocationsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -430,8 +684,23 @@ public class LocationsApi {
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
-  public LocationsSearchResult searchLocationsByPosition(Double latitude, Double longitude, String language, Integer minimumPopulation) throws ApiException {
-    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByPositionWithHttpInfo(latitude, longitude, language, minimumPopulation);
+  public LocationsSearchResult searchLocationsByPosition(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable String language, @javax.annotation.Nullable Integer minimumPopulation) throws ApiException {
+    return searchLocationsByPosition(latitude, longitude, language, minimumPopulation, null);
+  }
+
+  /**
+   * 
+   * Searches for locations near a given geographical position.
+   * @param latitude  (required)
+   * @param longitude  (required)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param minimumPopulation If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)
+   * @param headers Optional headers to include in the request
+   * @return LocationsSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public LocationsSearchResult searchLocationsByPosition(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable String language, @javax.annotation.Nullable Integer minimumPopulation, Map<String, String> headers) throws ApiException {
+    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByPositionWithHttpInfo(latitude, longitude, language, minimumPopulation, headers);
     return localVarResponse.getData();
   }
 
@@ -445,8 +714,23 @@ public class LocationsApi {
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LocationsSearchResult> searchLocationsByPositionWithHttpInfo(Double latitude, Double longitude, String language, Integer minimumPopulation) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchLocationsByPositionRequestBuilder(latitude, longitude, language, minimumPopulation);
+  public ApiResponse<LocationsSearchResult> searchLocationsByPositionWithHttpInfo(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable String language, @javax.annotation.Nullable Integer minimumPopulation) throws ApiException {
+    return searchLocationsByPositionWithHttpInfo(latitude, longitude, language, minimumPopulation, null);
+  }
+
+  /**
+   * 
+   * Searches for locations near a given geographical position.
+   * @param latitude  (required)
+   * @param longitude  (required)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param minimumPopulation If specified, the response contains only the nearest city or town with at least the given population. The **locationType** of this result will be _LOCALITY_, street information will not be returned.  This parameter is in an experimental state and may change at any time. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LocationsSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LocationsSearchResult> searchLocationsByPositionWithHttpInfo(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable String language, @javax.annotation.Nullable Integer minimumPopulation, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchLocationsByPositionRequestBuilder(latitude, longitude, language, minimumPopulation, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -454,16 +738,35 @@ public class LocationsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchLocationsByPosition", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LocationsSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LocationsSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LocationsSearchResult>() {});
+        
+
         return new ApiResponse<LocationsSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<LocationsSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -474,7 +777,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder searchLocationsByPositionRequestBuilder(Double latitude, Double longitude, String language, Integer minimumPopulation) throws ApiException {
+  private HttpRequest.Builder searchLocationsByPositionRequestBuilder(@javax.annotation.Nonnull Double latitude, @javax.annotation.Nonnull Double longitude, @javax.annotation.Nullable String language, @javax.annotation.Nullable Integer minimumPopulation, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'latitude' is set
     if (latitude == null) {
       throw new ApiException(400, "Missing the required parameter 'latitude' when calling searchLocationsByPosition");
@@ -515,6 +818,8 @@ public class LocationsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -527,13 +832,29 @@ public class LocationsApi {
    * @param searchText Free-form text input that describes a location. (required)
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
    * @param cleanInput If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
-  public LocationsSearchResult searchLocationsByText(String searchText, List<String> countryFilter, String language, List<Results> results, Boolean cleanInput) throws ApiException {
-    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput);
+  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput) throws ApiException {
+    return searchLocationsByText(searchText, countryFilter, language, results, cleanInput, null);
+  }
+
+  /**
+   * 
+   * Searches for locations based on a single-field text input.
+   * @param searchText Free-form text input that describes a location. (required)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
+   * @param cleanInput If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return LocationsSearchResult
+   * @throws ApiException if fails to make API call
+   */
+  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
+    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput, headers);
     return localVarResponse.getData();
   }
 
@@ -543,13 +864,29 @@ public class LocationsApi {
    * @param searchText Free-form text input that describes a location. (required)
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
-   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60;  - Populate location.quality.addressScores. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
    * @param cleanInput If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(String searchText, List<String> countryFilter, String language, List<Results> results, Boolean cleanInput) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchLocationsByTextRequestBuilder(searchText, countryFilter, language, results, cleanInput);
+  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput) throws ApiException {
+    return searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput, null);
+  }
+
+  /**
+   * 
+   * Searches for locations based on a single-field text input.
+   * @param searchText Free-form text input that describes a location. (required)
+   * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
+   * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
+   * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
+   * @param cleanInput If set to &#x60;true&#x60;, the service will try (for certain countries) to clean the input in a pre-processing step. This helps to expedite processing if the input is a free-form text that may contain garbage. This flag may influence the scores in the response. For more details see the corresponding [concept](./concepts/clean-input).      This parameter is experimental and may change at any time in the future. (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LocationsSearchResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchLocationsByTextRequestBuilder(searchText, countryFilter, language, results, cleanInput, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -557,16 +894,35 @@ public class LocationsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("searchLocationsByText", localVarResponse);
         }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LocationsSearchResult>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LocationsSearchResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LocationsSearchResult>() {});
+        
+
         return new ApiResponse<LocationsSearchResult>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<LocationsSearchResult>() {}) // closes the InputStream
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -577,7 +933,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder searchLocationsByTextRequestBuilder(String searchText, List<String> countryFilter, String language, List<Results> results, Boolean cleanInput) throws ApiException {
+  private HttpRequest.Builder searchLocationsByTextRequestBuilder(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'searchText' is set
     if (searchText == null) {
       throw new ApiException(400, "Missing the required parameter 'searchText' when calling searchLocationsByText");
@@ -618,6 +974,8 @@ public class LocationsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

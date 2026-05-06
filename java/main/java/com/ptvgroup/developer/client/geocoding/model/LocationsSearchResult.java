@@ -42,21 +42,24 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   LocationsSearchResult.JSON_PROPERTY_NO_MATCH_FEEDBACK_ID,
   LocationsSearchResult.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T10:35:29.608294926Z[Etc/UTC]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class LocationsSearchResult {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
+  @javax.annotation.Nonnull
   private List<Location> locations;
 
   public static final String JSON_PROPERTY_NO_MATCH_FEEDBACK_ID = "noMatchFeedbackId";
+  @javax.annotation.Nullable
   private UUID noMatchFeedbackId;
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
+  @javax.annotation.Nullable
   private List<Warning> warnings;
 
   public LocationsSearchResult() { 
   }
 
-  public LocationsSearchResult locations(List<Location> locations) {
+  public LocationsSearchResult locations(@javax.annotation.Nonnull List<Location> locations) {
     this.locations = locations;
     return this;
   }
@@ -74,21 +77,21 @@ public class LocationsSearchResult {
    * @return locations
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<Location> getLocations() {
     return locations;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLocations(List<Location> locations) {
+  public void setLocations(@javax.annotation.Nonnull List<Location> locations) {
     this.locations = locations;
   }
 
 
-  public LocationsSearchResult noMatchFeedbackId(UUID noMatchFeedbackId) {
+  public LocationsSearchResult noMatchFeedbackId(@javax.annotation.Nullable UUID noMatchFeedbackId) {
     this.noMatchFeedbackId = noMatchFeedbackId;
     return this;
   }
@@ -98,21 +101,21 @@ public class LocationsSearchResult {
    * @return noMatchFeedbackId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NO_MATCH_FEEDBACK_ID)
+  @JsonProperty(value = JSON_PROPERTY_NO_MATCH_FEEDBACK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UUID getNoMatchFeedbackId() {
     return noMatchFeedbackId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NO_MATCH_FEEDBACK_ID)
+  @JsonProperty(value = JSON_PROPERTY_NO_MATCH_FEEDBACK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNoMatchFeedbackId(UUID noMatchFeedbackId) {
+  public void setNoMatchFeedbackId(@javax.annotation.Nullable UUID noMatchFeedbackId) {
     this.noMatchFeedbackId = noMatchFeedbackId;
   }
 
 
-  public LocationsSearchResult warnings(List<Warning> warnings) {
+  public LocationsSearchResult warnings(@javax.annotation.Nullable List<Warning> warnings) {
     this.warnings = warnings;
     return this;
   }
@@ -130,16 +133,16 @@ public class LocationsSearchResult {
    * @return warnings
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Warning> getWarnings() {
     return warnings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarnings(List<Warning> warnings) {
+  public void setWarnings(@javax.annotation.Nullable List<Warning> warnings) {
     this.warnings = warnings;
   }
 
@@ -182,10 +185,7 @@ public class LocationsSearchResult {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -224,23 +224,23 @@ public class LocationsSearchResult {
     if (getLocations() != null) {
       for (int i = 0; i < getLocations().size(); i++) {
         if (getLocations().get(i) != null) {
-          joiner.add(getLocations().get(i).toUrlQueryString(String.format("%slocations%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `noMatchFeedbackId` to the URL query string
     if (getNoMatchFeedbackId() != null) {
-      joiner.add(String.format("%snoMatchFeedbackId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoMatchFeedbackId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snoMatchFeedbackId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNoMatchFeedbackId()))));
     }
 
     // add `warnings` to the URL query string
     if (getWarnings() != null) {
       for (int i = 0; i < getWarnings().size(); i++) {
         if (getWarnings().get(i) != null) {
-          joiner.add(getWarnings().get(i).toUrlQueryString(String.format("%swarnings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getWarnings().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swarnings%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
