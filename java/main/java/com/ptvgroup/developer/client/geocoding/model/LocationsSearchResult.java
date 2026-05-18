@@ -42,7 +42,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   LocationsSearchResult.JSON_PROPERTY_NO_MATCH_FEEDBACK_ID,
   LocationsSearchResult.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T09:17:10.827807860Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class LocationsSearchResult {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nonnull
