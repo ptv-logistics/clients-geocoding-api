@@ -34,9 +34,10 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
  */
 @JsonPropertyOrder({
   Suggestion.JSON_PROPERTY_CAPTION,
-  Suggestion.JSON_PROPERTY_SUB_CAPTION
+  Suggestion.JSON_PROPERTY_SUB_CAPTION,
+  Suggestion.JSON_PROPERTY_SEARCH_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:33:15.191888343Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class Suggestion {
   public static final String JSON_PROPERTY_CAPTION = "caption";
   @javax.annotation.Nonnull
@@ -45,6 +46,10 @@ public class Suggestion {
   public static final String JSON_PROPERTY_SUB_CAPTION = "subCaption";
   @javax.annotation.Nonnull
   private String subCaption;
+
+  public static final String JSON_PROPERTY_SEARCH_TEXT = "searchText";
+  @javax.annotation.Nullable
+  private String searchText;
 
   public Suggestion() { 
   }
@@ -97,6 +102,30 @@ public class Suggestion {
   }
 
 
+  public Suggestion searchText(@javax.annotation.Nullable String searchText) {
+    this.searchText = searchText;
+    return this;
+  }
+
+  /**
+   * The suggested search text to pass to the searchLocationsByText endpoint to retrieve the corresponding locations.
+   * @return searchText
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSearchText() {
+    return searchText;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSearchText(@javax.annotation.Nullable String searchText) {
+    this.searchText = searchText;
+  }
+
+
   /**
    * Return true if this Suggestion object is equal to o.
    */
@@ -110,12 +139,13 @@ public class Suggestion {
     }
     Suggestion suggestion = (Suggestion) o;
     return Objects.equals(this.caption, suggestion.caption) &&
-        Objects.equals(this.subCaption, suggestion.subCaption);
+        Objects.equals(this.subCaption, suggestion.subCaption) &&
+        Objects.equals(this.searchText, suggestion.searchText);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caption, subCaption);
+    return Objects.hash(caption, subCaption, searchText);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class Suggestion {
     sb.append("class Suggestion {\n");
     sb.append("    caption: ").append(toIndentedString(caption)).append("\n");
     sb.append("    subCaption: ").append(toIndentedString(subCaption)).append("\n");
+    sb.append("    searchText: ").append(toIndentedString(searchText)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -176,6 +207,11 @@ public class Suggestion {
     // add `subCaption` to the URL query string
     if (getSubCaption() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubCaption%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubCaption()))));
+    }
+
+    // add `searchText` to the URL query string
+    if (getSearchText() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssearchText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSearchText()))));
     }
 
     return joiner.toString();

@@ -15,7 +15,7 @@ package com.ptvgroup.developer.client.geocoding;
 
 import java.net.http.HttpHeaders;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:33:15.191888343Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class ApiException extends Exception {
     private static final long serialVersionUID = 1L;
 

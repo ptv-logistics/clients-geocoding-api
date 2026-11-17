@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.ptvgroup.developer.client.geocoding.ApiClient;
 /**
- * Quality indicators that help deciding how well a result fits to the search input.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
+ * Quality indicators that help deciding how well a result fits to the search input.  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
  */
 @JsonPropertyOrder({
   AddressScores.JSON_PROPERTY_COUNTRY,
@@ -43,7 +43,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   AddressScores.JSON_PROPERTY_STREET,
   AddressScores.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:33:15.191888343Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class AddressScores {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Enumeration to specify the type of total score calculation.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future.
+ * Enumeration to specify the type of total score calculation.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future.
  */
 public enum TotalScoreType {
   

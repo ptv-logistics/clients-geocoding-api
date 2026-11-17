@@ -41,7 +41,7 @@ import com.ptvgroup.developer.client.geocoding.ApiClient;
   SuggestedAddress.JSON_PROPERTY_STREET,
   SuggestedAddress.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:33:15.191888343Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class SuggestedAddress {
   public static final String JSON_PROPERTY_CAPTION = "caption";
   @javax.annotation.Nonnull

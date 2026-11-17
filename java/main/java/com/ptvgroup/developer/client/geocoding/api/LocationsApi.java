@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T09:46:11.603380919Z[Etc/UTC]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:33:15.191888343Z[Etc/UTC]", comments = "Generator version: 7.22.0")
 public class LocationsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -504,7 +504,7 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
@@ -524,7 +524,7 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @param headers Optional headers to include in the request
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
@@ -546,7 +546,7 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
@@ -566,7 +566,7 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param totalScoreType Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
+   * @param totalScoreType Defines how Location.quality.totalScore is calculated.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. (optional, default to INPUT_AND_RESULT_BASED)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
@@ -833,12 +833,11 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param cleanInput The experimental parameter &#39;cleanInput&#39; will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. (optional, default to false)
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
-  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput) throws ApiException {
-    return searchLocationsByText(searchText, countryFilter, language, results, cleanInput, null);
+  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results) throws ApiException {
+    return searchLocationsByText(searchText, countryFilter, language, results, null);
   }
 
   /**
@@ -848,13 +847,12 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param cleanInput The experimental parameter &#39;cleanInput&#39; will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return LocationsSearchResult
    * @throws ApiException if fails to make API call
    */
-  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
-    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput, headers);
+  public LocationsSearchResult searchLocationsByText(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, Map<String, String> headers) throws ApiException {
+    ApiResponse<LocationsSearchResult> localVarResponse = searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, headers);
     return localVarResponse.getData();
   }
 
@@ -865,12 +863,11 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param cleanInput The experimental parameter &#39;cleanInput&#39; will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. (optional, default to false)
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput) throws ApiException {
-    return searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, cleanInput, null);
+  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results) throws ApiException {
+    return searchLocationsByTextWithHttpInfo(searchText, countryFilter, language, results, null);
   }
 
   /**
@@ -880,13 +877,12 @@ public class LocationsApi {
    * @param countryFilter A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. (optional)
    * @param language The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. (optional)
    * @param results Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. (optional)
-   * @param cleanInput The experimental parameter &#39;cleanInput&#39; will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;LocationsSearchResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchLocationsByTextRequestBuilder(searchText, countryFilter, language, results, cleanInput, headers);
+  public ApiResponse<LocationsSearchResult> searchLocationsByTextWithHttpInfo(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchLocationsByTextRequestBuilder(searchText, countryFilter, language, results, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -933,7 +929,7 @@ public class LocationsApi {
     }
   }
 
-  private HttpRequest.Builder searchLocationsByTextRequestBuilder(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, @javax.annotation.Nullable Boolean cleanInput, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder searchLocationsByTextRequestBuilder(@javax.annotation.Nonnull String searchText, @javax.annotation.Nullable List<String> countryFilter, @javax.annotation.Nullable String language, @javax.annotation.Nullable List<Results> results, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'searchText' is set
     if (searchText == null) {
       throw new ApiException(400, "Missing the required parameter 'searchText' when calling searchLocationsByText");
@@ -954,8 +950,6 @@ public class LocationsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("language", language));
     localVarQueryParameterBaseName = "results";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "results", results));
-    localVarQueryParameterBaseName = "cleanInput";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("cleanInput", cleanInput));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

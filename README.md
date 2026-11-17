@@ -5,7 +5,7 @@ Using client classes makes it easier and more convenient to integrate the API in
 
 Language depending information:
 * **DotNet:** Please add the following nuget packages to your client project
-  * Please use .NET 8.0
+  * Please use .NET 8.0 or .NET 10.0
   * JsonSubTypes (2.0.1)
   * Newtonsoft.Json (13.0.3)
   * RestSharp (112.0.0)
