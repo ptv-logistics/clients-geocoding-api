@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * Quality indicators that help deciding how well a result fits to the search input.  
+ * Quality indicators that help deciding how well a result fits to the search input.
  *  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
  * @export
  * @interface AddressScores

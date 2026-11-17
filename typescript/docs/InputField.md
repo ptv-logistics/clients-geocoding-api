@@ -1,7 +1,7 @@
 
 # InputField
 
-Enumeration to specify a parameter of a suggestions/by-address request.    * `COUNTRY` - Specifies the country parameter.    * `STATE` - Specifies the state parameter.    * `POSTAL_CODE` - Specifies the postalCode parameter.    * `LOCALITY` - Specifies the locality parameter.    * `STREET` - Specifies the street parameter.    * `HOUSE_NUMBER` - Specifies the houseNumber parameter.
+Enumeration to specify a parameter of a suggestions/by-address request.  * `COUNTRY` - Specifies the country parameter.  * `STATE` - Specifies the state parameter.  * `POSTAL_CODE` - Specifies the postalCode parameter.  * `LOCALITY` - Specifies the locality parameter.  * `STREET` - Specifies the street parameter.  * `HOUSE_NUMBER` - Specifies the houseNumber parameter.
 
 ## Properties
 

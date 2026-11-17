@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `caption` | string
 `subCaption` | string
+`searchText` | string
 
 ## Example
 
@@ -19,6 +20,7 @@ import type { Suggestion } from ''
 const example = {
   "caption": null,
   "subCaption": null,
+  "searchText": Hamburg, Germany,
 } satisfies Suggestion
 
 console.log(example)

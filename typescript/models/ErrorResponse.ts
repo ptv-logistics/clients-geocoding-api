@@ -42,34 +42,34 @@ export interface ErrorResponse {
      * * `GENERAL_UNAUTHENTICATED` - Invalid or missing authentication credentials.
      *   * `message` - An additional error message.
      * 
-     * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.  
+     * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.
      * 
-     * **HTTP status code: 400**  
-     * * `GENERAL_VALIDATION_ERROR` - The validation of the request failed. Details can be found in **causes**.  
-     * * `GENERAL_PARSING_ERROR` - The JSON syntax is invalid.  
+     * **HTTP status code: 400**
+     * * `GENERAL_VALIDATION_ERROR` - The validation of the request failed. Details can be found in **causes**.
+     * * `GENERAL_PARSING_ERROR` - The JSON syntax is invalid.
      * 
-     * **HTTP status code: 401**  
-     * * `GENERAL_UNAUTHENTICATED` - Invalid or missing authentication credentials.  
-     *   * `message` - An additional error message.  
+     * **HTTP status code: 401**
+     * * `GENERAL_UNAUTHENTICATED` - Invalid or missing authentication credentials.
+     *   * `message` - An additional error message.
      * 
-     * **HTTP status code: 403**  
-     * * `GENERAL_FORBIDDEN` - Insufficient access rights.  
-     * * `GENERAL_QUOTA_EXCEEDED` - The transaction limit is exceeded.  
-     *   * `message` - An additional error message.  
+     * **HTTP status code: 403**
+     * * `GENERAL_FORBIDDEN` - Insufficient access rights.
+     * * `GENERAL_QUOTA_EXCEEDED` - The transaction limit is exceeded.
+     *   * `message` - An additional error message.
      * 
-     * **HTTP status code: 404**  
-     * * `GENERAL_RESOURCE_NOT_FOUND` - A requested resource does not exist.  
-     *   * `message` - An additional error message.  
+     * **HTTP status code: 404**
+     * * `GENERAL_RESOURCE_NOT_FOUND` - A requested resource does not exist.
+     *   * `message` - An additional error message.
      * 
-     * **HTTP status code: 429**  
-     * * `GENERAL_RATE_LIMIT_EXCEEDED` - The rate limit is exceeded.  
+     * **HTTP status code: 429**
+     * * `GENERAL_RATE_LIMIT_EXCEEDED` - The rate limit is exceeded.
      * 
-     * **HTTP status code: 500**  
-     * * `GENERAL_INTERNAL_SERVER_ERROR` - The request could not be processed due to an internal error.  
-     *   * `message` - An additional error message.  
-     *   * `hint` - A hint how to solve the problem.  
+     * **HTTP status code: 500**
+     * * `GENERAL_INTERNAL_SERVER_ERROR` - The request could not be processed due to an internal error.
+     *   * `message` - An additional error message.
+     *   * `hint` - A hint how to solve the problem.
      * 
-     * **HTTP status code: 503**  
+     * **HTTP status code: 503**
      * * `GENERAL_SERVICE_UNAVAILABLE` - The service is temporarily unavailable.
      * @type {string}
      * @memberof ErrorResponse

@@ -28,14 +28,14 @@ import {
  */
 export interface Quality {
     /**
-     * The spatial distance in \[m\] between the location or the place and the input of a position search.  
+     * The spatial distance in \[m\] between the location or the place and the input of a position search.
      *  This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.
      * @type {number}
      * @memberof Quality
      */
     distance?: number;
     /**
-     * An overall score in \[%\] for address searches. 100 percent represents a perfect match between the input and the result.  
+     * An overall score in \[%\] for address searches. 100 percent represents a perfect match between the input and the result.
      *  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
      * @type {number}
      * @memberof Quality

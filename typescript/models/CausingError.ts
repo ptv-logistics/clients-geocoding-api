@@ -34,35 +34,35 @@ export interface CausingError {
      * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.
      *   * `value` - The invalid value.
      * 
-     * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.  
+     * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.
      * 
      * **Error codes for** `GENERAL_VALIDATION_ERROR`
-     * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.  
-     *   * `value` - The invalid value.   
-     * * `GENERAL_UNRECOGNIZED_PARAMETER` - A parameter is unknown.  
-     * * `GENERAL_MISSING_PARAMETER` - A required parameter is missing.  
-     * * `GENERAL_DUPLICATE_PARAMETER` - A parameter is duplicated.  
-     * * `GENERAL_MINIMUM_VALUE_VIOLATED` - The minimum value of a parameter is violated.  
-     *   * `minimumValue` - The minimum value (integer or double).  
-     * * `GENERAL_MAXIMUM_VALUE_VIOLATED` - The maximum value of a parameter is violated.  
-     *   * `maximumValue` - The maximum value (integer or double).  
-     * * `GENERAL_MINIMUM_ITEMS_VIOLATED` - The minimum number of items of an array is violated.  
-     *   * `minimumItems` - The minimum number of items (integer).  
-     * * `GENERAL_MAXIMUM_ITEMS_VIOLATED` - The maximum number of items of an array is violated.  
-     *   * `maximumItems` - The maximum number of items (integer).  
-     * * `GEOCODING_PARAMETER_CONFLICT` - Conflicting parameters found. Only one of them is allowed.  
+     * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.
+     *   * `value` - The invalid value.
+     * * `GENERAL_UNRECOGNIZED_PARAMETER` - A parameter is unknown.
+     * * `GENERAL_MISSING_PARAMETER` - A required parameter is missing.
+     * * `GENERAL_DUPLICATE_PARAMETER` - A parameter is duplicated.
+     * * `GENERAL_MINIMUM_VALUE_VIOLATED` - The minimum value of a parameter is violated.
+     *   * `minimumValue` - The minimum value (integer or double).
+     * * `GENERAL_MAXIMUM_VALUE_VIOLATED` - The maximum value of a parameter is violated.
+     *   * `maximumValue` - The maximum value (integer or double).
+     * * `GENERAL_MINIMUM_ITEMS_VIOLATED` - The minimum number of items of an array is violated.
+     *   * `minimumItems` - The minimum number of items (integer).
+     * * `GENERAL_MAXIMUM_ITEMS_VIOLATED` - The maximum number of items of an array is violated.
+     *   * `maximumItems` - The maximum number of items (integer).
+     * * `GEOCODING_PARAMETER_CONFLICT` - Conflicting parameters found. Only one of them is allowed.
      *   * `conflictingParameter` - The name of the conflicting parameter.
-     * * `GEOCODING_PARAMETER_DEPENDENCY_VIOLATED` - A parameter depends on another parameter which is missing.  
-     *   * `missingParameter` - The name of the missing parameter.  
-     * * `GENERAL_TYPE_VIOLATED` - The value of a parameter has an invalid type.  
-     *   * `type` - The type.  
+     * * `GEOCODING_PARAMETER_DEPENDENCY_VIOLATED` - A parameter depends on another parameter which is missing.
+     *   * `missingParameter` - The name of the missing parameter.
+     * * `GENERAL_TYPE_VIOLATED` - The value of a parameter has an invalid type.
+     *   * `type` - The type.
      * * `GENERAL_FORMAT_VIOLATED` - The value of a parameter has an invalid format.
      *   * `format` - The format.
-     * * `GENERAL_PATTERN_VIOLATED` - The value of a string parameter does not satisfy the required pattern.  
-     *   * `pattern` - The pattern.  
-     * * `GENERAL_ENUM_VIOLATED` - The value of a parameter is not one of the specified enum values.  
-     *   * `enum` - The allowed enum values.  
-     * * `GENERAL_INVALID_LIST` - A list has an invalid format such as duplicate commas.  
+     * * `GENERAL_PATTERN_VIOLATED` - The value of a string parameter does not satisfy the required pattern.
+     *   * `pattern` - The pattern.
+     * * `GENERAL_ENUM_VIOLATED` - The value of a parameter is not one of the specified enum values.
+     *   * `enum` - The allowed enum values.
+     * * `GENERAL_INVALID_LIST` - A list has an invalid format such as duplicate commas.
      *   * `value` - The invalid list.
      * @type {string}
      * @memberof CausingError

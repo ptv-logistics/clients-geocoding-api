@@ -1,7 +1,7 @@
 
 # TotalScoreType
 
-Enumeration to specify the type of total score calculation.    * `INPUT_AND_RESULT_BASED` - The total score is calculated by comparing the result against the input.    * `RESULT_BASED` - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future.
+Enumeration to specify the type of total score calculation.  * `INPUT_AND_RESULT_BASED` - The total score is calculated by comparing the result against the input.  * `RESULT_BASED` - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future.
 
 ## Properties
 

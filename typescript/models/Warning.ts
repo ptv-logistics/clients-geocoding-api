@@ -38,19 +38,19 @@ export interface Warning {
      *   * `relatedParameter` - The parameter which caused the parameter in question to be ignored.
      *   * `relatedValue` - The value which caused the parameter in question to be ignored. Not present if the conflict is independent of the value.
      * 
-     * Note that additional warningCode as well as the **details** of existing warningCode may be added at any time. Furthermore, the **description** may change at any time.  
+     * Note that additional warningCode as well as the **details** of existing warningCode may be added at any time. Furthermore, the **description** may change at any time.
      * 
-     * * `GEOCODING_COUNTRY_FILTER_MODIFIED` - A given code in **countryFilter** referring to a subdivision of a country was modified to its corresponding country code.  
-     *   * `requestedSubdivisionCode` - The subdivision code that was originally requested.  
-     *   * `fallbackCountryCode` - The country code that was used as a fallback in the search.  
-     * * `GEOCODING_TIMEOUT` - The search ran into a timeout while trying to find results.  
-     * * `GEOCODING_INPUT_TOO_LONG` - The input was rejected because it is too long.  
-     *   * `maximumSize` - The maximum allowed size of the single input field.  
-     * * `TOO_MANY_INPUT_WORDS` - At least one of the input fields exceeded the maximum number of input words.  
+     * * `GEOCODING_COUNTRY_FILTER_MODIFIED` - A given code in **countryFilter** referring to a subdivision of a country was modified to its corresponding country code.
+     *   * `requestedSubdivisionCode` - The subdivision code that was originally requested.
+     *   * `fallbackCountryCode` - The country code that was used as a fallback in the search.
+     * * `GEOCODING_TIMEOUT` - The search ran into a timeout while trying to find results.
+     * * `GEOCODING_INPUT_TOO_LONG` - The input was rejected because it is too long.
+     *   * `maximumSize` - The maximum allowed size of the single input field.
+     * * `TOO_MANY_INPUT_WORDS` - At least one of the input fields exceeded the maximum number of input words.
      *   * `inputField` - The input field that had too many input words.
      *   * `actualNumberOfWords` - The number of words found in `inputField`.
      *   * `maximumAllowedNumberOfWords` - The maximum number of words allowed in `inputField`.
-     * * `GEOCODING_TOO_MANY_RESULTS` - Too many results found. Not all of them are provided in the response.  
+     * * `GEOCODING_TOO_MANY_RESULTS` - Too many results found. Not all of them are provided in the response.
      * @type {string}
      * @memberof Warning
      */

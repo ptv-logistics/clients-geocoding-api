@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * A position on or very close to a road that marks the entry to the object. Available only for objects which represent buildings with a complete address and only if present in the data.  
+ * A position on or very close to a road that marks the entry to the object. Available only for objects which represent buildings with a complete address and only if present in the data.
  *  The road from which the object can be accessed is not necessarily the road which is closest to the object.
  * @export
  * @interface RoadAccessPosition

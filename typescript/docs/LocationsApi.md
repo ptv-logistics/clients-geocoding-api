@@ -230,7 +230,7 @@ async function example() {
     language: en,
     // Array<Results> | Comma-separated list that defines which results will be returned.  * `ADDRESS_SCORES` - Populate **location.quality.addressScores**. (optional)
     results: ["ADDRESS_SCORES"],
-    // TotalScoreType | Defines how Location.quality.totalScore is calculated.    * `INPUT_AND_RESULT_BASED` - The total score is calculated by comparing the result against the input.    * `RESULT_BASED` - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. (optional)
+    // TotalScoreType | Defines how Location.quality.totalScore is calculated.  * `INPUT_AND_RESULT_BASED` - The total score is calculated by comparing the result against the input.  * `RESULT_BASED` - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. (optional)
     totalScoreType: ...,
   } satisfies SearchLocationsByAddressRequest;
 
@@ -260,7 +260,7 @@ example().catch(console.error);
 | **countryFilter** | `Array<string>` | A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. | [Optional] |
 | **language** | `string` | The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. | [Optional] [Defaults to `undefined`] |
 | **results** | `Array<Results>` | Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. | [Optional] |
-| **totalScoreType** | `TotalScoreType` | Defines how Location.quality.totalScore is calculated.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future. | [Optional] [Defaults to `undefined`] [Enum: INPUT_AND_RESULT_BASED, RESULT_BASED] |
+| **totalScoreType** | `TotalScoreType` | Defines how Location.quality.totalScore is calculated.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future. | [Optional] [Defaults to `undefined`] [Enum: INPUT_AND_RESULT_BASED, RESULT_BASED] |
 
 ### Return type
 
@@ -368,7 +368,7 @@ example().catch(console.error);
 
 ## searchLocationsByText
 
-> LocationsSearchResult searchLocationsByText(searchText, countryFilter, language, results, cleanInput)
+> LocationsSearchResult searchLocationsByText(searchText, countryFilter, language, results)
 
 
 
@@ -400,8 +400,6 @@ async function example() {
     language: en,
     // Array<Results> | Comma-separated list that defines which results will be returned.  * `ADDRESS_SCORES` - Populate **location.quality.addressScores**. (optional)
     results: ["ADDRESS_SCORES"],
-    // boolean | The experimental parameter \'cleanInput\' will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. (optional)
-    cleanInput: true,
   } satisfies SearchLocationsByTextRequest;
 
   try {
@@ -425,7 +423,6 @@ example().catch(console.error);
 | **countryFilter** | `Array<string>` | A comma-separated list of country codes according to [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) or [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) if referring to a subdivision. The search will only consider data from countries with these codes. If no filter is specified, all countries are taken into account. However, empty values are not allowed.     If a given subdivision code is not supported, only the first two digits referring to the country are considered in the search and a **warningCode** &#x60;GEOCODING_COUNTRY_FILTER_MODIFIED&#x60; is returned with the response. | [Optional] |
 | **language** | `string` | The preferred language for the response formatted according to [ISO-639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) for languages or [BCP47](https://tools.ietf.org/html/bcp47) for language variants. By default the service uses the language spoken in the country or region of the result. In case the given preferred language is not available in the data, the default language is used. | [Optional] [Defaults to `undefined`] |
 | **results** | `Array<Results>` | Comma-separated list that defines which results will be returned.  * &#x60;ADDRESS_SCORES&#x60; - Populate **location.quality.addressScores**. | [Optional] |
-| **cleanInput** | `boolean` | The experimental parameter \&#39;cleanInput\&#39; will be permanently deleted end of June 2026. Based on usage data and feedback, we have decided not to promote it to a stable feature. Please remove it from your requests before then to avoid any disruption to your integration. | [Optional] [Defaults to `false`] |
 
 ### Return type
 

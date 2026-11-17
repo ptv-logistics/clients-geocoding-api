@@ -92,7 +92,6 @@ export interface SearchLocationsByTextRequest {
     countryFilter?: Array<string>;
     language?: string;
     results?: Array<Results>;
-    cleanInput?: boolean;
 }
 
 /**
@@ -417,10 +416,6 @@ export class LocationsApi extends runtime.BaseAPI {
 
         if (requestParameters['results'] != null) {
             queryParameters['results'] = requestParameters['results']!.join(runtime.COLLECTION_FORMATS["csv"]);
-        }
-
-        if (requestParameters['cleanInput'] != null) {
-            queryParameters['cleanInput'] = requestParameters['cleanInput'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

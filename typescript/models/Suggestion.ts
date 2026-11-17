@@ -31,6 +31,12 @@ export interface Suggestion {
      * @memberof Suggestion
      */
     subCaption: string;
+    /**
+     * The suggested search text to pass to the searchLocationsByText endpoint to retrieve the corresponding locations.
+     * @type {string}
+     * @memberof Suggestion
+     */
+    searchText?: string;
 }
 
 /**
@@ -54,6 +60,7 @@ export function SuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'caption': json['caption'],
         'subCaption': json['subCaption'],
+        'searchText': json['searchText'] == null ? undefined : json['searchText'],
     };
 }
 
@@ -70,6 +77,7 @@ export function SuggestionToJSONTyped(value?: Suggestion | null, ignoreDiscrimin
         
         'caption': value['caption'],
         'subCaption': value['subCaption'],
+        'searchText': value['searchText'],
     };
 }
 
