@@ -26,9 +26,9 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// Enumeration to specify a parameter of a suggestions/by-address request.    * &#x60;COUNTRY&#x60; - Specifies the country parameter.    * &#x60;STATE&#x60; - Specifies the state parameter.    * &#x60;POSTAL_CODE&#x60; - Specifies the postalCode parameter.    * &#x60;LOCALITY&#x60; - Specifies the locality parameter.    * &#x60;STREET&#x60; - Specifies the street parameter.    * &#x60;HOUSE_NUMBER&#x60; - Specifies the houseNumber parameter.
+    /// Enumeration to specify a parameter of a suggestions/by-address request.  * &#x60;COUNTRY&#x60; - Specifies the country parameter.  * &#x60;STATE&#x60; - Specifies the state parameter.  * &#x60;POSTAL_CODE&#x60; - Specifies the postalCode parameter.  * &#x60;LOCALITY&#x60; - Specifies the locality parameter.  * &#x60;STREET&#x60; - Specifies the street parameter.  * &#x60;HOUSE_NUMBER&#x60; - Specifies the houseNumber parameter.
     /// </summary>
-    /// <value>Enumeration to specify a parameter of a suggestions/by-address request.    * &#x60;COUNTRY&#x60; - Specifies the country parameter.    * &#x60;STATE&#x60; - Specifies the state parameter.    * &#x60;POSTAL_CODE&#x60; - Specifies the postalCode parameter.    * &#x60;LOCALITY&#x60; - Specifies the locality parameter.    * &#x60;STREET&#x60; - Specifies the street parameter.    * &#x60;HOUSE_NUMBER&#x60; - Specifies the houseNumber parameter.</value>
+    /// <value>Enumeration to specify a parameter of a suggestions/by-address request.  * &#x60;COUNTRY&#x60; - Specifies the country parameter.  * &#x60;STATE&#x60; - Specifies the state parameter.  * &#x60;POSTAL_CODE&#x60; - Specifies the postalCode parameter.  * &#x60;LOCALITY&#x60; - Specifies the locality parameter.  * &#x60;STREET&#x60; - Specifies the street parameter.  * &#x60;HOUSE_NUMBER&#x60; - Specifies the houseNumber parameter.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum InputField
     {

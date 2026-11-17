@@ -41,7 +41,8 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// </summary>
         /// <param name="caption">A search address suggestion that can be displayed on a user interface as caption. (required).</param>
         /// <param name="subCaption">An additional address information for the suggestion that can be displayed on a user interface as sub caption. (required).</param>
-        public Suggestion(string caption = default, string subCaption = default)
+        /// <param name="searchText">The suggested search text to pass to the searchLocationsByText endpoint to retrieve the corresponding locations..</param>
+        public Suggestion(string caption = default, string subCaption = default, string searchText = default)
         {
             // to ensure "caption" is required (not null)
             if (caption == null)
@@ -55,6 +56,7 @@ namespace PTV.Developer.Clients.geocoding.Model
                 throw new ArgumentNullException("subCaption is a required property for Suggestion and cannot be null");
             }
             this.SubCaption = subCaption;
+            this.SearchText = searchText;
         }
 
         /// <summary>
@@ -72,6 +74,16 @@ namespace PTV.Developer.Clients.geocoding.Model
         public string SubCaption { get; set; }
 
         /// <summary>
+        /// The suggested search text to pass to the searchLocationsByText endpoint to retrieve the corresponding locations.
+        /// </summary>
+        /// <value>The suggested search text to pass to the searchLocationsByText endpoint to retrieve the corresponding locations.</value>
+        /*
+        <example>Hamburg, Germany</example>
+        */
+        [DataMember(Name = "searchText", EmitDefaultValue = true)]
+        public string SearchText { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +93,7 @@ namespace PTV.Developer.Clients.geocoding.Model
             sb.Append("class Suggestion {\n");
             sb.Append("  Caption: ").Append(Caption).Append("\n");
             sb.Append("  SubCaption: ").Append(SubCaption).Append("\n");
+            sb.Append("  SearchText: ").Append(SearchText).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,6 +138,11 @@ namespace PTV.Developer.Clients.geocoding.Model
                     this.SubCaption == input.SubCaption ||
                     (this.SubCaption != null &&
                     this.SubCaption.Equals(input.SubCaption))
+                ) && 
+                (
+                    this.SearchText == input.SearchText ||
+                    (this.SearchText != null &&
+                    this.SearchText.Equals(input.SearchText))
                 );
         }
 
@@ -144,6 +162,10 @@ namespace PTV.Developer.Clients.geocoding.Model
                 if (this.SubCaption != null)
                 {
                     hashCode = (hashCode * 59) + this.SubCaption.GetHashCode();
+                }
+                if (this.SearchText != null)
+                {
+                    hashCode = (hashCode * 59) + this.SearchText.GetHashCode();
                 }
                 return hashCode;
             }

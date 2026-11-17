@@ -26,9 +26,9 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// Enumeration to specify the type of total score calculation.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future.
+    /// Enumeration to specify the type of total score calculation.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future.
     /// </summary>
-    /// <value>Enumeration to specify the type of total score calculation.    * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.    * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.      This parameter is experimental and may change at any time in the future.</value>
+    /// <value>Enumeration to specify the type of total score calculation.  * &#x60;INPUT_AND_RESULT_BASED&#x60; - The total score is calculated by comparing the result against the input.  * &#x60;RESULT_BASED&#x60; - The total score is calculated by classifying result attributes.    This parameter is experimental and may change at any time in the future.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TotalScoreType
     {

@@ -26,7 +26,7 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// Quality indicators that help deciding how well a result fits to the search input.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
+    /// Quality indicators that help deciding how well a result fits to the search input.  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
     /// </summary>
     [DataContract(Name = "AddressScores")]
     public partial class AddressScores : IEquatable<AddressScores>, IValidatableObject

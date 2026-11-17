@@ -26,7 +26,7 @@ using OpenAPIDateConverter = PTV.Developer.Clients.geocoding.Client.OpenAPIDateC
 namespace PTV.Developer.Clients.geocoding.Model
 {
     /// <summary>
-    /// A position on or very close to a road that marks the entry to the object. Available only for objects which represent buildings with a complete address and only if present in the data.    The road from which the object can be accessed is not necessarily the road which is closest to the object.
+    /// A position on or very close to a road that marks the entry to the object. Available only for objects which represent buildings with a complete address and only if present in the data.  The road from which the object can be accessed is not necessarily the road which is closest to the object.
     /// </summary>
     [DataContract(Name = "RoadAccessPosition")]
     public partial class RoadAccessPosition : IEquatable<RoadAccessPosition>, IValidatableObject

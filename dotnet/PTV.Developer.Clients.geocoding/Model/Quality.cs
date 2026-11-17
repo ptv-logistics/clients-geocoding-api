@@ -34,8 +34,8 @@ namespace PTV.Developer.Clients.geocoding.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Quality" /> class.
         /// </summary>
-        /// <param name="distance">The spatial distance in \\[m\\] between the location or the place and the input of a position search.    This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**..</param>
-        /// <param name="totalScore">An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results..</param>
+        /// <param name="distance">The spatial distance in \\[m\\] between the location or the place and the input of a position search.  This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**..</param>
+        /// <param name="totalScore">An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results..</param>
         /// <param name="addressScores">addressScores.</param>
         public Quality(int? distance = default, int? totalScore = default, AddressScores addressScores = default)
         {
@@ -45,16 +45,16 @@ namespace PTV.Developer.Clients.geocoding.Model
         }
 
         /// <summary>
-        /// The spatial distance in \\[m\\] between the location or the place and the input of a position search.    This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.
+        /// The spatial distance in \\[m\\] between the location or the place and the input of a position search.  This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.
         /// </summary>
-        /// <value>The spatial distance in \\[m\\] between the location or the place and the input of a position search.    This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.</value>
+        /// <value>The spatial distance in \\[m\\] between the location or the place and the input of a position search.  This is only available for **searchLocationsByPosition** and **searchPlacesByPosition**.</value>
         [DataMember(Name = "distance", EmitDefaultValue = true)]
         public int? Distance { get; set; }
 
         /// <summary>
-        /// An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
+        /// An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.
         /// </summary>
-        /// <value>An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.    This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.</value>
+        /// <value>An overall score in \\[%\\] for address searches. 100 percent represents a perfect match between the input and the result.  This is only available for **searchLocationsByText** and **searchLocationsByAddress** results.</value>
         [DataMember(Name = "totalScore", EmitDefaultValue = true)]
         public int? TotalScore { get; set; }
 
